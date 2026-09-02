@@ -1,0 +1,36 @@
+{
+  "name": "yutaapis",
+  "version": "1.0.0",
+  "description": "Módulo TS/JavaScript que se conecta com a API Oficial do Yuta",
+  "keywords": [
+    "api",
+    "nodejs",
+    "web"
+  ],
+  "homepage": "https://github.com/Lm-Only/yutaapis#readme",
+  "bugs": {
+    "url": "https://github.com/Lm-Only/yutaapis/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Lm-Only/yutaapis.git"
+  },
+  "license": "MIT",
+  "author": "Lm-Only",
+  "type": "module",
+  "main": "lib/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "devDependencies": {
+    "@types/node": "^26.4.0",
+    "dotenv": "^17.4.2",
+    "typescript": "^7.0.2"
+  },
+  "dependencies": {
+    "undici": "^8.10.0"
+  },
+  "allowScripts": {
+    "esbuild@0.28.2": true
+  }
+}
