@@ -9,16 +9,17 @@
     "noEmit": false,
     "skipLibCheck": true,
     "esModuleInterop": true,
+    "declaration": true,
+    "declarationMap": true,
     "resolveJsonModule": true,
     "types": [
       "node"
     ]
   },
   "include": [
-    "src/**/*.ts"
+    "src/**/*"
   ],
   "exclude": [
-    "node_modules",
-    "src/Types/types.d.ts"
+    "node_modules"
   ]
 }
