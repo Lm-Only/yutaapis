@@ -3,6 +3,6 @@ lib
 
 package-lock.json
 .env
-test
-*.baktest/
+*.bak
 test/
+
