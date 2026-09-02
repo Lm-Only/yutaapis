@@ -1,2 +1,2 @@
 # yutaapis
-Módulo TS/JavaScript que se conecta com a API Oficial do Yuta
+Módulo SDK TypeScript/JavaScript desenvolvido para consumo do Yuta APIs; em parceria com HutaoBot
