@@ -28,6 +28,10 @@ export async function request<T = unknown>(url: string, opts: RequestOptsConfig,
         throw new RequestError({ statusCode: 310, message: 'MAX_REDIRECTS' });
     }
 
+    if (!opts.requestOptions.query) {
+        opts.requestOptions.query = {};
+    }
+
     opts.requestOptions.query.apitoken = otherOpts.apitoken;
     opts.requestOptions.headers = {
         ...opts.requestOptions.headers,

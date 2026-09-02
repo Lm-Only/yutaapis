@@ -1,6 +1,5 @@
 import { request } from "../../request.js";
 import { DefaultParamsFunc } from "../../Types/types.js";
-import { urlFormatString } from "../../Utils/url.js";
 
 
 export default async function ytsearch(opts: DefaultParamsFunc): Promise<any> {

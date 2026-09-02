@@ -15,6 +15,9 @@
     "type": "git",
     "url": "git+https://github.com/Lm-Only/yutaapis.git"
   },
+  "files": [
+    "lib"
+  ],
   "license": "MIT",
   "author": "Lm-Only",
   "type": "module",

@@ -43,7 +43,7 @@ export declare interface RequestOptions {
     /**
      * Query params para url, exemplo: ?query= e etc
      */
-    query: ParamsQuery
+    query?: ParamsQuery
 }
 
 export declare interface RequestOptsConfig {
@@ -53,7 +53,7 @@ export declare interface RequestOptsConfig {
 }
 
 export declare interface DefaultParamsFunc {
-    query: string;
+    query?: string;
     /**
      * Seria como https://yuta-apis.xyz/api
      */
@@ -91,5 +91,11 @@ export declare interface RouteNames {
     geradores: {
         nick: (query: string) => Promise<any>;
         qrcode: (query: string) => Promise<any>;
-    }
+    };
+    animes: {
+        hentai_video: (query: string) => Promise<any>;
+        hentai_video2: (query: string) => Promise<any>;
+        metadinha: (query: string) => Promise<any>;
+        quotesanimes: (query: string) => Promise<any>;
+    };
 }
