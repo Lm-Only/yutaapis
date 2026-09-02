@@ -14,8 +14,9 @@ import wiki from "./Routes/pesquisa/wikipedia.js";
 
 import { RouteNames } from "./Types/types.js";
 import { urlFormatString } from "./Utils/url.js";
-import ias from "./Routes/ias/ias.js";
-import geradores from "./Routes/geradores/geradores.js";
+import ias from "./Routes/ias/index.js";
+import geradores from "./Routes/geradores/index.js";
+import animes from "./Routes/animes/index.js";
 
 
 type RouteHandler = (...args: any[]) => any;
@@ -29,22 +30,41 @@ export type Opts = {
 }
 
 export function routes(opts: Opts): Record<keyof RouteNames, RouteParams> {
+
+    async function executeAnimesRoute(endpoint: string) {
+        return await animes({
+            ...opts,
+            url: urlFormatString(opts.baseUrl, opts.route, endpoint)
+        });
+    }
+
+    type FunctionName = 'yt-search'
+        | 'github-stalker'
+        | 'wiki-search'
+
+    const functionsMap = {
+        'github-stalker': gitstalk,
+        'wiki-search': wiki,
+        'yt-search': ytsearch
+    } as const;
+
+
+    async function executePesquisasRoute(query: string, functionName: FunctionName) {
+        const executeFunction = functionsMap[functionName];
+
+        return await executeFunction({
+            ...opts, query,
+            url: urlFormatString(opts.baseUrl, opts.route, functionName)
+        });
+    }
+
     return {
         pesquisas: {
-            ytsearch: async (query: string) => await ytsearch({
-                ...opts, query,
-                url: urlFormatString(opts.baseUrl, opts.route, 'yt-search')
-            }),
+            ytsearch: async (query: string) => await executePesquisasRoute(query, 'yt-search'),
 
-            gitstalk: async (query: string) => await gitstalk({
-                ...opts, query,
-                url: urlFormatString(opts.baseUrl, opts.route, 'github-stalker')
-            }),
+            gitstalk: async (query: string) => await executePesquisasRoute(query, 'github-stalker'),
 
-            wiki: async (query: string) => await wiki({
-                ...opts, query,
-                url: urlFormatString(opts.baseUrl, opts.route, 'wiki-search')
-            })
+            wiki: async (query: string) => await executePesquisasRoute(query, 'wiki-search')
         },
         
         downloads: {
@@ -59,17 +79,17 @@ export function routes(opts: Opts): Record<keyof RouteNames, RouteParams> {
             gpt: async (query: string) => await ias({
                 ...opts, query,
                 url: urlFormatString(opts.baseUrl, opts.route, 'gpt')
-            }, 'JSON'),
+            }),
             
             gemini: async (query: string) => await ias({
                 ...opts, query,
                 url: urlFormatString(opts.baseUrl, opts.route, 'gemini')
-            }, 'JSON'),
+            }),
 
             gemini_pro: async (query: string) => await ias({
                 ...opts, query,
                 url: urlFormatString(opts.baseUrl, opts.route, 'gemini-pro')
-            }, 'JSON'),
+            }),
 
             geminivoz: async (query: string) => await ias({
                 ...opts, query,
@@ -79,19 +99,26 @@ export function routes(opts: Opts): Record<keyof RouteNames, RouteParams> {
             perplexity_ai: async (query: string) => await ias({
                 ...opts, query,
                 url: urlFormatString(opts.baseUrl, opts.route, 'perplexity-ai')
-            }, 'JSON')
+            })
         },
 
         geradores: {
             nick: async (query: string) => await geradores({
                 ...opts, query,
                 url: urlFormatString(opts.baseUrl, opts.route, 'gerar-nicks')
-            }, 'JSON'),
+            }),
 
             qrcode: async (query: string) => await geradores({
                 ...opts, query,
                 url: urlFormatString(opts.baseUrl, opts.route, 'qrcode')
             }, 'BUFFER'),
+        },
+
+        animes: {
+            hentai_video: async () => await executeAnimesRoute('hentai-video'),
+            hentai_video2: async () => await executeAnimesRoute('hentai-video2'),
+            metadinha: async () => await executeAnimesRoute('metadinha'),
+            quotesanimes: async () => await executeAnimesRoute('quotesanimes')
         }
     }
 }
