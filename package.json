@@ -1,6 +1,6 @@
 {
   "name": "yutaapis",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Módulo TS/JavaScript que se conecta com a API Oficial do Yuta",
   "keywords": [
     "api",
