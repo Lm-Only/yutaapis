@@ -17,10 +17,11 @@ import { urlFormatString } from "./Utils/url.js";
 import ias from "./Routes/ias/index.js";
 import geradores from "./Routes/geradores/index.js";
 import animes from "./Routes/animes/index.js";
+import logos from "./Routes/logos/index.js";
 
 
 type RouteHandler = (...args: any[]) => any;
-type RouteParams = Record<string, RouteHandler>
+type RouteParams = Record<string, RouteHandler | any>
 
 export type Opts = {
     baseUrl: string;
@@ -119,6 +120,21 @@ export function routes(opts: Opts): Record<keyof RouteNames, RouteParams> {
             hentai_video2: async () => await executeAnimesRoute('hentai-video2'),
             metadinha: async () => await executeAnimesRoute('metadinha'),
             quotesanimes: async () => await executeAnimesRoute('quotesanimes')
+        },
+
+        logos: {
+            generate: async (nomeDoEfeito: string, textoPraLogo: string) => {
+                if (!textoPraLogo) {
+                    console.error('Ei você errou aí na função de logos, você primeiro tem que passar o nome do efeito (tipo: glitch) e depois o texto a ser gerado: (ex: Yuta APis)');
+                    throw new Error('Invalid params');
+                }
+
+                return await logos({
+                    ...opts,
+                    query: textoPraLogo,
+                    url: urlFormatString(opts.baseUrl, opts.route, nomeDoEfeito)
+                });
+            }
         }
     }
 }

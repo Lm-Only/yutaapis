@@ -71,6 +71,10 @@ export class YutaApis {
         return this.getRoutes('pesquisas').pesquisas;
     }
 
+    async logos(nomeDoEfeito: string, textoPraLogo: string) {
+        return await this.getRoutes('logos').logos.generate(nomeDoEfeito, textoPraLogo)
+    }
+
     get animes() {
         return this.getRoutes('animes').animes;
     }

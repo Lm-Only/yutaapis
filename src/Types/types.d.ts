@@ -22,11 +22,13 @@ export declare interface ParamsQuery {
      * sofri por que achava que tudo era query kkkk
      * 😡😡😡
      */
-
     query?: string;
     url?: string;
     text?: string;
     username?: string;
+
+    /** Esse é exclusivo da rota de logos  */
+    texto?: string;
 }
 
 /**
@@ -50,6 +52,7 @@ export declare interface RequestOptsConfig {
     requestOptions: RequestOptions;
     dataType: 'JSON'
     | 'BUFFER'
+    | 'TEXT'
 }
 
 export declare interface DefaultParamsFunc {
@@ -98,4 +101,7 @@ export declare interface RouteNames {
         metadinha: (query: string) => Promise<any>;
         quotesanimes: (query: string) => Promise<any>;
     };
+    logos: {
+        generate: (nomeDoEfeito: string, textoPraLogo: string) => Promise<any>;
+    }
 }
