@@ -8,7 +8,7 @@
  */
 
 import { routes } from "./routes.js";
-import { HttpOptions } from "./Types/types.js";
+import { HttpOptions, RouteNames } from "./Types/types.js";
 import { isYutaApiToken } from "./Utils/index.js";
 
 const BASE_YUTA_API_URL: string = 'https://yuta-apis.xyz/api';
@@ -33,6 +33,7 @@ export interface YutaApisOptions {
 export class YutaApis {
     private readonly apiToken?: string;
     private readonly url?: string;
+    private __routeCache: ReturnType<typeof routes> | null = null;
     
     readonly config: Readonly<{
         headers: Record<string, string>;
@@ -41,56 +42,37 @@ export class YutaApis {
     }>
     readonly httpOptions?: HttpOptions;
     
-    get ias() {
-        const baseUrl: string | undefined = this.url;
-
-        if (!baseUrl) {
-            throw new Error('baseUrl is not defined');
+    private getRoutes(routeName: string) {
+        if (this.__routeCache) return this.__routeCache;
+        if (!this.url) {
+            throw new Error('Base url is not defined');
         }
 
-        return routes({
+        this.__routeCache = routes({
             ...this.config,
-            route: 'ias'
-        }).ias;
+            route: routeName
+        });
+        return this.__routeCache;
+    }
+
+    get ias() {
+        return this.getRoutes('ias').ias;
     }
 
     get geradores() {
-        const baseUrl: string | undefined = this.url;
-
-        if (!baseUrl) {
-            throw new Error('baseUrl is not defined');
-        }
-
-        return routes({
-            ...this.config,
-            route: 'geradores'
-        }).geradores;
+        return this.getRoutes('geradores').geradores;
     }
 
     get downloads() {
-        const baseUrl: string | undefined = this.url;
-
-        if (!baseUrl) {
-            throw new Error('baseUrl is not defined');
-        }
-        
-        return routes({
-            ...this.config,
-            route: 'downloads'
-        }).downloads;
+        return this.getRoutes('downloads').downloads;
     }
-    
+
     get pesquisas() {
-        const baseUrl: string | undefined = this.url;
+        return this.getRoutes('pesquisas').pesquisas;
+    }
 
-        if (!baseUrl) {
-            throw new Error('baseUrl is not defined');
-        }
-
-        return routes({
-            ...this.config,
-            route: 'pesquisas'
-        }).pesquisas;
+    get animes() {
+        return this.getRoutes('animes').animes;
     }
 
     constructor(opts: YutaApisOptions = {} as YutaApisOptions) {
