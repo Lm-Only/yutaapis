@@ -76,32 +76,102 @@ export declare interface DefaultParamsFunc {
     headers?: Record<string, string>;
 }
 
+export declare interface DefaultResultJSON {
+    status?: boolean;
+    msg?: string;
+    resposta?: string;
+
+    criador?: | 'NkPetrovkk' | 'Lm Only';
+
+    resultado?: Array<any>;
+    result?: Array<any>;
+}
+
+export declare interface PesquisasRota {
+    ytsearch: (query: string) => Promise<DefaultResultJSON>;
+    gitstalk: (query: string) => Promise<DefaultResultJSON>;
+    wiki: (query: string) => Promise<DefaultResultJSON>;
+}
+
+export declare interface DownloadsRota {
+    ytaudio2: (query: string) => Promise<any>;
+}
+
+export declare interface IaRota {
+    gpt: (query: string) => Promise<DefaultResultJSON>;
+    gemini: (query: string) => Promise<DefaultResultJSON>;
+    gemini_pro: (query: string) => Promise<DefaultResultJSON>;
+    perplexity_ai: (query: string) => Promise<DefaultResultJSON>;
+    geminivoz: (query: string) => Promise<ArrayBuffer>;
+};
+
+export declare interface GeradoresRota {
+    nick: (query: string) => Promise<DefaultResultJSON>;
+    qrcode: (query: string) => Promise<any>;
+};
+
+export declare interface AnimesRota {
+    hentai_video: () => Promise<DefaultResultJSON>;
+    hentai_video2: () => Promise<DefaultResultJSON>;
+    metadinha: () => Promise<DefaultResultJSON>;
+    quotesanimes: () => Promise<DefaultResultJSON>;
+};
+
+export type LogosOptions =
+    | 'glitch'
+    | 'write'
+    | 'advancedglow'
+    | 'typography'
+    | 'pixelglitch'
+    | 'neonglitch'
+    | 'flag'
+    | 'flag3d'
+    | 'deleting'
+    | 'glowing'
+    | 'underwater'
+    | 'logomaker'
+    | 'cartoon'
+    | 'papercut'
+    | 'watercolor'
+    | 'effectclouds'
+    | 'blackpinklogo'
+    | 'gradient'
+    | 'summerbeach'
+    | 'luxurygold'
+    | 'multicoloredneon'
+    | 'sandsummer'
+    | 'galaxywallpaper'
+    | '1917'
+    | 'makingneon'
+    | 'royal'
+    | 'freecreate'
+    | 'galaxy'
+    | 'darkgreen'
+    | 'lighteffects'
+    | 'dragonball'
+    | 'neondevil'
+    | 'frozen'
+    | 'wooden3d'
+    | 'metal3d'
+    | 'ligatures'
+    | '3druby'
+    | 'sunset'
+    | 'cemetery'
+    | 'halloween'
+    | 'horror'
+    | 'blood'
+    | 'joker'
+    | 'clouds';
+
+export interface LogosRota {
+    generate: (nomeDoEfeito: LogosOptions, textoPraLogo: string) => Promise<ArrayBuffer>;
+}
+
 export declare interface RouteNames {
-    pesquisas: {
-        ytsearch: (query: string) => Promise<any>;
-        gitstalk: (query: string) => Promise<any>;
-        wiki: (query: string) => Promise<any>;
-    };
-    downloads: {
-        ytaudio2: (query: string) => Promise<any>;
-    };
-    ias: {
-        gpt: (query: string) => Promise<any>;
-        gemini: (query: string) => Promise<any>;
-        gemini_pro: (query: string) => Promise<any>;
-        perplexity_ai: (query: string) => Promise<any>;
-    };
-    geradores: {
-        nick: (query: string) => Promise<any>;
-        qrcode: (query: string) => Promise<any>;
-    };
-    animes: {
-        hentai_video: (query: string) => Promise<any>;
-        hentai_video2: (query: string) => Promise<any>;
-        metadinha: (query: string) => Promise<any>;
-        quotesanimes: (query: string) => Promise<any>;
-    };
-    logos: {
-        generate: (nomeDoEfeito: string, textoPraLogo: string) => Promise<any>;
-    }
+    pesquisas: PesquisasRota;
+    downloads: DownloadsRota;
+    ias: IaRota;
+    geradores: GeradoresRota;
+    animes: AnimesRota;
+    logos: LogosRota
 }

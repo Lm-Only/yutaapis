@@ -8,7 +8,7 @@
  */
 
 import { routes } from "./routes.js";
-import { HttpOptions, RouteNames } from "./Types/types.js";
+import { AnimesRota, DownloadsRota, GeradoresRota, HttpOptions, IaRota, LogosOptions, LogosRota, PesquisasRota, RouteNames } from "./Types/types.js";
 import { isYutaApiToken } from "./Utils/index.js";
 
 const BASE_YUTA_API_URL: string = 'https://yuta-apis.xyz/api';
@@ -55,28 +55,29 @@ export class YutaApis {
         return this.__routeCache;
     }
 
-    get ias() {
-        return this.getRoutes('ias').ias;
+    get ias(): IaRota {
+        return this.getRoutes('ias').ias as IaRota;
     }
 
-    get geradores() {
-        return this.getRoutes('geradores').geradores;
+    get geradores(): GeradoresRota {
+        return this.getRoutes('geradores').geradores as GeradoresRota;
     }
 
-    get downloads() {
-        return this.getRoutes('downloads').downloads;
+    get downloads(): DownloadsRota {
+        return this.getRoutes('downloads').downloads as DownloadsRota;
     }
 
-    get pesquisas() {
-        return this.getRoutes('pesquisas').pesquisas;
+    get pesquisas(): PesquisasRota {
+        return this.getRoutes('pesquisas').pesquisas as PesquisasRota;
     }
 
-    async logos(nomeDoEfeito: string, textoPraLogo: string) {
-        return await this.getRoutes('logos').logos.generate(nomeDoEfeito, textoPraLogo)
+    get logos() {
+        const generate = this.getRoutes('logos').logos.generate;
+        return (nomeDoEfeito: LogosOptions, textoPraLogo: string) => generate(nomeDoEfeito, textoPraLogo) as Promise<ArrayBuffer>;
     }
 
-    get animes() {
-        return this.getRoutes('animes').animes;
+    get animes(): AnimesRota {
+        return this.getRoutes('animes').animes as AnimesRota;
     }
 
     constructor(opts: YutaApisOptions = {} as YutaApisOptions) {

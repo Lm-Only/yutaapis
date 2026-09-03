@@ -12,16 +12,12 @@ import ytsearch from "./Routes/pesquisa/yt-search.js";
 import ytaudio2 from "./Routes/downloads/ytaudio2.js";
 import wiki from "./Routes/pesquisa/wikipedia.js";
 
-import { RouteNames } from "./Types/types.js";
+import { DefaultResultJSON, RouteNames } from "./Types/types.js";
 import { urlFormatString } from "./Utils/url.js";
 import ias from "./Routes/ias/index.js";
 import geradores from "./Routes/geradores/index.js";
 import animes from "./Routes/animes/index.js";
 import logos from "./Routes/logos/index.js";
-
-
-type RouteHandler = (...args: any[]) => any;
-type RouteParams = Record<string, RouteHandler | any>
 
 export type Opts = {
     baseUrl: string;
@@ -30,7 +26,7 @@ export type Opts = {
     headers?: Record<string, any>
 }
 
-export function routes(opts: Opts): Record<keyof RouteNames, RouteParams> {
+export function routes(opts: Opts): RouteNames {
 
     async function executeAnimesRoute(endpoint: string) {
         return await animes({
@@ -61,11 +57,9 @@ export function routes(opts: Opts): Record<keyof RouteNames, RouteParams> {
 
     return {
         pesquisas: {
-            ytsearch: async (query: string) => await executePesquisasRoute(query, 'yt-search'),
-
-            gitstalk: async (query: string) => await executePesquisasRoute(query, 'github-stalker'),
-
-            wiki: async (query: string) => await executePesquisasRoute(query, 'wiki-search')
+            ytsearch: (query: string) => executePesquisasRoute(query, 'yt-search') as Promise<DefaultResultJSON>,
+            gitstalk: (query: string) => executePesquisasRoute(query, 'github-stalker') as Promise<DefaultResultJSON>,
+            wiki: (query: string) => executePesquisasRoute(query, 'wiki-search') as Promise<DefaultResultJSON>
         },
         
         downloads: {
@@ -77,37 +71,37 @@ export function routes(opts: Opts): Record<keyof RouteNames, RouteParams> {
 
         ias: {
             
-            gpt: async (query: string) => await ias({
+            gpt: (query: string) => ias({
                 ...opts, query,
                 url: urlFormatString(opts.baseUrl, opts.route, 'gpt')
-            }),
+            }) as Promise<DefaultResultJSON>,
             
-            gemini: async (query: string) => await ias({
+            gemini: (query: string) => ias({
                 ...opts, query,
                 url: urlFormatString(opts.baseUrl, opts.route, 'gemini')
-            }),
+            }) as Promise<DefaultResultJSON>,
 
-            gemini_pro: async (query: string) => await ias({
+            gemini_pro: (query: string) => ias({
                 ...opts, query,
                 url: urlFormatString(opts.baseUrl, opts.route, 'gemini-pro')
-            }),
+            }) as Promise<DefaultResultJSON>,
 
-            geminivoz: async (query: string) => await ias({
+            geminivoz: async (query: string): Promise<ArrayBuffer> => ias({
                 ...opts, query,
                 url: urlFormatString(opts.baseUrl, opts.route, 'geminivoz')
-            }, 'BUFFER'),
+            }, 'BUFFER') as Promise<ArrayBuffer>,
 
-            perplexity_ai: async (query: string) => await ias({
+            perplexity_ai: (query: string) => ias({
                 ...opts, query,
                 url: urlFormatString(opts.baseUrl, opts.route, 'perplexity-ai')
-            })
+            }) as Promise<DefaultResultJSON>
         },
 
         geradores: {
-            nick: async (query: string) => await geradores({
+            nick: (query: string) => geradores({
                 ...opts, query,
                 url: urlFormatString(opts.baseUrl, opts.route, 'gerar-nicks')
-            }),
+            }) as Promise<DefaultResultJSON>,
 
             qrcode: async (query: string) => await geradores({
                 ...opts, query,
@@ -123,17 +117,18 @@ export function routes(opts: Opts): Record<keyof RouteNames, RouteParams> {
         },
 
         logos: {
-            generate: async (nomeDoEfeito: string, textoPraLogo: string) => {
+            generate: (nomeDoEfeito: string, textoPraLogo: string) => {
+                
                 if (!textoPraLogo) {
                     console.error('Ei você errou aí na função de logos, você primeiro tem que passar o nome do efeito (tipo: glitch) e depois o texto a ser gerado: (ex: Yuta APis)');
                     throw new Error('Invalid params');
                 }
 
-                return await logos({
+                return logos({
                     ...opts,
                     query: textoPraLogo,
                     url: urlFormatString(opts.baseUrl, opts.route, nomeDoEfeito)
-                });
+                }) as Promise<ArrayBuffer>;
             }
         }
     }
