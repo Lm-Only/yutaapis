@@ -8,7 +8,7 @@
  */
 
 import { routes } from "./routes.js";
-import { AnimesRota, DownloadsRota, GeradoresRota, HttpOptions, IaRota, LogosOptions, LogosRota, PesquisasRota, RouteNames } from "./Types/types.js";
+import { AnimesRota, DownloadsRota, GeradoresRota, HttpOptions, IaRota, LogosOptions, LogosRota, NoticiasRota, PesquisasRota, PlaqParams, PlaqRoutes, PlaqTextExample, RouteNames } from "./Types/types.js";
 import { isYutaApiToken } from "./Utils/index.js";
 
 const BASE_YUTA_API_URL: string = 'https://yuta-apis.xyz/api';
@@ -63,12 +63,21 @@ export class YutaApis {
         return this.getRoutes('geradores').geradores as GeradoresRota;
     }
 
+    get plaquinhas() {
+        const generate = this.getRoutes('plaquinhas').plaquinhas.generate;
+        return (Plaq: PlaqParams, TextinhoRs: PlaqTextExample) => generate(Plaq, TextinhoRs) as Promise<ArrayBuffer>;
+    }
+
     get downloads(): DownloadsRota {
         return this.getRoutes('downloads').downloads as DownloadsRota;
     }
 
     get pesquisas(): PesquisasRota {
         return this.getRoutes('pesquisas').pesquisas as PesquisasRota;
+    }
+
+    get noticias(): NoticiasRota {
+        return this.getRoutes('noticias').noticias as NoticiasRota;
     }
 
     get logos() {
@@ -80,7 +89,7 @@ export class YutaApis {
         return this.getRoutes('animes').animes as AnimesRota;
     }
 
-    constructor(opts: YutaApisOptions = {} as YutaApisOptions) {
+    constructor(opts: YutaApisOptions) {
         if (!opts.apiToken || !isYutaApiToken(String(opts.apiToken))) {
             throw new Error('apiToken is not defined');
         }

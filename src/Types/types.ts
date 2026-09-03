@@ -37,6 +37,7 @@ export declare interface ParamsQuery {
  * cuidado
  */
 export declare type DataTypeDefault = 'JSON' | 'BUFFER';
+export declare type OtherOpts = Record<string, string> | null
 
 export declare interface RequestOptions {
     method: 'GET' | 'POST'
@@ -81,7 +82,11 @@ export declare interface DefaultResultJSON {
     msg?: string;
     resposta?: string;
 
-    criador?: | 'NkPetrovkk' | 'Lm Only';
+    total?: number;
+    fonte?: string;
+
+    criador?: | '@NkPetrøv' | '@LmOnly';
+    creator?: | '@NkPetrøv' | '@LmOnly';
 
     resultado?: Array<any>;
     result?: Array<any>;
@@ -94,7 +99,18 @@ export declare interface PesquisasRota {
 }
 
 export declare interface DownloadsRota {
-    ytaudio2: (query: string) => Promise<any>;
+    play: (query: string) => Promise<ArrayBuffer>;
+    playvideo: (query: string) => Promise<ArrayBuffer>;
+    ytmp3: (url: string) => Promise<ArrayBuffer>;
+    ytmp4: (url: string) => Promise<ArrayBuffer>;
+    tiktokdl: (url: string) => Promise<DefaultResultJSON>;
+    tiktokMp3: (url: string) => Promise<ArrayBuffer>;
+    tiktokMp4: (url: string) => Promise<ArrayBuffer>;
+    instavideo: (url: string) => Promise<DefaultResultJSON>;
+    pinterest: (query: string) => Promise<ArrayBuffer>;
+    pinterestVideo: (url: string) => Promise<DefaultResultJSON>;
+    pinterestMp3: (url: string) => Promise<ArrayBuffer>;
+    pinterestMp4: (url: string) => Promise<ArrayBuffer>;
 }
 
 export declare interface IaRota {
@@ -163,8 +179,37 @@ export type LogosOptions =
     | 'joker'
     | 'clouds';
 
-export interface LogosRota {
+
+// scrr quem usa isso?
+export declare type PlaqParams = | 'plaq1'
+    | 'plaq2'
+    | 'plaq3'
+    | 'plaq4'
+    | 'plaq5'
+    | 'plaq6'
+    | 'plaq7'
+    | 'plaq8'
+    | 'plaq9'
+    | 'plaq10';
+
+export declare type PlaqTextExample = | 'Lm amor' | 'Nk Domina';
+
+export declare interface LogosRota {
     generate: (nomeDoEfeito: LogosOptions, textoPraLogo: string) => Promise<ArrayBuffer>;
+}
+
+export declare interface PlaqRoutes {
+    generate: (Plaq: PlaqParams, TextinhoRs: PlaqTextExample) => Promise<ArrayBuffer>;
+};
+
+export declare interface NoticiasRota {
+    cnn: () => Promise<DefaultResultJSON>;
+    esportes: () => Promise<DefaultResultJSON>;
+    g1: () => Promise<DefaultResultJSON>;
+    ibge: () => Promise<DefaultResultJSON>;
+    noticias_atuais: () => Promise<DefaultResultJSON>;
+    politica: () => Promise<DefaultResultJSON>;
+    uol: () => Promise<DefaultResultJSON>;
 }
 
 export declare interface RouteNames {
@@ -173,5 +218,7 @@ export declare interface RouteNames {
     ias: IaRota;
     geradores: GeradoresRota;
     animes: AnimesRota;
-    logos: LogosRota
+    logos: LogosRota;
+    noticias: NoticiasRota;
+    plaquinhas: PlaqRoutes;
 }

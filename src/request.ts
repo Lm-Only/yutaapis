@@ -23,6 +23,10 @@ async function getBodyByType<T>(body: any, dataType: string): Promise<T> {
     }
 }
 
+function errorJson(type: string, contentType: string): boolean {
+    return type.toLowerCase() === 'buffer' && contentType.startsWith('application/json');
+}
+
 export async function request<T = unknown>(url: string, opts: RequestOptsConfig, redirectCount: number = 0, otherOpts: Opts): Promise<T> {
     if (redirectCount > 5) {
         throw new RequestError({ statusCode: 310, message: 'MAX_REDIRECTS' });
@@ -39,9 +43,10 @@ export async function request<T = unknown>(url: string, opts: RequestOptsConfig,
     };
 
     const { statusCode, headers, body } = await httpRequest(url, opts.requestOptions);
-
-
-    if (statusCode >= 200 && statusCode < 300) {
+    const contentType: string = String(headers?.['content-type']).toLowerCase();
+    const isErrorJson: boolean = errorJson(opts.dataType, contentType);
+   
+    if (statusCode >= 200 && statusCode < 300 && !isErrorJson) {
         return await getBodyByType<T>(body, opts.dataType);
     }
 
@@ -60,14 +65,14 @@ export async function request<T = unknown>(url: string, opts: RequestOptsConfig,
      * Segue pra erro desconhecido .
      */
     try {
-        const responseError: any = await getBodyByType(body, opts.dataType);
+        const responseError: any = await getBodyByType(body, isErrorJson ? 'JSON' : 'TEXT');
         const hasResponseApi: boolean = Array.isArray(responseError) || typeof responseError !== 'undefined';
 
         if (hasResponseApi) {
             return responseError;
         }
     } catch {
-        await body.dump().catch(() => {});
+        await body.dump().catch(() => { });
     }
 
     throw new RequestError({
