@@ -1,7 +1,7 @@
 {
   "name": "yutaapis",
-  "version": "1.0.1",
-  "description": "Módulo TS/JavaScript que se conecta com a API Oficial do Yuta",
+  "version": "1.0.2",
+  "description": "Módulo SDK TypeScript/JavaScript desenvolvido para consumo do Yuta APIs; em parceria com HutaoBot",
   "keywords": [
     "api",
     "nodejs",
@@ -19,7 +19,7 @@
     "lib"
   ],
   "license": "MIT",
-  "author": "Lm-Only",
+  "author": "lm-only",
   "type": "module",
   "main": "lib/index.js",
   "types": "lib/Types/types.d.ts",
