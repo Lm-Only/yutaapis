@@ -1,3 +1,10 @@
+/**
+ * Formata url com rota e endpoint
+ * Exemplo: baseurl + rota + endpoint
+ *
+ * @params {string[]} args lista de string
+ * @returns {string} URL completa
+ */
 export function urlFormatString(...args: string[]): string {
     
     if (!args.length || !Array.isArray(args)) {
