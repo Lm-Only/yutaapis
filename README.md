@@ -189,7 +189,7 @@ Exemplo salvando em arquivo:
 import { writeFile } from 'node:fs/promises';
 
 const pinterest = await api.downloads.pinterest('Hutao Icon');
-await writeFile('pinterest.bin', pinterest);
+await writeFile('pinterest.jpg', pinterest);
 ```
 
 ### pinterestMp3
