@@ -1,6 +1,6 @@
 {
   "name": "yutaapis",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Módulo SDK TypeScript/JavaScript desenvolvido para consumo do Yuta APIs; em parceria com HutaoBot",
   "keywords": [
     "api",

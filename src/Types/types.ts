@@ -37,7 +37,7 @@ export declare interface ParamsQuery {
  * cuidado
  */
 export declare type DataTypeDefault = 'JSON' | 'BUFFER';
-export declare type OtherOpts = Record<string, string> | null
+export declare type OtherOpts = Record<string, string> | null | any
 
 export declare interface RequestOptions {
     method: 'GET' | 'POST'

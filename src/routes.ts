@@ -29,6 +29,14 @@ export type Opts = {
 }
 
 /**
+ * Explicação - A API do Nk teve uma variação aqui
+ * Aparentemente as vezes é /api/canvas
+ * Depois: /canvas sem o /api
+ * Isso causou um certo conflito no codigo
+ */
+type ExplainThisMethod = 'WITH_API_PATH' | 'NO_API_PATH';
+
+/**
  * AVISO: Antes e adicionar um rota aqui
  * é necessario registrar no types.js
  * 
@@ -36,7 +44,14 @@ export type Opts = {
  * @returns Todas as rotas do Yuta APIS
  */
 export function routes(opts: Opts): RouteNames {
-    async function executeDefaultMethod(endPoint: string, params: OtherOpts = {}, dataType: DataTypeDefault = 'JSON'): Promise<DefaultResultJSON | ArrayBuffer> {
+    async function executeDefaultMethod(
+        endPoint: string, 
+        params: OtherOpts = {}, 
+        dataType: DataTypeDefault = 'JSON',
+        methodType: ExplainThisMethod = 'WITH_API_PATH'
+    ): Promise<DefaultResultJSON | ArrayBuffer> {
+        opts.baseUrl = opts.baseUrl + (methodType ==='WITH_API_PATH' ? '/api' : '');
+
         return defaultRequest({
             ...opts, 
             url: urlFormatString(opts.baseUrl, opts.route, endPoint)
@@ -45,9 +60,9 @@ export function routes(opts: Opts): RouteNames {
 
     return {
         canvas: {
-            welcome: (opts: WelcomeOpts) => executeDefaultMethod('welcome', { ...opts }, 'BUFFER') as Promise<ArrayBuffer>,
+            welcome: (opts: WelcomeOpts) => executeDefaultMethod('welcome', { ...opts }, 'BUFFER', 'NO_API_PATH') as Promise<ArrayBuffer>,
             bemvindo: (opts: BemVindoOpts) => executeDefaultMethod('bemvindo', { ...opts }, 'BUFFER') as Promise<ArrayBuffer>,
-            cardMusic: (opts: CardMusicOpts) => executeDefaultMethod('cardmusic', { ...opts }, 'BUFFER') as Promise<ArrayBuffer>,
+            cardMusic: (opts: CardMusicOpts) => executeDefaultMethod('cardmusic', { ...opts }, 'BUFFER', 'NO_API_PATH') as Promise<ArrayBuffer>,
 
         },
 
