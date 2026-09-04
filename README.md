@@ -10,7 +10,7 @@ Módulo SDK TypeScript/JavaScript desenvolvido para consumo do Yuta APIs; em par
 ##
 
 > [!IMPORTANT]
-> **Este módulo ainda está em desenvolvimento por Lm Onlt, é de certeza que algumas rotas ainda não estejam adicionandas,**
+> **Este módulo ainda está em desenvolvimento por Lm Only, é de certeza que algumas rotas ainda não estejam configuradas,**
 > **Em breve o módulo deve estar totalmente pronto**
 
 ## Instalação
