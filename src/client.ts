@@ -11,6 +11,7 @@ import { BASE_YUTA_API_URL } from "./Defaults/index.js";
 import { routes } from "./routes.js";
 import { 
     AnimesRoute, 
+    CanvasRoute, 
     DownloadsRoute, 
     GeradoresRoute, 
     HttpOptions, 
@@ -97,6 +98,10 @@ export class YutaApis {
     get logos() {
         const generate = this.getRoutes('logos').logos.generate;
         return (nomeDoEfeito: LogosOptions, textoPraLogo: string) => generate(nomeDoEfeito, textoPraLogo) as Promise<ArrayBuffer>;
+    }
+
+    get canvas(): CanvasRoute {
+        return this.getRoutes('canvas').canvas;
     }
 
     get animes(): AnimesRoute {
