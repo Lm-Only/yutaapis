@@ -28,6 +28,15 @@ import YutaApis from 'yutaapis';
 const api = new YutaApis({
   apiToken: 'SEU_TOKEN' // token do Yuta obtido no site
 });
+
+const gitstalkResult = await api.pesquisas.gitstalk('Lm-Only'); // Promise<Object>
+
+if (!gitstalkResult.status) {
+    console.error(gitstalkResult.msg || 'Error na API');
+    process.exit();
+}
+
+console.log(gitstalkResult);
 ```
 
 ## Sumário 
