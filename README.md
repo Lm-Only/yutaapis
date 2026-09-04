@@ -26,7 +26,7 @@ npm i yutaapis
 import YutaApis from 'yutaapis';
 
 const api = new YutaApis({
-  apiToken: 'SEU_TOKEN' // token do Yuta obtido no site
+  apiToken: process.env.TOKEN // token do Yuta obtido no site
 });
 
 const gitstalkResult = await api.pesquisas.gitstalk('Lm-Only'); // Promise<Object>
@@ -40,6 +40,10 @@ console.log(gitstalkResult);
 ```
 
 ## Sumário 
+
+- [Api](https://yuta-apis.xyz)
+  - [planos](https://yuta-apis.xyz/planos)
+  - [login](https://yuta-apis.xyz/login)
 
 - [Pesquisas](#pesquisas)
   - [wiki](#pesquisas-wiki)
