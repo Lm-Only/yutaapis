@@ -78,196 +78,304 @@ const api = new YutaApis({
 
 ## Pesquisas
 
-### Pesquisas: wiki
-Busca informações/resumo de um termo na Wikipedia.  
+### wiki
+Busca informações/resumo de um termo na Wikipedia.
 ```javascript
-console.log(await api.pesquisas.wiki('Typescript'));
+const wiki = await api.pesquisas.wiki('Typescript');
+console.log(wiki);
 ```
 
-### Pesquisas: ytsearch
-Pesquisa vídeos no YouTube por texto.  
+### ytsearch
+Pesquisa vídeos no YouTube por texto.
 ```javascript
-console.log(await api.pesquisas.ytsearch('Baby Shark'));
+const ytsearch = await api.pesquisas.ytsearch('Baby Shark');
+console.log(ytsearch);
 ```
 
-### Pesquisas: gitstalk
-Consulta informações públicas de um usuário GitHub.  
+### gitstalk
+Consulta informações públicas de um usuário GitHub.
 ```javascript
-console.log(await api.pesquisas.gitstalk('Lm-Only'));
+const gitstalk = await api.pesquisas.gitstalk('Lm-Only');
+console.log(gitstalk);
 ```
 
 ---
 
 ## Downloads
 
-### Downloads: ytmp3
-Baixa áudio MP3 de um link do YouTube.  
+### ytmp3
+Baixa áudio MP3 de um link do YouTube.
 ```javascript
-console.log(await api.downloads.ytmp3('https://www.youtube.com/watch?v=osPq9Yb8xm8')); // buffer
+const ytmp3 = await api.downloads.ytmp3('https://www.youtube.com/watch?v=osPq9Yb8xm8');
+// buffer
 ```
 
-### Downloads: ytmp4
-Baixa vídeo MP4 de um link do YouTube.  
+Exemplo salvando em arquivo:
 ```javascript
-console.log(await api.downloads.ytmp4('https://www.youtube.com/watch?v=osPq9Yb8xm8')); // buffer
+import { writeFile } from 'node:fs/promises';
+
+const ytmp3 = await api.downloads.ytmp3('https://www.youtube.com/watch?v=osPq9Yb8xm8');
+await writeFile('ytmp3.mp3', ytmp3);
 ```
 
-### Downloads: play
-Busca uma música por nome e retorna o resultado em áudio.  
+### ytmp4
+Baixa vídeo MP4 de um link do YouTube.
 ```javascript
-console.log(await api.downloads.play('Nuts')); // buffer
+const ytmp4 = await api.downloads.ytmp4('https://www.youtube.com/watch?v=osPq9Yb8xm8');
+// buffer
 ```
 
-### Downloads: playvideo
-Busca um vídeo por nome e retorna o vídeo.  
+Exemplo salvando em arquivo:
 ```javascript
-console.log(await api.downloads.playvideo('Hutao Edit')); // Buffer
+import { writeFile } from 'node:fs/promises';
+
+const ytmp4 = await api.downloads.ytmp4('https://www.youtube.com/watch?v=osPq9Yb8xm8');
+await writeFile('ytmp4.mp4', ytmp4);
 ```
 
-### Downloads: tiktokdl
-Baixa mídia de um link do TikTok.  
+### play
+Busca uma música por nome e retorna o resultado em áudio.
 ```javascript
-console.log(await api.downloads.tiktokdl('https://vt.tiktok.com/ZSqRRu4Dn/'));
+const play = await api.downloads.play('Nuts');
+// buffer
 ```
 
-### Downloads: instavideo
-baixa vídeo a partir de link do Instagram.  
+Exemplo salvando em arquivo:
 ```javascript
-console.log(await api.downloads.instavideo('https://www.instagram.com/p/Dc1iG74Fkgt/'));
+import { writeFile } from 'node:fs/promises';
+
+const play = await api.downloads.play('Nuts');
+await writeFile('play.mp3', play);
 ```
 
-### Downloads: pinterest
-pesquisa conteúdo no Pinterest por texto.  
+### playvideo
+Busca um vídeo por nome e retorna o vídeo.
 ```javascript
-console.log(await api.downloads.pinterest('Hutao Icon'));
+const playvideo = await api.downloads.playvideo('Hutao Edit');
+// buffer
 ```
 
-### Downloads: pinterestMp3
-retorna áudio relacionado a conteúdo do Pinterest (quando suportado).  
+Exemplo salvando em arquivo:
 ```javascript
-console.log(await api.downloads.pinterestMp3('https://pin.it/5decaQP2P'));
+import { writeFile } from 'node:fs/promises';
+
+const playvideo = await api.downloads.playvideo('Hutao Edit');
+await writeFile('playvideo.mp4', playvideo);
 ```
 
-### Downloads: pinterestVideo
-retorna vídeo a partir de link do Pinterest.  
+### tiktokdl
+Baixa mídia de um link do TikTok.
 ```javascript
-console.log(await api.downloads.pinterestVideo('https://pin.it/5decaQP2P'));
+const tiktokdl = await api.downloads.tiktokdl('https://vt.tiktok.com/ZSqRRu4Dn/');
+console.log(tiktokdl);
+```
+
+### instavideo
+Baixa vídeo a partir de link do Instagram.
+```javascript
+const instavideo = await api.downloads.instavideo('https://www.instagram.com/p/Dc1iG74Fkgt/');
+console.log(instavideo);
+```
+
+### pinterest
+Pesquisa conteúdo no Pinterest por texto.
+```javascript
+const pinterest = await api.downloads.pinterest('Hutao Icon');
+// buffer
+```
+
+Exemplo salvando em arquivo:
+```javascript
+import { writeFile } from 'node:fs/promises';
+
+const pinterest = await api.downloads.pinterest('Hutao Icon');
+await writeFile('pinterest.bin', pinterest);
+```
+
+### pinterestMp3
+Retorna áudio relacionado a conteúdo do Pinterest (quando suportado).
+```javascript
+const pinterestMp3 = await api.downloads.pinterestMp3('https://pin.it/5decaQP2P');
+// buffer
+```
+
+Exemplo salvando em arquivo:
+```javascript
+import { writeFile } from 'node:fs/promises';
+
+const pinterestMp3 = await api.downloads.pinterestMp3('https://pin.it/5decaQP2P');
+await writeFile('pinterest.mp3', pinterestMp3);
+```
+
+### pinterestVideo
+Retorna vídeo a partir de link do Pinterest.
+```javascript
+const pinterestVideo = await api.downloads.pinterestVideo('https://pin.it/5decaQP2P');
+console.log(pinterestVideo);
 ```
 
 ---
 
 ## IAs
 
-### IAs: gpt
-envia um prompt e retorna resposta gerada por IA (modelo GPT).  
+### gpt
+Envia um prompt e retorna resposta gerada por IA (modelo GPT).
 ```javascript
-console.log(await api.ias.gpt('Oii tudo bem?'));
+const gpt = await api.ias.gpt('Oii tudo bem?');
+console.log(gpt);
 ```
 
-### IAs: gemini_pro
-envia prompt para modelo Gemini Pro.  
+### gemini_pro
+Envia prompt para modelo Gemini Pro.
 ```javascript
-console.log(await api.ias.gemini_pro('Oii tudo bem?'));
+const geminiPro = await api.ias.gemini_pro('Oii tudo bem?');
+console.log(geminiPro);
 ```
 
-### IAs: perplexity_ai
-envia prompt para integração Perplexity AI.  
+### perplexity_ai
+Envia prompt para integração Perplexity AI.
 ```javascript
-console.log(await api.ias.perplexity_ai('Oii tudo bem?'));
+const perplexityAi = await api.ias.perplexity_ai('Oii tudo bem?');
+console.log(perplexityAi);
 ```
 
-### IAs: geminivoz
-endpoint Gemini com foco em recursos de voz (depende da implementação).  
+### geminivoz
+Endpoint Gemini com foco em recursos de voz (depende da implementação).
 ```javascript
-console.log(await api.ias.geminivoz('Oii tudo bem?')); // buffer
+const geminiVoz = await api.ias.geminivoz('Oii tudo bem?');
+// buffer
 ```
 
-### IAs: gemini
-endpoint padrão do Gemini para respostas por prompt.  
+Exemplo salvando em arquivo:
 ```javascript
-console.log(await api.ias.gemini('Oii tudo bem?'));
+import { writeFile } from 'node:fs/promises';
+
+const geminiVoz = await api.ias.geminivoz('Oii tudo bem?');
+await writeFile('geminivoz.bin', geminiVoz);
+```
+
+### gemini
+Endpoint padrão do Gemini para respostas por prompt.
+```javascript
+const gemini = await api.ias.gemini('Oii tudo bem?');
+console.log(gemini);
 ```
 
 ---
 
 ## Geradores
 
-### Geradores: nick
-gera sugestões de nickname com base no nome informado.  
+### nick
+Gera sugestões de nickname com base no nome informado.
 ```javascript
-console.log(await api.geradores.nick('Lm Only'));
+const nick = await api.geradores.nick('Lm Only');
+console.log(nick);
 ```
 
-### Geradores: qrcode
-gera um QR Code com o texto/link enviado.  
+### qrcode
+Gera um QR Code com o texto/link enviado.
 ```javascript
-console.log(await api.geradores.qrcode('https://github.com/Lm-Only/HutaoBot'));
+const qrcode = await api.geradores.qrcode('https://github.com/Lm-Only/HutaoBot');
+// buffer
+```
+
+Exemplo salvando em arquivo:
+```javascript
+import { writeFile } from 'node:fs/promises';
+
+const qrcode = await api.geradores.qrcode('https://github.com/Lm-Only/HutaoBot');
+await writeFile('qrcode.png', qrcode);
 ```
 
 ---
 
 ## Logos
 
-### Logos: logos
-cria logos com estilo e texto informados.  
+### logos
+Cria logos com estilo e texto informados.
 ```javascript
-console.log(await api.logos('glitch', 'LmOnly'));
+const logos = await api.logos('glitch', 'LmOnly');
+// buffer
+```
+
+Exemplo salvando em arquivo:
+```javascript
+import { writeFile } from 'node:fs/promises';
+
+const logos = await api.logos('glitch', 'LmOnly');
+await writeFile('logo.png', logos);
 ```
 
 ---
 
 ## Notícias
 
-### Notícias: cnn
-retorna notícias da CNN.  
+### cnn
+Retorna notícias da CNN.
 ```javascript
-console.log(await api.noticias.cnn());
+const cnn = await api.noticias.cnn();
+console.log(cnn);
 ```
 
-### Notícias: esportes
-retorna notícias da categoria esportes.  
+### esportes
+Retorna notícias da categoria esportes.
 ```javascript
-console.log(await api.noticias.esportes());
+const esportes = await api.noticias.esportes();
+console.log(esportes);
 ```
 
-### Notícias: g1
-retorna notícias do G1.  
+### g1
+Retorna notícias do G1.
 ```javascript
-console.log(await api.noticias.g1());
+const g1 = await api.noticias.g1();
+console.log(g1);
 ```
 
-### Notícias: ibge
-retorna notícias/conteúdos relacionados ao IBGE.  
+### ibge
+Retorna notícias/conteúdos relacionados ao IBGE.
 ```javascript
-console.log(await api.noticias.ibge());
+const ibge = await api.noticias.ibge();
+console.log(ibge);
 ```
 
-### Notícias: noticias_atuais
-retorna notícias gerais atuais.  
+### noticias_atuais
+Retorna notícias gerais atuais.
 ```javascript
-console.log(await api.noticias.noticias_atuais());
+const noticiasAtuais = await api.noticias.noticias_atuais();
+console.log(noticiasAtuais);
 ```
 
-### Notícias: politica
-retorna notícias de política.  
+### politica
+Retorna notícias de política.
 ```javascript
-console.log(await api.noticias.politica());
+const politica = await api.noticias.politica();
+console.log(politica);
 ```
 
-### Notícias: uol
-retorna notícias da UOL.  
+### uol
+Retorna notícias da UOL.
 ```javascript
-console.log(await api.noticias.uol());
+const uol = await api.noticias.uol();
+console.log(uol);
 ```
 
 ---
 
 ## Plaquinhas
 
-### Plaquinhas: plaquinhas
-gera uma plaquinha com modelo (`type`) e texto.  
+### plaquinhas
+Gera uma plaquinha com modelo (`type`) e texto.
 ```javascript
-console.log(await api.plaquinhas('plaq1', 'LmOnly'));
+const plaquinha = await api.plaquinhas('plaq1', 'LmOnly');
+// buffer
+```
+
+Exemplo salvando em arquivo:
+```javascript
+import { writeFile } from 'node:fs/promises';
+
+const plaquinha = await api.plaquinhas('plaq1', 'LmOnly');
+await writeFile('plaquinha.png', plaquinha);
 ```
 > Também vai até plaq10
 
