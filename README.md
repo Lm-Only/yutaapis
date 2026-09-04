@@ -26,8 +26,8 @@ const api = new YutaApis({
 const musicBuffer = await api.downloads.ytmp3('https://youtu.be/RiWTirsWTeg?is=CwxJ8AAE-LvVNEEN');
 ````
 
-By [Yuta Apis](https://yuta-apis.xyz)
-Criado por: Lm Only
-Versão beta
+* By [Yuta Apis](https://yuta-apis.xyz)
+* Criado por: Lm Only
+* Versão: beta
 
 License MIT
