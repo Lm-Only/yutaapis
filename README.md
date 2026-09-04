@@ -264,7 +264,7 @@ Exemplo salvando em arquivo:
 import { writeFile } from 'node:fs/promises';
 
 const geminiVoz = await api.ias.geminivoz('Oii tudo bem?');
-await writeFile('geminivoz.bin', geminiVoz);
+await writeFile('geminivoz.mp3', geminiVoz);
 ```
 
 ### gemini
