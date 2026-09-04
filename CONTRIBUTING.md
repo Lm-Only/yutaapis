@@ -1,3 +1,4 @@
 ## Yuta APIS
 
-Qualquer contribuição é aceita, desde que seja favorável a melhorias e ajudas na parte de rotas.
+
+Se você quiser contribuir, tudo bem — desde que a mudança seja útil para melhorar as rotas do projeto.”
