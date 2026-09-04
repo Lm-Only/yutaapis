@@ -45,7 +45,6 @@ export async function request<T = unknown>(url: string, opts: RequestOptsConfig,
     const { statusCode, headers, body } = await httpRequest(url, opts.requestOptions);
     const contentType: string = String(headers?.['content-type']).toLowerCase();
     const isErrorJson: boolean = errorJson(opts.dataType, contentType);
-    console.log(headers, statusCode, url);
    
     if (statusCode >= 200 && statusCode < 300 && !isErrorJson) {
         return await getBodyByType<T>(body, opts.dataType);
