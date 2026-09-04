@@ -1,6 +1,18 @@
 # yutaapis
 Módulo SDK TypeScript/JavaScript desenvolvido para consumo do Yuta APIs; em parceria com HutaoBot
 
+
+<h1 align="center">
+<p>
+    <img src="https://raw.githubusercontent.com/Lm-Only/yutaapis/refs/heads/main/assets/banner.jpg" alt="Yuta APIS" width="720">
+</p>
+  
+##
+
+> [!IMPORTANT]
+> **Este módulo ainda está em desenvolvimento por Lm Onlt, é de certeza que algumas rotas ainda não estejam adicionandas,**
+> **Em breve o módulo deve estar totalmente pronto**
+
 ## Instalação
 
 ```bash
