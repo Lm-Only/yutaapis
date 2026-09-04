@@ -107,6 +107,9 @@ export declare interface DownloadsRoute {
     tiktokMp3: (url: string) => Promise<ArrayBuffer>;
     tiktokMp4: (url: string) => Promise<ArrayBuffer>;
     instavideo: (url: string) => Promise<DefaultResultJSON>;
+    facebook: (url: string) => Promise<DefaultResultJSON>;
+    facebookMp3: (url: string) => Promise<ArrayBuffer>;
+    facebookMp4: (url: string) => Promise<ArrayBuffer>;
     pinterest: (query: string) => Promise<ArrayBuffer>;
     pinterestVideo: (url: string) => Promise<DefaultResultJSON>;
     pinterestMp3: (url: string) => Promise<ArrayBuffer>;
@@ -193,6 +196,25 @@ export declare type PlaqParams = | 'plaq1'
     | 'plaq10';
 
 export declare type PlaqTextExample = | 'Lm amor' | 'Nk Domina';
+export declare interface WelcomeOpts {
+    fundo: string;
+    text: string;
+    logo: string;
+}
+export declare interface CardMusicOpts {
+    fundo: string;
+    avatar: string;
+    titulo: string;
+    author: string;
+    atual: string;
+    total: string;
+}
+export declare interface BemVindoOpts {
+    fundo: string;
+    perfil: string;
+    lengenda: string;
+    titulo: string;
+}
 
 export declare interface LogosRoute {
     generate: (nomeDoEfeito: LogosOptions, textoPraLogo: string) => Promise<ArrayBuffer>;
@@ -226,6 +248,12 @@ export declare interface StickerRoute {
     figu_roblox: () => Promise<ArrayBuffer>;
 }
 
+export declare interface CanvasRoute {
+    welcome: (opts: WelcomeOpts) => Promise<ArrayBuffer>;
+    cardMusic: (opts: CardMusicOpts) => Promise<ArrayBuffer>;
+    bemvindo: (opts: BemVindoOpts) => Promise<ArrayBuffer>;
+}
+
 export declare interface RouteNames {
     pesquisas: PesquisasRoute;
     downloads: DownloadsRoute;
@@ -236,4 +264,5 @@ export declare interface RouteNames {
     noticias: NoticiasRoute;
     plaquinhas: PlaqRoute;
     stickers: StickerRoute;
+    canvas: CanvasRoute;
 }

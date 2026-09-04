@@ -8,12 +8,15 @@
  */
 
 import { 
+    BemVindoOpts,
+    CardMusicOpts,
     DataTypeDefault, 
     DefaultResultJSON, 
     OtherOpts, 
     PlaqParams, 
     PlaqTextExample, 
-    RouteNames 
+    RouteNames, 
+    WelcomeOpts
 } from "./Types/types.js";
 import { urlFormatString, defaultRequest } from "./Utils/index.js";
 
@@ -41,6 +44,13 @@ export function routes(opts: Opts): RouteNames {
     }
 
     return {
+        canvas: {
+            welcome: (opts: WelcomeOpts) => executeDefaultMethod('welcome', { ...opts }, 'BUFFER') as Promise<ArrayBuffer>,
+            bemvindo: (opts: BemVindoOpts) => executeDefaultMethod('bemvindo', { ...opts }, 'BUFFER') as Promise<ArrayBuffer>,
+            cardMusic: (opts: CardMusicOpts) => executeDefaultMethod('cardmusic', { ...opts }, 'BUFFER') as Promise<ArrayBuffer>,
+
+        },
+
         stickers: {
             attp: (text: string) => executeDefaultMethod('attp', { text }, 'BUFFER') as Promise<ArrayBuffer>,
             brat: (text: string) => executeDefaultMethod('brat-img', { text }, 'BUFFER') as Promise<ArrayBuffer>,
@@ -80,6 +90,9 @@ export function routes(opts: Opts): RouteNames {
             tiktokMp3: (url: string) => executeDefaultMethod('tiktok-mp3', { url }, 'BUFFER') as Promise<ArrayBuffer>,
             tiktokMp4: (url: string) => executeDefaultMethod('tiktok-mp4', { url }, 'BUFFER') as Promise<ArrayBuffer>,
             instavideo: (url: string) => executeDefaultMethod('instagram-video', { url }) as Promise<DefaultResultJSON>,
+            facebook: (url: string) => executeDefaultMethod('facebook-video', { url }) as Promise<DefaultResultJSON>,
+            facebookMp3: (url: string) => executeDefaultMethod('face-mp3', { url }, 'BUFFER') as Promise<ArrayBuffer>,
+            facebookMp4: (url: string) => executeDefaultMethod('face-mp4', { url }, 'BUFFER') as Promise<ArrayBuffer>,
             pinterestVideo: (url: string) => executeDefaultMethod('pinterest-video', { url }) as Promise<DefaultResultJSON>,
             pinterest: (query: string) => executeDefaultMethod('pinterest', { query }, 'BUFFER') as Promise<ArrayBuffer>,
             pinterestMp3: (url: string) => executeDefaultMethod('pinterest-mp3', { url }, 'BUFFER') as Promise<ArrayBuffer>,
