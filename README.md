@@ -30,7 +30,7 @@ const api = new YutaApis({
 });
 ```
 
-## Index
+## Sumário 
 
 - [Pesquisas](#pesquisas)
   - [wiki](#pesquisas-wiki)
