@@ -7,12 +7,22 @@
  * @author Lm Only and Nk Petrov
  */
 
+import { BASE_YUTA_API_URL } from "./Defaults/index.js";
 import { routes } from "./routes.js";
-import { AnimesRota, DownloadsRota, GeradoresRota, HttpOptions, IaRota, LogosOptions, LogosRota, NoticiasRota, PesquisasRota, PlaqParams, PlaqRoutes, PlaqTextExample, RouteNames } from "./Types/types.js";
+import { 
+    AnimesRoute, 
+    DownloadsRoute, 
+    GeradoresRoute, 
+    HttpOptions, 
+    IasRoute, 
+    LogosOptions, 
+    NoticiasRoute, 
+    PesquisasRoute, 
+    PlaqParams, 
+    PlaqTextExample, 
+    StickerRoute
+} from "./Types/types.js";
 import { isYutaApiToken } from "./Utils/index.js";
-
-const BASE_YUTA_API_URL: string = 'https://yuta-apis.xyz/api';
-
 /**
  * YutaApis opções de configuração
  */
@@ -55,12 +65,12 @@ export class YutaApis {
         return this.__routeCache;
     }
 
-    get ias(): IaRota {
-        return this.getRoutes('ias').ias as IaRota;
+    get ias(): IasRoute {
+        return this.getRoutes('ias').ias;
     }
 
-    get geradores(): GeradoresRota {
-        return this.getRoutes('geradores').geradores as GeradoresRota;
+    get geradores(): GeradoresRoute {
+        return this.getRoutes('geradores').geradores;
     }
 
     get plaquinhas() {
@@ -68,16 +78,20 @@ export class YutaApis {
         return (Plaq: PlaqParams, TextinhoRs: PlaqTextExample) => generate(Plaq, TextinhoRs) as Promise<ArrayBuffer>;
     }
 
-    get downloads(): DownloadsRota {
-        return this.getRoutes('downloads').downloads as DownloadsRota;
+    get downloads(): DownloadsRoute {
+        return this.getRoutes('downloads').downloads;
     }
 
-    get pesquisas(): PesquisasRota {
-        return this.getRoutes('pesquisas').pesquisas as PesquisasRota;
+    get pesquisas(): PesquisasRoute {
+        return this.getRoutes('pesquisas').pesquisas;
     }
 
-    get noticias(): NoticiasRota {
-        return this.getRoutes('noticias').noticias as NoticiasRota;
+    get noticias(): NoticiasRoute {
+        return this.getRoutes('noticias').noticias;
+    }
+
+    get stickers(): StickerRoute {
+        return this.getRoutes('stickers').stickers;
     }
 
     get logos() {
@@ -85,8 +99,8 @@ export class YutaApis {
         return (nomeDoEfeito: LogosOptions, textoPraLogo: string) => generate(nomeDoEfeito, textoPraLogo) as Promise<ArrayBuffer>;
     }
 
-    get animes(): AnimesRota {
-        return this.getRoutes('animes').animes as AnimesRota;
+    get animes(): AnimesRoute {
+        return this.getRoutes('animes').animes;
     }
 
     constructor(opts: YutaApisOptions) {

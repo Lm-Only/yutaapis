@@ -1,0 +1,1 @@
+export const BASE_YUTA_API_URL: string = 'https://yuta-apis.xyz/api';

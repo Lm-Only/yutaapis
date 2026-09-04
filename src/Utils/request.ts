@@ -8,9 +8,9 @@
  */
 
 import { request as httpRequest } from 'undici';
-import { RequestOptsConfig } from './Types/types.js';
-import { RequestError } from './errors.js';
-import { Opts } from './routes.js';
+import { RequestOptsConfig } from '../Types/types.js';
+import { RequestError } from '../errors.js';
+import { Opts } from '../routes.js';
 
 async function getBodyByType<T>(body: any, dataType: string): Promise<T> {
     if (!dataType) return (await body.text()) as T;

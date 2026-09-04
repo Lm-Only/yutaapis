@@ -7,9 +7,15 @@
  * @author Lm Only and Nk Petrov
  */
 
-import { DataTypeDefault, DefaultResultJSON, OtherOpts, PlaqParams, PlaqTextExample, RouteNames } from "./Types/types.js";
-import { urlFormatString } from "./Utils/url.js";
-import defaultRequest from "./Routes/default/index.js";
+import { 
+    DataTypeDefault, 
+    DefaultResultJSON, 
+    OtherOpts, 
+    PlaqParams, 
+    PlaqTextExample, 
+    RouteNames 
+} from "./Types/types.js";
+import { urlFormatString, defaultRequest } from "./Utils/index.js";
 
 export type Opts = {
     baseUrl: string;
@@ -35,6 +41,20 @@ export function routes(opts: Opts): RouteNames {
     }
 
     return {
+        stickers: {
+            attp: (text: string) => executeDefaultMethod('attp', { text }, 'BUFFER') as Promise<ArrayBuffer>,
+            brat: (text: string) => executeDefaultMethod('brat-img', { text }, 'BUFFER') as Promise<ArrayBuffer>,
+            bratvid: (text: string) => executeDefaultMethod('brat-vid', { text }, 'BUFFER') as Promise<ArrayBuffer>,
+            figu: () => executeDefaultMethod('figu', null, 'BUFFER') as Promise<ArrayBuffer>,
+            figu_anime: () => executeDefaultMethod('figu_anime', null, 'BUFFER') as Promise<ArrayBuffer>,
+            figu_coreana: () => executeDefaultMethod('figu_coreana', null, 'BUFFER') as Promise<ArrayBuffer>,
+            figu_desenho: () => executeDefaultMethod('figu_desenho', null, 'BUFFER') as Promise<ArrayBuffer>,
+            figu_emoji: () => executeDefaultMethod('figu_emoji', null, 'BUFFER') as Promise<ArrayBuffer>,
+            figu_engracadas: () => executeDefaultMethod('figu_engracadas', null, 'BUFFER') as Promise<ArrayBuffer>,
+            figu_raiva: () => executeDefaultMethod('figu_raiva', null, 'BUFFER') as Promise<ArrayBuffer>,
+            figu_roblox: () => executeDefaultMethod('figu_roblox', null, 'BUFFER') as Promise<ArrayBuffer>
+        },
+
         noticias: {
             cnn: () => executeDefaultMethod('cnn') as Promise<DefaultResultJSON>,
             esportes: () => executeDefaultMethod('esportes') as Promise<DefaultResultJSON>,

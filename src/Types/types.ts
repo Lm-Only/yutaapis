@@ -92,13 +92,13 @@ export declare interface DefaultResultJSON {
     result?: Array<any>;
 }
 
-export declare interface PesquisasRota {
+export declare interface PesquisasRoute {
     ytsearch: (query: string) => Promise<DefaultResultJSON>;
     gitstalk: (query: string) => Promise<DefaultResultJSON>;
     wiki: (query: string) => Promise<DefaultResultJSON>;
 }
 
-export declare interface DownloadsRota {
+export declare interface DownloadsRoute {
     play: (query: string) => Promise<ArrayBuffer>;
     playvideo: (query: string) => Promise<ArrayBuffer>;
     ytmp3: (url: string) => Promise<ArrayBuffer>;
@@ -113,7 +113,7 @@ export declare interface DownloadsRota {
     pinterestMp4: (url: string) => Promise<ArrayBuffer>;
 }
 
-export declare interface IaRota {
+export declare interface IasRoute {
     gpt: (query: string) => Promise<DefaultResultJSON>;
     gemini: (query: string) => Promise<DefaultResultJSON>;
     gemini_pro: (query: string) => Promise<DefaultResultJSON>;
@@ -121,12 +121,12 @@ export declare interface IaRota {
     geminivoz: (query: string) => Promise<ArrayBuffer>;
 };
 
-export declare interface GeradoresRota {
+export declare interface GeradoresRoute {
     nick: (query: string) => Promise<DefaultResultJSON>;
     qrcode: (query: string) => Promise<any>;
 };
 
-export declare interface AnimesRota {
+export declare interface AnimesRoute {
     hentai_video: () => Promise<DefaultResultJSON>;
     hentai_video2: () => Promise<DefaultResultJSON>;
     metadinha: () => Promise<DefaultResultJSON>;
@@ -194,15 +194,15 @@ export declare type PlaqParams = | 'plaq1'
 
 export declare type PlaqTextExample = | 'Lm amor' | 'Nk Domina';
 
-export declare interface LogosRota {
+export declare interface LogosRoute {
     generate: (nomeDoEfeito: LogosOptions, textoPraLogo: string) => Promise<ArrayBuffer>;
 }
 
-export declare interface PlaqRoutes {
+export declare interface PlaqRoute {
     generate: (Plaq: PlaqParams, TextinhoRs: PlaqTextExample) => Promise<ArrayBuffer>;
 };
 
-export declare interface NoticiasRota {
+export declare interface NoticiasRoute {
     cnn: () => Promise<DefaultResultJSON>;
     esportes: () => Promise<DefaultResultJSON>;
     g1: () => Promise<DefaultResultJSON>;
@@ -212,13 +212,28 @@ export declare interface NoticiasRota {
     uol: () => Promise<DefaultResultJSON>;
 }
 
+export declare interface StickerRoute {
+    attp: (text: string) => Promise<ArrayBuffer>;
+    brat: (text: string) => Promise<ArrayBuffer>;
+    bratvid: (text: string) => Promise<ArrayBuffer>;
+    figu: () => Promise<ArrayBuffer>;
+    figu_anime: () => Promise<ArrayBuffer>;
+    figu_coreana: () => Promise<ArrayBuffer>;
+    figu_desenho: () => Promise<ArrayBuffer>;
+    figu_emoji: () => Promise<ArrayBuffer>;
+    figu_engracadas: () => Promise<ArrayBuffer>;
+    figu_raiva: () => Promise<ArrayBuffer>;
+    figu_roblox: () => Promise<ArrayBuffer>;
+}
+
 export declare interface RouteNames {
-    pesquisas: PesquisasRota;
-    downloads: DownloadsRota;
-    ias: IaRota;
-    geradores: GeradoresRota;
-    animes: AnimesRota;
-    logos: LogosRota;
-    noticias: NoticiasRota;
-    plaquinhas: PlaqRoutes;
+    pesquisas: PesquisasRoute;
+    downloads: DownloadsRoute;
+    ias: IasRoute;
+    geradores: GeradoresRoute;
+    animes: AnimesRoute;
+    logos: LogosRoute;
+    noticias: NoticiasRoute;
+    plaquinhas: PlaqRoute;
+    stickers: StickerRoute;
 }
