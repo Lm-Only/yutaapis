@@ -7,15 +7,15 @@ const api = new YutaApis({
 
 //========= PESQUISAS ===========\\
 
-// console.log(await api.pesquisas.wiki('Javascript'));
-// console.log(await api.pesquisas.ytsearch('Javascript'));
+// console.log(await api.pesquisas.wiki('Typescript));
+// console.log(await api.pesquisas.ytsearch('Typescript'));
 // console.log(await api.pesquisas.gitstalk('Lm-Only'));
 
 //========= DOWNLOADS ===========\\
 
 // console.log(await api.downloads.ytmp3('https://www.youtube.com/watch?v=osPq9Yb8xm8'));
 // console.log(await api.downloads.ytmp4('https://www.youtube.com/watch?v=osPq9Yb8xm8'));
-// console.log(await api.downloads.play('Hutao Editi'));
+// console.log(await api.downloads.play('Hutao Edit'));
 // console.log(await api.downloads.playvideo('Hutao Edit'));
 // console.log(await api.downloads.tiktokdl('https://vt.tiktok.com/ZSqdPRtsE/'));
 // console.log(await api.downloads.instavideo('https://www.instagram.com/p/Dc1iG74Fkgt/?img_index=9&igsi=aWYzZmFkeDdsMTN1'));
