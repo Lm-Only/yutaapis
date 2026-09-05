@@ -8,14 +8,14 @@
  */
 
 /** Opções de HTTP adcionais */
-export declare interface HttpOptions {
+export interface HttpOptions {
     baseUrl?: string;
     headers?: Record<string, string>;
     /** Numero maximo de tentativas em caso de erro */
     maxRetry?: number;
 }
 
-export declare interface ParamsQuery {
+export interface ParamsQuery {
     apitoken?: string;
 
     /** Ok Nk, 
@@ -36,10 +36,10 @@ export declare interface ParamsQuery {
  * Mas o resto retorna JSON
  * cuidado
  */
-export declare type DataTypeDefault = 'JSON' | 'BUFFER';
-export declare type OtherOpts = Record<string, string> | null | any
+export type DataTypeDefault = 'JSON' | 'BUFFER';
+export type OtherOpts = Record<string, string> | null | any
 
-export declare interface RequestOptions {
+export interface RequestOptions {
     method: 'GET' | 'POST'
     headers?: Record<string, string>;
 
@@ -49,14 +49,14 @@ export declare interface RequestOptions {
     query?: ParamsQuery
 }
 
-export declare interface RequestOptsConfig {
+export interface RequestOptsConfig {
     requestOptions: RequestOptions;
     dataType: 'JSON'
     | 'BUFFER'
     | 'TEXT'
 }
 
-export declare interface DefaultParamsFunc {
+export interface DefaultParamsFunc {
     query?: string;
     /**
      * Seria como https://yuta-apis.xyz/api
@@ -77,7 +77,7 @@ export declare interface DefaultParamsFunc {
     headers?: Record<string, string>;
 }
 
-export declare interface DefaultResultJSON {
+export interface DefaultResultJSON {
     status?: boolean;
     msg?: string;
     resposta?: string;
@@ -92,13 +92,13 @@ export declare interface DefaultResultJSON {
     result?: Array<any>;
 }
 
-export declare interface PesquisasRoute {
+export interface PesquisasRoute {
     ytsearch: (query: string) => Promise<DefaultResultJSON>;
     gitstalk: (query: string) => Promise<DefaultResultJSON>;
     wiki: (query: string) => Promise<DefaultResultJSON>;
 }
 
-export declare interface DownloadsRoute {
+export interface DownloadsRoute {
     play: (query: string) => Promise<ArrayBuffer>;
     playvideo: (query: string) => Promise<ArrayBuffer>;
     ytmp3: (url: string) => Promise<ArrayBuffer>;
@@ -116,7 +116,7 @@ export declare interface DownloadsRoute {
     pinterestMp4: (url: string) => Promise<ArrayBuffer>;
 }
 
-export declare interface IasRoute {
+export interface IasRoute {
     gpt: (query: string) => Promise<DefaultResultJSON>;
     gemini: (query: string) => Promise<DefaultResultJSON>;
     gemini_pro: (query: string) => Promise<DefaultResultJSON>;
@@ -124,24 +124,25 @@ export declare interface IasRoute {
     geminivoz: (query: string) => Promise<ArrayBuffer>;
 };
 
-export declare interface GeradoresRoute {
+
+export interface GeradoresRoute {
     nick: (query: string) => Promise<DefaultResultJSON>;
     qrcode: (query: string) => Promise<any>;
 };
 
-export declare interface AnimesRoute {
+export interface AnimesRoute {
     hentai_video: () => Promise<DefaultResultJSON>;
     hentai_video2: () => Promise<DefaultResultJSON>;
     metadinha: () => Promise<DefaultResultJSON>;
     quotesanimes: () => Promise<DefaultResultJSON>;
 };
 
-export declare interface TraduizrOpts {
+export  interface TraduizrOpts {
     text: string;
     idioma: | 'en' | 'pt';
 }
 
-export declare interface OthersRoute {
+export interface OthersRoute {
     signo: (signo: string) => Promise<DefaultResultJSON>;
     traduzir: (traduzirOpts: TraduizrOpts) => Promise<DefaultResultJSON>;
     ip: (ip: string) => Promise<DefaultResultJSON>;
@@ -195,7 +196,7 @@ export type LogosOptions =
 
 
 // scrr quem usa isso?
-export declare type PlaqParams = | 'plaq1'
+export type PlaqParams = | 'plaq1'
     | 'plaq2'
     | 'plaq3'
     | 'plaq4'
@@ -206,13 +207,13 @@ export declare type PlaqParams = | 'plaq1'
     | 'plaq9'
     | 'plaq10';
 
-export declare type PlaqTextExample = | 'Lm amor' | 'Nk Domina';
-export declare interface WelcomeOpts {
+export type PlaqTextExample = | 'Lm amor' | 'Nk Domina';
+export interface WelcomeOpts {
     fundo: string;
     text: string;
     logo: string;
 }
-export declare interface CardMusicOpts {
+export interface CardMusicOpts {
     fundo: string;
     avatar: string;
     titulo: string;
@@ -220,22 +221,22 @@ export declare interface CardMusicOpts {
     atual: string;
     total: string;
 }
-export declare interface BemVindoOpts {
+export interface BemVindoOpts {
     fundo: string;
     perfil: string;
     lengenda: string;
     titulo: string;
 }
 
-export declare interface LogosRoute {
+export interface LogosRoute {
     generate: (nomeDoEfeito: LogosOptions, textoPraLogo: string) => Promise<ArrayBuffer>;
 }
 
-export declare interface PlaqRoute {
+export interface PlaqRoute {
     generate: (Plaq: PlaqParams, TextinhoRs: PlaqTextExample) => Promise<ArrayBuffer>;
 };
 
-export declare interface NoticiasRoute {
+export interface NoticiasRoute {
     cnn: () => Promise<DefaultResultJSON>;
     esportes: () => Promise<DefaultResultJSON>;
     g1: () => Promise<DefaultResultJSON>;
@@ -245,7 +246,7 @@ export declare interface NoticiasRoute {
     uol: () => Promise<DefaultResultJSON>;
 }
 
-export declare interface StickerRoute {
+export interface StickerRoute {
     attp: (text: string) => Promise<ArrayBuffer>;
     brat: (text: string) => Promise<ArrayBuffer>;
     bratvid: (text: string) => Promise<ArrayBuffer>;
@@ -259,13 +260,13 @@ export declare interface StickerRoute {
     figu_roblox: () => Promise<ArrayBuffer>;
 }
 
-export declare interface CanvasRoute {
+export interface CanvasRoute {
     welcome: (opts: WelcomeOpts) => Promise<ArrayBuffer>;
     cardMusic: (opts: CardMusicOpts) => Promise<ArrayBuffer>;
     bemvindo: (opts: BemVindoOpts) => Promise<ArrayBuffer>;
 }
 
-export declare interface RouteNames {
+export interface RouteNames {
     pesquisas: PesquisasRoute;
     downloads: DownloadsRoute;
     ias: IasRoute;
