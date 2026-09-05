@@ -12,6 +12,7 @@ import { routes } from "./routes.js";
 import { 
     AnimesRoute, 
     CanvasRoute, 
+    DefaultResultBuffer, 
     DownloadsRoute, 
     GeradoresRoute, 
     HttpOptions, 
@@ -23,7 +24,7 @@ import {
     PlaqParams, 
     PlaqTextExample, 
     StickerRoute
-} from "./Types/types.js";
+} from "./Types/index.js";
 import { isYutaApiToken } from "./Utils/index.js";
 /**
  * YutaApis opções de configuração
@@ -81,7 +82,7 @@ export default class YutaApis {
 
     get plaquinhas() {
         const generate = this.getRoutes('plaquinhas').plaquinhas.generate;
-        return (Plaq: PlaqParams, TextinhoRs: PlaqTextExample) => generate(Plaq, TextinhoRs) as Promise<ArrayBuffer>;
+        return (Plaq: PlaqParams, TextinhoRs: PlaqTextExample) => generate(Plaq, TextinhoRs) as Promise<DefaultResultBuffer>;
     }
 
     get downloads(): DownloadsRoute {
@@ -102,7 +103,7 @@ export default class YutaApis {
 
     get logos() {
         const generate = this.getRoutes('logos').logos.generate;
-        return (nomeDoEfeito: LogosOptions, textoPraLogo: string) => generate(nomeDoEfeito, textoPraLogo) as Promise<ArrayBuffer>;
+        return (nomeDoEfeito: LogosOptions, textoPraLogo: string) => generate(nomeDoEfeito, textoPraLogo) as Promise<DefaultResultBuffer>;
     }
 
     get canvas(): CanvasRoute {

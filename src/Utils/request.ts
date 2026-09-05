@@ -8,7 +8,7 @@
  */
 
 import { request as httpRequest } from 'undici';
-import { RequestOptsConfig } from '../Types/types.js';
+import { RequestOptsConfig } from '../Types/index.js';
 import { RequestError } from '../errors.js';
 import { Opts } from '../routes.js';
 

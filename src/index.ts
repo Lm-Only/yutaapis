@@ -9,6 +9,6 @@
  
 import YutaApis from './client.js';
 export type { YutaApisOptions } from './client.js';
-export * from './Types/types.js';
+export * from './Types/index.js';
 
 export default YutaApis;

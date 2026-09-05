@@ -11,14 +11,17 @@ import {
     BemVindoOpts,
     CardMusicOpts,
     DataTypeDefault, 
+    DefaultResultBuffer, 
     DefaultResultJSON, 
+    EncurtalinkResult, 
+    FrasesDeAmorResult, 
     OtherOpts, 
     PlaqParams, 
     PlaqTextExample, 
     RouteNames, 
     TraduizrOpts, 
     WelcomeOpts
-} from "./Types/types.js";
+} from "./Types/index.js";
 import { urlFormatString, defaultRequest } from "./Utils/index.js";
 
 export type Opts = {
@@ -63,27 +66,29 @@ export function routes(opts: Opts): RouteNames {
         outros: {
             signo: (signo: string) => executeDefaultMethod('signo', { signo }) as Promise<DefaultResultJSON>,
             traduzir: (traduzirOpts: TraduizrOpts) => executeDefaultMethod('traduzir', traduzirOpts) as Promise<DefaultResultJSON>,
-            ip: (ip: string) => executeDefaultMethod('ip', { ip }) as Promise<DefaultResultJSON>
+            ip: (ip: string) => executeDefaultMethod('ip', { ip }) as Promise<DefaultResultJSON>,
+            encurtarLink: (url: string) => executeDefaultMethod('encurtar-link', { url }) as Promise<EncurtalinkResult>,
+            frasesAmor: () => executeDefaultMethod('frases-amor', null) as Promise<FrasesDeAmorResult>
         },
 
         canvas: {
-            welcome: (opts: WelcomeOpts) => executeDefaultMethod('welcome', { ...opts }, 'BUFFER', 'NO_API_PATH') as Promise<ArrayBuffer>,
-            bemvindo: (opts: BemVindoOpts) => executeDefaultMethod('bemvindo', { ...opts }, 'BUFFER') as Promise<ArrayBuffer>,
-            cardMusic: (opts: CardMusicOpts) => executeDefaultMethod('cardmusic', { ...opts }, 'BUFFER', 'NO_API_PATH') as Promise<ArrayBuffer>,
+            welcome: (opts: WelcomeOpts) => executeDefaultMethod('welcome', { ...opts }, 'BUFFER', 'NO_API_PATH') as Promise<DefaultResultBuffer>,
+            bemvindo: (opts: BemVindoOpts) => executeDefaultMethod('bemvindo', { ...opts }, 'BUFFER') as Promise<DefaultResultBuffer>,
+            cardMusic: (opts: CardMusicOpts) => executeDefaultMethod('cardmusic', { ...opts }, 'BUFFER', 'NO_API_PATH') as Promise<DefaultResultBuffer>,
         },
 
         stickers: {
-            attp: (text: string) => executeDefaultMethod('attp', { text }, 'BUFFER') as Promise<ArrayBuffer>,
-            brat: (text: string) => executeDefaultMethod('brat-img', { text }, 'BUFFER') as Promise<ArrayBuffer>,
-            bratvid: (text: string) => executeDefaultMethod('brat-vid', { text }, 'BUFFER') as Promise<ArrayBuffer>,
-            figu: () => executeDefaultMethod('figu', null, 'BUFFER') as Promise<ArrayBuffer>,
-            figu_anime: () => executeDefaultMethod('figu_anime', null, 'BUFFER') as Promise<ArrayBuffer>,
-            figu_coreana: () => executeDefaultMethod('figu_coreana', null, 'BUFFER') as Promise<ArrayBuffer>,
-            figu_desenho: () => executeDefaultMethod('figu_desenho', null, 'BUFFER') as Promise<ArrayBuffer>,
-            figu_emoji: () => executeDefaultMethod('figu_emoji', null, 'BUFFER') as Promise<ArrayBuffer>,
-            figu_engracadas: () => executeDefaultMethod('figu_engracadas', null, 'BUFFER') as Promise<ArrayBuffer>,
-            figu_raiva: () => executeDefaultMethod('figu_raiva', null, 'BUFFER') as Promise<ArrayBuffer>,
-            figu_roblox: () => executeDefaultMethod('figu_roblox', null, 'BUFFER') as Promise<ArrayBuffer>
+            attp: (text: string) => executeDefaultMethod('attp', { text }, 'BUFFER') as Promise<DefaultResultBuffer>,
+            brat: (text: string) => executeDefaultMethod('brat-img', { text }, 'BUFFER') as Promise<DefaultResultBuffer>,
+            bratvid: (text: string) => executeDefaultMethod('brat-vid', { text }, 'BUFFER') as Promise<DefaultResultBuffer>,
+            figu: () => executeDefaultMethod('figu', null, 'BUFFER') as Promise<DefaultResultBuffer>,
+            figu_anime: () => executeDefaultMethod('figu_anime', null, 'BUFFER') as Promise<DefaultResultBuffer>,
+            figu_coreana: () => executeDefaultMethod('figu_coreana', null, 'BUFFER') as Promise<DefaultResultBuffer>,
+            figu_desenho: () => executeDefaultMethod('figu_desenho', null, 'BUFFER') as Promise<DefaultResultBuffer>,
+            figu_emoji: () => executeDefaultMethod('figu_emoji', null, 'BUFFER') as Promise<DefaultResultBuffer>,
+            figu_engracadas: () => executeDefaultMethod('figu_engracadas', null, 'BUFFER') as Promise<DefaultResultBuffer>,
+            figu_raiva: () => executeDefaultMethod('figu_raiva', null, 'BUFFER') as Promise<DefaultResultBuffer>,
+            figu_roblox: () => executeDefaultMethod('figu_roblox', null, 'BUFFER') as Promise<DefaultResultBuffer>
         },
 
         noticias: {
@@ -103,34 +108,34 @@ export function routes(opts: Opts): RouteNames {
         },
         
         downloads: {
-            play: (query: string) => executeDefaultMethod('play-audio2', { query }, 'BUFFER') as Promise<ArrayBuffer>,
-            playvideo: (query: string) => executeDefaultMethod('play-video2', { query }, 'BUFFER') as Promise<ArrayBuffer>,
-            ytmp3: (url: string) => executeDefaultMethod('ytaudio2', { url }, 'BUFFER') as Promise<ArrayBuffer>,
-            ytmp4: (url: string) => executeDefaultMethod('ytvideo2', { url }, 'BUFFER') as Promise<ArrayBuffer>,
+            play: (query: string) => executeDefaultMethod('play-audio2', { query }, 'BUFFER') as Promise<DefaultResultBuffer>,
+            playvideo: (query: string) => executeDefaultMethod('play-video2', { query }, 'BUFFER') as Promise<DefaultResultBuffer>,
+            ytmp3: (url: string) => executeDefaultMethod('ytaudio2', { url }, 'BUFFER') as Promise<DefaultResultBuffer>,
+            ytmp4: (url: string) => executeDefaultMethod('ytvideo2', { url }, 'BUFFER') as Promise<DefaultResultBuffer>,
             tiktokdl: (url: string) => executeDefaultMethod('tiktok-dl', { url }) as Promise<DefaultResultJSON>,
-            tiktokMp3: (url: string) => executeDefaultMethod('tiktok-mp3', { url }, 'BUFFER') as Promise<ArrayBuffer>,
-            tiktokMp4: (url: string) => executeDefaultMethod('tiktok-mp4', { url }, 'BUFFER') as Promise<ArrayBuffer>,
+            tiktokMp3: (url: string) => executeDefaultMethod('tiktok-mp3', { url }, 'BUFFER') as Promise<DefaultResultBuffer>,
+            tiktokMp4: (url: string) => executeDefaultMethod('tiktok-mp4', { url }, 'BUFFER') as Promise<DefaultResultBuffer>,
             instavideo: (url: string) => executeDefaultMethod('instagram-video', { url }) as Promise<DefaultResultJSON>,
             facebook: (url: string) => executeDefaultMethod('facebook-video', { url }) as Promise<DefaultResultJSON>,
-            facebookMp3: (url: string) => executeDefaultMethod('face-mp3', { url }, 'BUFFER') as Promise<ArrayBuffer>,
-            facebookMp4: (url: string) => executeDefaultMethod('face-mp4', { url }, 'BUFFER') as Promise<ArrayBuffer>,
+            facebookMp3: (url: string) => executeDefaultMethod('face-mp3', { url }, 'BUFFER') as Promise<DefaultResultBuffer>,
+            facebookMp4: (url: string) => executeDefaultMethod('face-mp4', { url }, 'BUFFER') as Promise<DefaultResultBuffer>,
             pinterestVideo: (url: string) => executeDefaultMethod('pinterest-video', { url }) as Promise<DefaultResultJSON>,
-            pinterest: (query: string) => executeDefaultMethod('pinterest', { query }, 'BUFFER') as Promise<ArrayBuffer>,
-            pinterestMp3: (url: string) => executeDefaultMethod('pinterest-mp3', { url }, 'BUFFER') as Promise<ArrayBuffer>,
-            pinterestMp4: (url: string) => executeDefaultMethod('pinterest-mp4', { url }, 'BUFFER') as Promise<ArrayBuffer>,
+            pinterest: (query: string) => executeDefaultMethod('pinterest', { query }, 'BUFFER') as Promise<DefaultResultBuffer>,
+            pinterestMp3: (url: string) => executeDefaultMethod('pinterest-mp3', { url }, 'BUFFER') as Promise<DefaultResultBuffer>,
+            pinterestMp4: (url: string) => executeDefaultMethod('pinterest-mp4', { url }, 'BUFFER') as Promise<DefaultResultBuffer>,
         },
 
         ias: {
             gpt: (query: string) => executeDefaultMethod('gpt', { query }) as Promise<DefaultResultJSON>,
             gemini: (query: string) => executeDefaultMethod('gemini', { query }) as Promise<DefaultResultJSON>,
             gemini_pro: (query: string) => executeDefaultMethod('gemini-pro', { query }) as Promise<DefaultResultJSON>,
-            geminivoz: (query: string) => executeDefaultMethod('geminivoz', { query }, 'BUFFER') as Promise<ArrayBuffer>,
+            geminivoz: (query: string) => executeDefaultMethod('geminivoz', { query }, 'BUFFER') as Promise<DefaultResultBuffer>,
             perplexity_ai: (query: string) => executeDefaultMethod('perplexity-ai', { query }) as Promise<DefaultResultJSON>,
         },
 
         geradores: {
             nick: (query: string) => executeDefaultMethod('gerar-nicks', { text: query }) as Promise<DefaultResultJSON>,
-            qrcode: (query: string) => executeDefaultMethod('qrcode', { text: query }, 'BUFFER') as Promise<ArrayBuffer>
+            qrcode: (query: string) => executeDefaultMethod('qrcode', { text: query }, 'BUFFER') as Promise<DefaultResultBuffer>
         },
 
         animes: {
@@ -141,25 +146,25 @@ export function routes(opts: Opts): RouteNames {
         },
 
         logos: {
-            generate: (nomeDoEfeito: string, textoPraLogo: string): Promise<ArrayBuffer> => {
+            generate: (nomeDoEfeito: string, textoPraLogo: string): Promise<DefaultResultBuffer> => {
                 
                 if (!textoPraLogo) {
                     console.error('Ei você errou aí na função de logos, você primeiro tem que passar o nome do efeito (tipo: glitch) e depois o texto a ser gerado: (ex: Yuta APis)');
                     throw new Error('Invalid params');
                 }
 
-                return executeDefaultMethod(nomeDoEfeito, { texto: textoPraLogo }, 'BUFFER') as Promise<ArrayBuffer>;
+                return executeDefaultMethod(nomeDoEfeito, { texto: textoPraLogo }, 'BUFFER');
             }
         },
 
         plaquinhas: {
-            generate: (Plaq: PlaqParams, TextinhoRs: PlaqTextExample) => {
+            generate: (Plaq: PlaqParams, TextinhoRs: PlaqTextExample): Promise<DefaultResultBuffer> => {
                 if (!TextinhoRs) {
                     console.error('Ei você errou aí na função de plaquinha, você primeiro tem que passar o nome da plaq (tipo: plaq1) e depois o texto a ser gerado: (ex: Yuta APis)');
                     throw new Error('Invalid params');
                 }
 
-                return executeDefaultMethod(Plaq, { query: TextinhoRs }, 'BUFFER') as Promise<ArrayBuffer>
+                return executeDefaultMethod(Plaq, { query: TextinhoRs }, 'BUFFER');
             }
         }
     }

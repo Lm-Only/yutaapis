@@ -2,6 +2,13 @@
   "name": "yutaapis",
   "version": "1.0.6",
   "description": "Módulo SDK TypeScript/JavaScript desenvolvido para consumo do Yuta APIs; em parceria com HutaoBot",
+  "type": "module",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "author": "lm-only",
+  "files": [
+    "lib"
+  ],
   "keywords": [
     "api",
     "nodejs",
@@ -15,16 +22,9 @@
     "type": "git",
     "url": "git+https://github.com/Lm-Only/yutaapis.git"
   },
-  "files": [
-    "lib"
-  ],
   "license": "MIT",
-  "author": "lm-only",
-  "type": "module",
-  "main": "lib/index.js",
-  "types": "lib/index.d.ts",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "node test/test-main.js"
   },
   "devDependencies": {
     "@types/node": "^26.4.0",
@@ -32,12 +32,9 @@
     "typescript": "^7.0.2"
   },
   "dependencies": {
-    "undici": "^8.10.0"
-  },
-  "allowScripts": {
-    "esbuild@0.28.2": true
+    "undici": "^8.10.2"
   },
   "engines": {
-    "node": ">=20.0.0"
+    "node": ">=22.0.0"
   }
 }
