@@ -41,7 +41,7 @@ export interface YutaApisOptions {
     httpOptions?: HttpOptions
 }
 
-export class YutaApis {
+export default class YutaApis {
     private readonly apiToken?: string;
     private readonly url?: string;
     private __routeCache: ReturnType<typeof routes> | null = null;

@@ -7,7 +7,7 @@
  * @author Lm Only and Nk Petrov
  */
  
-import { YutaApis } from './client.js';
+import YutaApis from './client.js';
 export type { YutaApisOptions } from './client.js';
 
 export default YutaApis;
