@@ -62,7 +62,8 @@ export function routes(opts: Opts): RouteNames {
     return {
         outros: {
             signo: (signo: string) => executeDefaultMethod('signo', { signo }) as Promise<DefaultResultJSON>,
-            traduzir: (traduzirOpts: TraduizrOpts) => executeDefaultMethod('traduzir', traduzirOpts) as Promise<DefaultResultJSON>
+            traduzir: (traduzirOpts: TraduizrOpts) => executeDefaultMethod('traduzir', traduzirOpts) as Promise<DefaultResultJSON>,
+            ip: (ip: string) => executeDefaultMethod('ip', { ip }) as Promise<DefaultResultJSON>
         },
 
         canvas: {

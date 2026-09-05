@@ -144,6 +144,7 @@ export declare interface TraduizrOpts {
 export declare interface OthersRoute {
     signo: (signo: string) => Promise<DefaultResultJSON>;
     traduzir: (traduzirOpts: TraduizrOpts) => Promise<DefaultResultJSON>;
+    ip: (ip: string) => Promise<DefaultResultJSON>;
 }
 
 export type LogosOptions =
