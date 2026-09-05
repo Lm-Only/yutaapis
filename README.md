@@ -46,46 +46,46 @@ console.log(gitstalkResult);
   - [login](https://yuta-apis.xyz/login)
 
 - [Pesquisas](#pesquisas)
-  - [wiki](#pesquisas-wiki)
-  - [ytsearch](#pesquisas-ytsearch)
-  - [gitstalk](#pesquisas-gitstalk)
+  - [wiki](#wiki)
+  - [ytsearch](#ytsearch)
+  - [gitstalk](#gitstalk)
 
 - [Downloads](#downloads)
-  - [ytmp3](#downloads-ytmp3)
-  - [ytmp4](#downloads-ytmp4)
-  - [play](#downloads-play)
-  - [playvideo](#downloads-playvideo)
-  - [tiktokdl](#downloads-tiktokdl)
-  - [instavideo](#downloads-instavideo)
-  - [pinterest](#downloads-pinterest)
-  - [pinterestMp3](#downloads-pinterestmp3)
-  - [pinterestVideo](#downloads-pinterestvideo)
+  - [ytmp3](#ytmp3)
+  - [ytmp4](#ytmp4)
+  - [play](#play)
+  - [playvideo](#playvideo)
+  - [tiktokdl](#tiktokdl)
+  - [instavideo](#instavideo)
+  - [pinterest](#pinterest)
+  - [pinterestMp3](#pinterestmp3)
+  - [pinterestVideo](#pinterestvideo)
 
 - [IAs](#ias)
-  - [gpt](#ias-gpt)
-  - [gemini_pro](#ias-gemini_pro)
-  - [perplexity_ai](#ias-perplexity_ai)
-  - [geminivoz](#ias-geminivoz)
-  - [gemini](#ias-gemini)
+  - [gpt](#gpt)
+  - [gemini_pro](#gemini_pro)
+  - [perplexity_ai](#perplexity_ai)
+  - [geminivoz](#geminivoz)
+  - [gemini](#gemini)
 
 - [Geradores](#geradores)
-  - [nick](#geradores-nick)
-  - [qrcode](#geradores-qrcode)
+  - [nick](#nick)
+  - [qrcode](#qrcode)
 
 - [Logos](#logos)
   - [logos](#logos-logos)
 
 - [Notícias](#notícias)
-  - [cnn](#notícias-cnn)
-  - [esportes](#notícias-esportes)
-  - [g1](#notícias-g1)
-  - [ibge](#notícias-ibge)
-  - [noticias_atuais](#notícias-noticias_atuais)
-  - [politica](#notícias-politica)
-  - [uol](#notícias-uol)
+  - [cnn](#cnn)
+  - [esportes](#esportes)
+  - [g1](#g1)
+  - [ibge](#ibge)
+  - [noticias_atuais](#noticias_atuais)
+  - [politica](#politica)
+  - [uol](#uol)
 
 - [Plaquinhas](#plaquinhas)
-  - [plaquinhas](#plaquinhas-plaquinhas)
+  - [plaquinhas](#plaq)
 
 ---
 
@@ -376,7 +376,7 @@ console.log(uol);
 
 ## Plaquinhas
 
-### plaquinhas
+### plaq
 Gera uma plaquinha com modelo (`type`) e texto.
 ```javascript
 const plaquinha = await api.plaquinhas('plaq1', 'LmOnly');
