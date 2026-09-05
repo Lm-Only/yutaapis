@@ -136,6 +136,16 @@ export declare interface AnimesRoute {
     quotesanimes: () => Promise<DefaultResultJSON>;
 };
 
+export declare interface TraduizrOpts {
+    text: string;
+    idioma: | 'en' | 'pt';
+}
+
+export declare interface OthersRoute {
+    signo: (signo: string) => Promise<DefaultResultJSON>;
+    traduzir: (traduzirOpts: TraduizrOpts) => Promise<DefaultResultJSON>;
+}
+
 export type LogosOptions =
     | 'glitch'
     | 'write'
@@ -265,4 +275,5 @@ export declare interface RouteNames {
     plaquinhas: PlaqRoute;
     stickers: StickerRoute;
     canvas: CanvasRoute;
+    outros: OthersRoute
 }

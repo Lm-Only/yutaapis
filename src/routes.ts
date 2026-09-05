@@ -16,6 +16,7 @@ import {
     PlaqParams, 
     PlaqTextExample, 
     RouteNames, 
+    TraduizrOpts, 
     WelcomeOpts
 } from "./Types/types.js";
 import { urlFormatString, defaultRequest } from "./Utils/index.js";
@@ -59,11 +60,15 @@ export function routes(opts: Opts): RouteNames {
     }
 
     return {
+        outros: {
+            signo: (signo: string) => executeDefaultMethod('signo', { signo }) as Promise<DefaultResultJSON>,
+            traduzir: (traduzirOpts: TraduizrOpts) => executeDefaultMethod('traduzir', traduzirOpts) as Promise<DefaultResultJSON>
+        },
+
         canvas: {
             welcome: (opts: WelcomeOpts) => executeDefaultMethod('welcome', { ...opts }, 'BUFFER', 'NO_API_PATH') as Promise<ArrayBuffer>,
             bemvindo: (opts: BemVindoOpts) => executeDefaultMethod('bemvindo', { ...opts }, 'BUFFER') as Promise<ArrayBuffer>,
             cardMusic: (opts: CardMusicOpts) => executeDefaultMethod('cardmusic', { ...opts }, 'BUFFER', 'NO_API_PATH') as Promise<ArrayBuffer>,
-
         },
 
         stickers: {

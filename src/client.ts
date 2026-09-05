@@ -18,6 +18,7 @@ import {
     IasRoute, 
     LogosOptions, 
     NoticiasRoute, 
+    OthersRoute, 
     PesquisasRoute, 
     PlaqParams, 
     PlaqTextExample, 
@@ -68,6 +69,10 @@ export default class YutaApis {
 
     get ias(): IasRoute {
         return this.getRoutes('ias').ias;
+    }
+    
+    get outros(): OthersRoute {
+        return this.getRoutes('outros').outros;
     }
 
     get geradores(): GeradoresRoute {
