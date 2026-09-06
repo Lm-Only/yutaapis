@@ -28,6 +28,7 @@ import {
     QcOpts,
     GoodbyeOpts
 } from './canvas.js';
+import { TiktokFotoResult, MediafireResult, SpotifyPlayResult } from './downloads.js';
 
 /** Opções de HTTP adcionais */
 export interface HttpOptions {
@@ -102,6 +103,7 @@ export interface DefaultParamsFunc {
 export interface DefaultResultJSON {
     status?: boolean;
     error?: boolean;
+
     msg?: string;
     resposta?: string;
 
@@ -186,6 +188,10 @@ export interface DownloadsRoute {
     pinterestVideo: (url: string) => Promise<DefaultResultJSON>;
     pinterestMp3: (url: string) => Promise<DefaultResultBuffer>;
     pinterestMp4: (url: string) => Promise<DefaultResultBuffer>;
+    tiktok_foto: (url: string) => Promise<TiktokFotoResult>;
+    mediafire: (url: string) => Promise<MediafireResult>;
+    spotifyMp3: (url: string) => Promise<DefaultResultBuffer>;
+    spotifyPlay: (query: string) => Promise<SpotifyPlayResult>;
 }
 
 export interface IasRoute {
@@ -198,7 +204,7 @@ export interface IasRoute {
 
 export interface GeradoresRoute {
     nick: (query: string) => Promise<DefaultResultJSON>;
-    qrcode: (query: string) => Promise<any>;
+    qrcode: (query: string) => Promise<DefaultResultBuffer>;
 };
 
 export interface AnimesRoute {

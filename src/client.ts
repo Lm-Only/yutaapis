@@ -26,9 +26,7 @@ import {
     StickerRoute
 } from "./Types/index.js";
 import { isYutaApiToken } from "./Utils/index.js";
-/**
- * YutaApis opções de configuração
- */
+
 export interface YutaApisOptions {
     /**
      * API Token do Yuta APIS localizado na parte da
@@ -37,9 +35,6 @@ export interface YutaApisOptions {
      * É obrigatorio
      */
     apiToken: string;
-    /** 
-     * Opções de HTTP adcionais 
-     */
     httpOptions?: HttpOptions
 }
 

@@ -1,0 +1,43 @@
+import { DefaultResultJSON } from "./index.js";
+
+interface SpotifyTrackData {
+    title: string;
+    artist: string;
+    duration: string;
+    thumbnail: string;
+    popularity: number;
+    album: string;
+    release_at: string;
+    url: string;
+    download_url: string;
+}
+
+export interface SpotifyPlayResult extends Pick<DefaultResultJSON, 'status' | 'criador'> {
+    result: SpotifyTrackData;
+}
+
+export interface TiktokFotoResult extends Pick<DefaultResultJSON, 'status' | 'msg'> {
+    total: number;
+    /**
+     * Um objeto que retorna resultados como:
+     * image1, image2, image3 e etc
+     */
+    resultado: Record<string, string>;
+}
+
+interface MediafireItem {
+    status: boolean;
+    filename: string;
+    filesize: string;
+    filesizeH: string;
+    type: string;
+    upload_date: string;
+    owner: string;
+    ext: string;
+    mimetype: string;
+    url: string;
+}
+
+export interface MediafireResult extends Pick<DefaultResultJSON, 'status' | 'criador'> {
+    result: MediafireItem[];
+}

@@ -7,6 +7,7 @@
  * @author Lm Only and Nk Petrov
  */
 
+import { MediafireResult, SpotifyPlayResult, TiktokFotoResult } from "./Types/downloads.js";
 import { 
     AsciiResult,
     BemVindoOpts,
@@ -62,7 +63,7 @@ export function routes(opts: Opts): RouteNames {
         params: OtherOpts = {}, 
         dataType: DataTypeDefault = 'JSON',
         methodType: ExplainThisMethod = 'WITH_API_PATH'
-    ): Promise<DefaultResultJSON | ArrayBuffer> {
+    ): Promise<DefaultResultJSON | DefaultResultBuffer> {
         opts.baseUrl = opts.baseUrl + (methodType ==='WITH_API_PATH' ? '/api' : '');
 
         return defaultRequest({
@@ -143,6 +144,10 @@ export function routes(opts: Opts): RouteNames {
             pinterest: (query: string) => executeDefaultMethod('pinterest', { query }, 'BUFFER') as Promise<DefaultResultBuffer>,
             pinterestMp3: (url: string) => executeDefaultMethod('pinterest-mp3', { url }, 'BUFFER') as Promise<DefaultResultBuffer>,
             pinterestMp4: (url: string) => executeDefaultMethod('pinterest-mp4', { url }, 'BUFFER') as Promise<DefaultResultBuffer>,
+            tiktok_foto: (url: string) => executeDefaultMethod('tiktok-imagens', { url }) as Promise<TiktokFotoResult>,
+            mediafire: (url: string) => executeDefaultMethod('mediafire-dl', { url }) as Promise<MediafireResult>,
+            spotifyMp3: (url: string) => executeDefaultMethod('spotify-mp3', { url }, 'BUFFER') as Promise<DefaultResultBuffer>,
+            spotifyPlay: (query: string) => executeDefaultMethod('spotify-play', { query }) as Promise<SpotifyPlayResult>
         },
 
         ias: {
