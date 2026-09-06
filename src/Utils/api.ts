@@ -1,3 +1,12 @@
+/**
+ * @license MIT
+ * 
+ * Copyright 2026 Yuta & Hutao bot community
+ * Yuta APIs - Em parceria com HutaoBot
+ *
+ * @author Lm Only and Nk Petrov
+ */
+
 import { request } from "./request.js";
 import { DataTypeDefault, DefaultParamsFunc, OtherOpts } from "../Types/index.js";
 

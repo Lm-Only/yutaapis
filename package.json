@@ -1,6 +1,6 @@
 {
   "name": "yutaapis",
-  "version": "1.0.7",
+  "version": "1.0.9",
   "description": "Módulo SDK TypeScript/JavaScript desenvolvido para consumo do Yuta APIs; em parceria com HutaoBot",
   "type": "module",
   "main": "lib/index.js",
@@ -32,7 +32,7 @@
     "typescript": "^7.0.2"
   },
   "dependencies": {
-    "undici": "^8.10.2"
+    "undici": "^7.0.0"
   },
   "engines": {
     "node": ">=22.0.0"

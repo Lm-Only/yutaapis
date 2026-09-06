@@ -1,3 +1,12 @@
+/**
+ * @license MIT
+ * 
+ * Copyright 2026 Yuta & Hutao bot community
+ * Yuta APIs - Em parceria com HutaoBot
+ *
+ * @author Lm Only and Nk Petrov
+ */
+
 export interface CardLevelUpOpts {
     fundo: string;
     nome: string;

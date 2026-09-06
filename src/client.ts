@@ -23,7 +23,7 @@ import {
     PesquisasRoute, 
     PlaqParams, 
     PlaqTextExample, 
-    StickerRoute
+    StickerRoute 
 } from "./Types/index.js";
 import { isYutaApiToken } from "./Utils/index.js";
 

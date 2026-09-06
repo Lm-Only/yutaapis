@@ -11,26 +11,26 @@ import { MediafireResult, SpotifyPlayResult, TiktokFotoResult } from "./Types/do
 import { 
     AsciiResult,
     BemVindoOpts,
+    CardLevelUpOpts,
     CardMusicOpts,
+    CardPerfilOpts,
+    ClimaResult,
     DataTypeDefault, 
     DefaultResultBuffer, 
     DefaultResultJSON, 
     EncurtalinkResult,
-    SaiuOpts,
-    ClimaResult,
     FrasesAmorResult, 
-    OtherOpts, 
-    CardLevelUpOpts,
-    PlaqParams, 
-    PingOpts,
-    QcOpts,
-    PlaqTextExample, 
-    RouteNames, 
-    TraduizrOpts,
-    WelcomeOpts,
     GoodbyeOpts,
+    OtherOpts, 
+    PingOpts,
+    PlaqParams, 
+    PlaqTextExample, 
+    QcOpts,
+    RouteNames, 
+    SaiuOpts,
     ShipOpts,
-    CardPerfilOpts
+    TraduizrOpts,
+    WelcomeOpts
 } from "./Types/index.js";
 import { urlFormatString, defaultRequest } from "./Utils/index.js";
 
