@@ -116,7 +116,8 @@ console.log(gitstalkResult);
 ## Antes 
 ```javascript
 // Veja o código todo deslizando pra direita
-const response = await fetch("https://yuta-apis.xyz/api/geradores/gerar-nicks?text=Lm+Only&apitoken=SEU_TOKEN");
+const url = "https://yuta-apis.xyz/api/geradores/gerar-nicks?text=Lm+Only&apitoken=SEU_TOKEN";
+const response = await fetch(url);
 const contentType = response.headers.get("content-type") || "";
 const result = contentType.includes("json")
   ? await response.json()
