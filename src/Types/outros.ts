@@ -1,5 +1,24 @@
 import { DefaultResultJSON } from "./index.js";
 
+export interface ClimaResult extends Pick<DefaultResultJSON, 'status' | 'creator' | 'msg'> {
+    result: {
+        cidade: string;
+        temperatura: string;
+        sensacao: string;
+        umidade: string;
+        vento: string;
+        clima: string;
+        observado: string;
+        imagem: string;
+    }
+}
+
+export interface AsciiResult extends Pick<DefaultResultJSON, 'status' | 'criador' | 'msg'> {
+    resultado: Array<{
+        result: string;
+    }>;
+}
+
 export interface EncurtalinkResult extends Pick<DefaultResultJSON, 'status' | 'criador' | 'msg'> {
     result: Array<{ original: string, encurtado: string }>
 }

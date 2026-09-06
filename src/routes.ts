@@ -8,12 +8,14 @@
  */
 
 import { 
+    AsciiResult,
     BemVindoOpts,
     CardMusicOpts,
     DataTypeDefault, 
     DefaultResultBuffer, 
     DefaultResultJSON, 
-    EncurtalinkResult, 
+    EncurtalinkResult,
+    ClimaResult,
     FrasesDeAmorResult, 
     OtherOpts, 
     PlaqParams, 
@@ -64,11 +66,15 @@ export function routes(opts: Opts): RouteNames {
 
     return {
         outros: {
+            ascii: (text: string) => executeDefaultMethod('ascii', { text }) as Promise<AsciiResult>,
+            clima: (cidade: string) => executeDefaultMethod('clima', { cidade }) as Promise<ClimaResult>,
+            emoji_mix: (emoji1: string, emoji2: string) => executeDefaultMethod('emoji-mix', { emoji1, emoji2 }, 'BUFFER') as Promise<DefaultResultBuffer>,
             signo: (signo: string) => executeDefaultMethod('signo', { signo }) as Promise<DefaultResultJSON>,
             traduzir: (traduzirOpts: TraduizrOpts) => executeDefaultMethod('traduzir', traduzirOpts) as Promise<DefaultResultJSON>,
             ip: (ip: string) => executeDefaultMethod('ip', { ip }) as Promise<DefaultResultJSON>,
             encurtarLink: (url: string) => executeDefaultMethod('encurtar-link', { url }) as Promise<EncurtalinkResult>,
-            frasesAmor: () => executeDefaultMethod('frases-amor', null) as Promise<FrasesDeAmorResult>
+            frasesAmor: () => executeDefaultMethod('frases-amor', null) as Promise<FrasesDeAmorResult>,
+            hd2: (imagem: string) => executeDefaultMethod('hd2', { imagem }, 'BUFFER') as Promise<DefaultResultBuffer>
         },
 
         canvas: {

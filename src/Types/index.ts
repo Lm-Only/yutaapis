@@ -11,7 +11,7 @@ export * from './logos.js';
 export * from './outros.js';
 
 import type { LogosOptions } from "./logos.js";
-import type { EncurtalinkResult, FrasesDeAmorResult as FrasesAmorResult, TraduzirLanguages } from "./outros.js";
+import type { AsciiResult, ClimaResult, EncurtalinkResult, FrasesDeAmorResult as FrasesAmorResult, TraduzirLanguages } from "./outros.js";
 
 
 
@@ -97,7 +97,7 @@ export interface DefaultResultJSON {
     creator?: | '@NkPetrøv' | '@LmOnly';
 
     resultado?: Array<any>;
-    result?: Array<any>;
+    result?: Array<any> | Record<string, any>;
 }
 
 export interface DefaultErrorJson {
@@ -194,11 +194,15 @@ export interface AnimesRoute {
 };
 
 export interface OthersRoute {
+    ascii: (text: string) => Promise<AsciiResult>;
+    clima: (cidade: string) => Promise<ClimaResult>;
+    emoji_mix: (emoji1: string, emoji2: string) => Promise<DefaultResultBuffer>;
     signo: (signo: string) => Promise<DefaultResultJSON>;
     traduzir: (traduzirOpts: TraduizrOpts) => Promise<DefaultResultJSON>;
     ip: (ip: string) => Promise<DefaultResultJSON>;
     encurtarLink: (url: string) => Promise<EncurtalinkResult>;
     frasesAmor: () => Promise<FrasesAmorResult>;
+    hd2: (imagem: string) => Promise<DefaultResultBuffer>;
 }
 
 export interface LogosRoute {
