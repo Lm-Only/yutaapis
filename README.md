@@ -134,6 +134,7 @@ console.log(nicks);
 
 * A primeira opção deixava o código **poluído** e **difícil de entender**. 💔
 * E se pararmos para analisar, essa rota era apenas um simples **gerador de nick** 🙌
+* Logicamente você vai ter que passar as mesmas coisas toda vez que usar alguma rota nova. 🙏🏼 (tipo, link do site + nome da rota + endpoint) 😶‍🌫️
 * Imagine com rotas que **requerem** mais coisas, isso iria causar um **problema visual** KKKKKKKK 😹
 
 ## Resumo - Script 2° 🤩
