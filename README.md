@@ -99,7 +99,7 @@ console.log(gitstalkResult);
 ##
 
 > [!NOTE]
-> Afinal de contas, **Para que serve esse módulo? 🤔**
+> Afinal de contas, **Para que este módulo serve? 🤔**
 
 <details>
 
