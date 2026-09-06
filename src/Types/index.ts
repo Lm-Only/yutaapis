@@ -10,6 +10,7 @@
 export * from './logos.js';
 export * from './outros.js';
 export * from './canvas.js';
+export * from './downloads.js';
 
 import type { LogosOptions } from "./logos.js";
 import { 
