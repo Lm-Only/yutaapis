@@ -1,4 +1,4 @@
-# yutaapis
+# Yuta APIs
 Módulo SDK TypeScript/JavaScript desenvolvido para consumo do [Yuta APIs](https://yuta-apis.xyz); em parceria com a [HutaoBot](https://github.com/Lm-Only/HutaoBot)
 
 
@@ -96,7 +96,55 @@ if (!gitstalkResult.status) {
 console.log(gitstalkResult);
 ```
 
-## Sumário 
+## Para que serve esse módulo?
+
+<details>
+
+<summary>
+     <b>Saiba aqui...</b>
+ </summary>
+
+* Este módulo foi desenvolvido inteiramente em Typescript por **Lm Only** com o foco principal em ajudar aos usuários do [Yuta APIs](https://yuta-apis.xyz) a usarem a API de uma forma mais simples e fácil. ✨️
+
+* Uma das **principais características** desse módulo, é a forma de como ele é usado, principalmente para quem programa usando o **VScode.** 🧑‍💻 Essa característica ajuda ao dev a **entender** o que tal rota recebe e o que ela retorna. 💎
+
+* Além disso, o módulo evita que a mesma coisa se **repita várias vezes.** Veja o Exemplo:
+
+## Antes 
+```javascript
+// Veja o código todo deslizando pra direita
+const response = await fetch("https://yuta-apis.xyz/api/geradores/gerar-nicks?text=Lm+Only&apitoken=SEU_TOKEN");
+const contentType = response.headers.get("content-type") || "";
+const result = contentType.includes("json")
+  ? await response.json()
+  : await response.blob();
+
+console.log(result);
+```
+## Depois 👇
+```javascript
+const nicks = await api.geradores.nick('Lm Only');
+console.log(nicks);
+```
+
+## Resumo - Script 1° 🥰
+
+* A primeira opção deixava o código **poluído** e **difícil de entender**. 💔
+* E se pararmos para analisar, essa rota era apenas um simples **gerador de nick** 🙌
+* Imagine com rotas que **requerem** mais coisas, isso iria causar um **problema visual** KKKKKKKK 😹
+
+## Resumo - Script 2° 🤩
+* **Com base no segundo Script, o foco é facilitar a vida do usuário e a legibilidade do código. 💝**
+> **Legibilidade se trata daquilo que é legível, algo que é fácil de ser entendido**
+
+## Finalizando 💖
+* O módulo tem um **sistema inteligente** que sabe quando der erro; retornar JSON (isso se no caso deveria retornar uma mídia)
+* Também ele detecta se tal rota tem **variações**, para evitar acesso inválido.
+* Por fim, peço que use um editor de código profissional para o uso do módulo. (VScode por exemplo)
+
+</details>
+
+# Sumário 
 
 - [Api](https://yuta-apis.xyz)
   - [planos](https://yuta-apis.xyz/planos)
