@@ -1,5 +1,5 @@
 # yutaapis
-Módulo SDK TypeScript/JavaScript desenvolvido para consumo do Yuta APIs; em parceria com HutaoBot
+Módulo SDK TypeScript/JavaScript desenvolvido para consumo do [Yuta APIs](https://yuta-apis.xyz); em parceria com a [HutaoBot](https://github.com/Lm-Only/HutaoBot)
 
 
 <h1 align="center">
@@ -8,6 +8,63 @@ Módulo SDK TypeScript/JavaScript desenvolvido para consumo do Yuta APIs; em par
 </p>
   
 ##
+
+<details>
+    <summary>
+        <b>Créditos...</b>
+    </summary>
+
+## Desenvolvedor 🧑‍💻
+<div align="center">
+  <table>
+    <tr>
+      <td align="right" valign="middle" style="padding-right: 15px;">
+        <img src="https://github.com/Lm-Only.png?size=120" width="120" height="120" style="border: 3px solid #8A2BE2; border-radius: 50%;">
+      </td>
+      <td align="left" valign="middle">
+        <h2 style="margin: 0; font-family: monospace; color: #8A2BE2;">
+          Lm Only
+        </h2>
+        <p style="margin: 5px 0; color: #cfcfcf; font-family: monospace; font-size: 14px;">
+  Criador do módulo
+        </p>
+        <p style="margin: 8px 0 0 0;">
+           <img src="https://img.shields.io/badge/Typescript-3178C6?style=flat-square&logo=typescript&logoColor=white" alt="Typescript"/>
+          <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=flat-square&logo=javascript&logoColor=black" alt="JavaScript" />
+          <img src="https://img.shields.io/badge/Node.js-339933?style=flat-square&logo=node.js&logoColor=white" alt="Node.js" />
+          <img src="https://img.shields.io/badge/Fastify-000000?style=flat-square&logo=fastify&logoColor=white" alt="Fastify" />
+          <img src="https://img.shields.io/badge/Bash-4EAA25?style=flat-square&logo=gnu-bash&logoColor=white" alt="Shell" />
+        </p>
+      </td>
+    </tr>
+  </table>
+</div>
+
+## Criador do Yuta APIs 👑
+<div align="center">
+  <table>
+    <tr>
+      <td align="right" valign="middle" style="padding-right: 15px;">
+        <img src="https://github.com/Nk-Petrov.png?size=120" width="120" height="120" style="border: 3px solid #8A2BE2; border-radius: 50%;">
+      </td>
+      <td align="left" valign="middle">
+        <h2 style="margin: 0; font-family: monospace; color: #8A2BE2;">
+          Lm Only
+        </h2>
+        <p style="margin: 5px 0; color: #cfcfcf; font-family: monospace; font-size: 14px;">
+            Criador da API
+        </p>
+        <p style="margin: 8px 0 0 0;">
+          <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=flat-square&logo=javascript&logoColor=black" alt="JavaScript" />
+          <img src="https://img.shields.io/badge/Node.js-339933?style=flat-square&logo=node.js&logoColor=white" alt="Node.js" />
+            <img src="https://img.shields.io/badge/Express-000000?style=flat-square&logo=express&logoColor=white" alt="Express" />
+        </p>
+      </td>
+    </tr>
+  </table>
+</div>
+    
+</details>
 
 > [!IMPORTANT]
 > **Este módulo ainda está em desenvolvimento por Lm Only, é de certeza que algumas rotas ainda não estejam configuradas,**
@@ -395,7 +452,7 @@ await writeFile('plaquinha.png', plaquinha);
 ---
 
 * By [Yuta Apis](https://yuta-apis.xyz)
-* Criado por: Lm Only
+* Criado por: Lm Only & Nk Petrov
 * Versão: beta
 
 License MIT
