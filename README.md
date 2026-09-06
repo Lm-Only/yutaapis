@@ -96,12 +96,15 @@ if (!gitstalkResult.status) {
 console.log(gitstalkResult);
 ```
 
-## Para que serve esse módulo?
+##
+
+> [!NOTE]
+> Afinal de contas, **Para que serve esse módulo? 🤔**
 
 <details>
 
 <summary>
-     <b>Saiba aqui...</b>
+     <b>Saiba aqui...👇</b>
  </summary>
 
 * Este módulo foi desenvolvido inteiramente em Typescript por **Lm Only** com o foco principal em ajudar aos usuários do [Yuta APIs](https://yuta-apis.xyz) a usarem a API de uma forma mais simples e fácil. ✨️
