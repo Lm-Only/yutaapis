@@ -67,8 +67,7 @@ Módulo SDK TypeScript/JavaScript desenvolvido para consumo do [Yuta APIs](https
 </details>
 
 > [!IMPORTANT]
-> **Este módulo ainda está em desenvolvimento por Lm Only, é de certeza que algumas rotas ainda não estejam configuradas,**
-> **Em breve o módulo deve estar totalmente pronto**
+> **Algumas rotas podem estar em falta, pelo motivo de não estarem funcionando. As rotas registradas estão funcionando perfeitamente e prontas pra uso**
 
 ## Instalação
 
@@ -78,10 +77,23 @@ npm i yutaapis
 
 ## Quickstart
 
+* ESM
 ```javascript
 // Esm - "type": "module"
 import YutaApis from 'yutaapis';
+```
+> Se seu projeto for do tipo ESM
+---
 
+* CJS
+```javascript
+const { default: YutaApis } = require('yutaapis');
+```
+> Ou se for do tipo padrão (maioria)
+---
+
+## Usage
+```javascript
 const api = new YutaApis({
   apiToken: process.env.TOKEN // token do Yuta obtido no site
 });
@@ -154,6 +166,9 @@ console.log(nicks);
 - [Api](https://yuta-apis.xyz)
   - [planos](https://yuta-apis.xyz/planos)
   - [login](https://yuta-apis.xyz/login)
+
+- [Exemplos](https://github.com/Lm-Only/yutaapis/tree/main/examples)
+  - [Scripts](https://github.com/Lm-Only/yutaapis/blob/main/examples/example.js)
 
 - [Pesquisas](#pesquisas)
   - [wiki](#wiki)
