@@ -9,11 +9,25 @@
 
 export * from './logos.js';
 export * from './outros.js';
+export * from './canvas.js';
 
 import type { LogosOptions } from "./logos.js";
-import type { AsciiResult, ClimaResult, EncurtalinkResult, FrasesDeAmorResult as FrasesAmorResult, TraduzirLanguages } from "./outros.js";
-
-
+import { 
+    AsciiResult, 
+    ClimaResult, 
+    EncurtalinkResult, 
+    FrasesAmorResult, 
+    type TraduzirLanguages 
+} from "./outros.js";
+import { 
+    CardLevelUpOpts, 
+    PingOpts,
+    CardPerfilOpts,
+    ShipOpts,
+    SaiuOpts,
+    QcOpts,
+    GoodbyeOpts
+} from './canvas.js';
 
 /** Opções de HTTP adcionais */
 export interface HttpOptions {
@@ -87,6 +101,7 @@ export interface DefaultParamsFunc {
 
 export interface DefaultResultJSON {
     status?: boolean;
+    error?: boolean;
     msg?: string;
     resposta?: string;
 
@@ -241,6 +256,13 @@ export interface CanvasRoute {
     welcome: (opts: WelcomeOpts) => Promise<DefaultResultBuffer>;
     cardMusic: (opts: CardMusicOpts) => Promise<DefaultResultBuffer>;
     bemvindo: (opts: BemVindoOpts) => Promise<DefaultResultBuffer>;
+    levelup: (opts: CardLevelUpOpts) => Promise<DefaultResultBuffer>;
+    ping: (opts: PingOpts) => Promise<DefaultResultBuffer>;
+    perfil: (opts: CardPerfilOpts) => Promise<DefaultResultBuffer>;
+    goodbye: (opts: GoodbyeOpts) => Promise<DefaultResultBuffer>;
+    ship: (opts: ShipOpts) => Promise<DefaultResultBuffer>;
+    qc: (opts: QcOpts) => Promise<DefaultResultBuffer>;
+    saiu: (opts: SaiuOpts) => Promise<DefaultResultBuffer>;
 }
 
 export interface RouteNames {

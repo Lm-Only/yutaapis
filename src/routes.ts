@@ -15,14 +15,21 @@ import {
     DefaultResultBuffer, 
     DefaultResultJSON, 
     EncurtalinkResult,
+    SaiuOpts,
     ClimaResult,
-    FrasesDeAmorResult, 
+    FrasesAmorResult, 
     OtherOpts, 
+    CardLevelUpOpts,
     PlaqParams, 
+    PingOpts,
+    QcOpts,
     PlaqTextExample, 
     RouteNames, 
-    TraduizrOpts, 
-    WelcomeOpts
+    TraduizrOpts,
+    WelcomeOpts,
+    GoodbyeOpts,
+    ShipOpts,
+    CardPerfilOpts
 } from "./Types/index.js";
 import { urlFormatString, defaultRequest } from "./Utils/index.js";
 
@@ -73,14 +80,21 @@ export function routes(opts: Opts): RouteNames {
             traduzir: (traduzirOpts: TraduizrOpts) => executeDefaultMethod('traduzir', traduzirOpts) as Promise<DefaultResultJSON>,
             ip: (ip: string) => executeDefaultMethod('ip', { ip }) as Promise<DefaultResultJSON>,
             encurtarLink: (url: string) => executeDefaultMethod('encurtar-link', { url }) as Promise<EncurtalinkResult>,
-            frasesAmor: () => executeDefaultMethod('frases-amor', null) as Promise<FrasesDeAmorResult>,
-            hd2: (imagem: string) => executeDefaultMethod('hd2', { imagem }, 'BUFFER') as Promise<DefaultResultBuffer>
+            frasesAmor: () => executeDefaultMethod('frases-amor', null) as Promise<FrasesAmorResult>,
+            hd2: (imagem: string) => executeDefaultMethod('hd2', { imagem }, 'BUFFER') as Promise<DefaultResultBuffer>,
         },
 
         canvas: {
             welcome: (opts: WelcomeOpts) => executeDefaultMethod('welcome', { ...opts }, 'BUFFER', 'NO_API_PATH') as Promise<DefaultResultBuffer>,
             bemvindo: (opts: BemVindoOpts) => executeDefaultMethod('bemvindo', { ...opts }, 'BUFFER') as Promise<DefaultResultBuffer>,
             cardMusic: (opts: CardMusicOpts) => executeDefaultMethod('cardmusic', { ...opts }, 'BUFFER', 'NO_API_PATH') as Promise<DefaultResultBuffer>,
+            levelup: (opts: CardLevelUpOpts) => executeDefaultMethod('levelup', { ...opts }, 'BUFFER', 'NO_API_PATH') as Promise<DefaultResultBuffer>,
+            ping: (opts: PingOpts) => executeDefaultMethod('ping', { ...opts }, 'BUFFER', 'NO_API_PATH') as Promise<DefaultResultBuffer>,
+            perfil: (opts: CardPerfilOpts) => executeDefaultMethod('perfil', { ...opts }, 'BUFFER', 'NO_API_PATH') as Promise<DefaultResultBuffer>,
+            goodbye: (opts: GoodbyeOpts) => executeDefaultMethod('goodbye', { ...opts }, 'BUFFER') as Promise<DefaultResultBuffer>,
+            ship: (opts: ShipOpts) => executeDefaultMethod('ship', { ...opts }, 'BUFFER') as Promise<DefaultResultBuffer>,
+            qc: (opts: QcOpts) => executeDefaultMethod('qc', { ...opts }, 'BUFFER', 'NO_API_PATH') as Promise<DefaultResultBuffer>,
+            saiu: (opts: SaiuOpts) => executeDefaultMethod('saiu', { ...opts }, 'BUFFER', 'NO_API_PATH') as Promise<DefaultResultBuffer>,
         },
 
         stickers: {

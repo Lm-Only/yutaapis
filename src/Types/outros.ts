@@ -23,7 +23,7 @@ export interface EncurtalinkResult extends Pick<DefaultResultJSON, 'status' | 'c
     result: Array<{ original: string, encurtado: string }>
 }
 
-export interface FrasesDeAmorResult extends Pick<DefaultResultJSON, 'criador' | 'status' | 'msg'> {
+export interface FrasesAmorResult extends Pick<DefaultResultJSON, 'criador' | 'status' | 'msg'> {
     total: number;
     resultados: Array<string>;
 }
