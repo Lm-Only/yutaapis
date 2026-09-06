@@ -9,6 +9,16 @@
 
 import { DefaultResultJSON } from "./index.js";
 
+export interface TotextResult extends Pick<DefaultResultJSON, 'status' | 'msg' | 'criador'> {
+    resultado: {
+        texto: string;
+        duracao: number;
+        idioma: string;
+        confidence: number;
+        palavras: number;
+    }
+}
+
 export interface ClimaResult extends Pick<DefaultResultJSON, 'status' | 'creator' | 'msg'> {
     result: {
         cidade: string;

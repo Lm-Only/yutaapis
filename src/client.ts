@@ -23,7 +23,8 @@ import {
     PesquisasRoute, 
     PlaqParams, 
     PlaqTextExample, 
-    StickerRoute 
+    StickerRoute, 
+    UploadResult
 } from "./Types/index.js";
 import { isYutaApiToken } from "./Utils/index.js";
 
@@ -94,6 +95,11 @@ export default class YutaApis {
 
     get stickers(): StickerRoute {
         return this.getRoutes('stickers').stickers;
+    }
+
+    get upload() {
+        const execute = this.getRoutes('upload').upload.execute;
+        return (buffer: ArrayBuffer, name: string, mimeType?: string) => execute(buffer, name, mimeType) as Promise<UploadResult>
     }
 
     get logos() {

@@ -7,6 +7,7 @@
  * @author Lm Only and Nk Petrov
  */
 
+import { buffer } from "node:stream/consumers";
 import { MediafireResult, SpotifyPlayResult, TiktokFotoResult } from "./Types/downloads.js";
 import { 
     AsciiResult,
@@ -29,10 +30,13 @@ import {
     RouteNames, 
     SaiuOpts,
     ShipOpts,
+    TotextResult,
     TraduizrOpts,
+    UploadResult,
     WelcomeOpts
 } from "./Types/index.js";
 import { urlFormatString, defaultRequest } from "./Utils/index.js";
+import { upload } from "./Utils/upload.js";
 
 export type Opts = {
     baseUrl: string;
@@ -83,6 +87,8 @@ export function routes(opts: Opts): RouteNames {
             encurtarLink: (url: string) => executeDefaultMethod('encurtar-link', { url }) as Promise<EncurtalinkResult>,
             frasesAmor: () => executeDefaultMethod('frases-amor', null) as Promise<FrasesAmorResult>,
             hd2: (imagem: string) => executeDefaultMethod('hd2', { imagem }, 'BUFFER') as Promise<DefaultResultBuffer>,
+            totext: (url: string) => executeDefaultMethod('totext', { url })  as Promise<TotextResult>,
+            textImg: (text: string) => executeDefaultMethod('text2img', { text }, 'BUFFER') as Promise<DefaultResultBuffer>
         },
 
         canvas: {
@@ -168,6 +174,21 @@ export function routes(opts: Opts): RouteNames {
             hentai_video2: () => executeDefaultMethod('hentai-video2') as Promise<DefaultResultJSON>,
             metadinha: () => executeDefaultMethod('metadinha') as Promise<DefaultResultJSON>,
             quotesanimes: () => executeDefaultMethod('quotesanimes') as Promise<DefaultResultJSON>
+        },
+
+        upload: {
+            execute: (buffer: ArrayBuffer, name: string, mimeType?: string): Promise<UploadResult> => {
+                if (!Buffer.isBuffer(buffer)) {
+                    throw new Error('O Upload precisa de um BUFFER válido');
+                }
+
+                opts.baseUrl = opts.baseUrl + '/api';
+
+                return upload(buffer, name, { 
+                    ...opts,
+                    url: urlFormatString(opts.baseUrl, 'upload')
+                }, );
+            } 
         },
 
         logos: {

@@ -13,8 +13,9 @@ import { DataTypeDefault, DefaultParamsFunc, OtherOpts } from "../Types/index.js
 export async function defaultRequest(opts: DefaultParamsFunc, dataType: DataTypeDefault = 'JSON', otherOpts: OtherOpts = null): Promise<any> {
     return request(opts.url, {
         requestOptions: {
-            method: 'GET',
-            ...(otherOpts ? { query: otherOpts } : {})
+            method: opts.method || 'GET',
+            ...(otherOpts ? { query: otherOpts } : {}),
+            ...(opts.body ? { body: opts.body } : {})
         },
         dataType
     }, 0, opts);

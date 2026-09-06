@@ -24,7 +24,8 @@
   },
   "license": "MIT",
   "scripts": {
-    "test": "node test/test-main.js"
+    "test": "node test/test-main.js",
+    "test:ts": "node --experimental-vm-modules ./test/test.ts"
   },
   "devDependencies": {
     "@types/node": "^26.4.0",

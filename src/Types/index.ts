@@ -18,6 +18,7 @@ import {
     ClimaResult, 
     EncurtalinkResult, 
     FrasesAmorResult, 
+    TotextResult, 
     type TraduzirLanguages 
 } from "./outros.js";
 import { 
@@ -98,6 +99,11 @@ export interface DefaultParamsFunc {
      * Token do Yuta
      */
     apitoken: string;
+    /**
+     * Request method
+     */
+    method?: 'GET' | 'POST';
+    body?: any;
     headers?: Record<string, string>;
 }
 
@@ -225,6 +231,8 @@ export interface OthersRoute {
     encurtarLink: (url: string) => Promise<EncurtalinkResult>;
     frasesAmor: () => Promise<FrasesAmorResult>;
     hd2: (imagem: string) => Promise<DefaultResultBuffer>;
+    totext: (url: string) => Promise<TotextResult>;
+    textImg: (text: string) => Promise<DefaultResultBuffer>;
 }
 
 export interface LogosRoute {
@@ -272,6 +280,20 @@ export interface CanvasRoute {
     saiu: (opts: SaiuOpts) => Promise<DefaultResultBuffer>;
 }
 
+
+export interface UploadResultData {
+    link: string;
+}
+
+export interface UploadResult extends Pick<DefaultResultJSON, 'status' | 'criador'> {
+    resultado: UploadResultData;
+    link: string;
+}
+
+export interface UploadRoute {
+    execute: (buffer: ArrayBuffer, name: string, mimeType?: string) => Promise<UploadResult>;
+}
+
 export interface RouteNames {
     pesquisas: PesquisasRoute;
     downloads: DownloadsRoute;
@@ -283,6 +305,7 @@ export interface RouteNames {
     plaquinhas: PlaqRoute;
     stickers: StickerRoute;
     canvas: CanvasRoute;
-    outros: OthersRoute
+    outros: OthersRoute,
+    upload: UploadRoute;
 }
 
