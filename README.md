@@ -831,6 +831,7 @@ else console.log(cardMusic);
 Gera card de bem-vindo.
 
 **Assinatura:** `api.canvas.bemvindo(opts: BemVindoOpts) => Promise<DefaultResultBuffer>`
+> Observação: o campo obrigatório é `lengenda` (com **n**) conforme o tipo `BemVindoOpts`.
 
 ```javascript
 import { writeFile } from 'node:fs/promises';
