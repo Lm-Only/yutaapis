@@ -304,6 +304,49 @@ const gitstalk = await api.pesquisas.gitstalk('Lm-Only');
 console.log(gitstalk);
 ```
 
+
+### filmesSearch
+Pesquisa filmes por título.
+```javascript
+const filmesSearch = await api.pesquisas.filmesSearch('Interstellar');
+console.log(filmesSearch);
+```
+
+### lyrics_search
+Busca letra de música por nome/artista.
+```javascript
+const lyricsSearch = await api.pesquisas.lyrics_search('Nuts Lil Peep');
+console.log(lyricsSearch);
+```
+
+### pensador
+Busca frases no Pensador por termo.
+```javascript
+const pensador = await api.pesquisas.pensador('motivação');
+console.log(pensador);
+```
+
+### playstore
+Pesquisa apps na Play Store por nome.
+```javascript
+const playstore = await api.pesquisas.playstore('WhatsApp');
+console.log(playstore);
+```
+
+### wallpaper
+Pesquisa wallpapers por texto.
+```javascript
+const wallpaper = await api.pesquisas.wallpaper('Hu Tao');
+console.log(wallpaper);
+```
+
+### google
+Pesquisa dados gerais no Google.
+```javascript
+const google = await api.pesquisas.google('Typescript');
+console.log(google);
+```
+
 ---
 
 ## Downloads
@@ -375,11 +418,80 @@ const tiktokdl = await api.downloads.tiktokdl('https://vt.tiktok.com/ZSqRRu4Dn/'
 console.log(tiktokdl);
 ```
 
+
+### tiktokMp3
+Baixa o áudio MP3 de um link do TikTok.
+```javascript
+const tiktokMp3 = await api.downloads.tiktokMp3('https://vt.tiktok.com/ZSqRRu4Dn/');
+// buffer
+```
+
+Exemplo salvando em arquivo:
+```javascript
+import { writeFile } from 'node:fs/promises';
+
+const tiktokMp3 = await api.downloads.tiktokMp3('https://vt.tiktok.com/ZSqRRu4Dn/');
+await writeFile('tiktok.mp3', tiktokMp3);
+```
+
+### tiktokMp4
+Baixa o vídeo MP4 de um link do TikTok.
+```javascript
+const tiktokMp4 = await api.downloads.tiktokMp4('https://vt.tiktok.com/ZSqRRu4Dn/');
+// buffer
+```
+
+Exemplo salvando em arquivo:
+```javascript
+import { writeFile } from 'node:fs/promises';
+
+const tiktokMp4 = await api.downloads.tiktokMp4('https://vt.tiktok.com/ZSqRRu4Dn/');
+await writeFile('tiktok.mp4', tiktokMp4);
+```
+
 ### instavideo
 Baixa vídeo a partir de link do Instagram.
 ```javascript
 const instavideo = await api.downloads.instavideo('https://www.instagram.com/p/Dc1iG74Fkgt/');
 console.log(instavideo);
+```
+
+
+### facebook
+Retorna dados de download de vídeo do Facebook.
+```javascript
+const facebook = await api.downloads.facebook('https://www.facebook.com/reel/1234567890123456');
+console.log(facebook);
+```
+
+### facebookMp3
+Baixa o áudio MP3 de um link do Facebook.
+```javascript
+const facebookMp3 = await api.downloads.facebookMp3('https://www.facebook.com/reel/1234567890123456');
+// buffer
+```
+
+Exemplo salvando em arquivo:
+```javascript
+import { writeFile } from 'node:fs/promises';
+
+const facebookMp3 = await api.downloads.facebookMp3('https://www.facebook.com/reel/1234567890123456');
+await writeFile('facebook.mp3', facebookMp3);
+```
+
+### facebookMp4
+Baixa o vídeo MP4 de um link do Facebook.
+```javascript
+const facebookMp4 = await api.downloads.facebookMp4('https://www.facebook.com/reel/1234567890123456');
+// buffer
+```
+
+Exemplo salvando em arquivo:
+```javascript
+import { writeFile } from 'node:fs/promises';
+
+const facebookMp4 = await api.downloads.facebookMp4('https://www.facebook.com/reel/1234567890123456');
+await writeFile('facebook.mp4', facebookMp4);
 ```
 
 ### pinterest
@@ -412,11 +524,64 @@ const pinterestMp3 = await api.downloads.pinterestMp3('https://pin.it/5decaQP2P'
 await writeFile('pinterest.mp3', pinterestMp3);
 ```
 
+
+### pinterestMp4
+Baixa vídeo MP4 a partir de link do Pinterest.
+```javascript
+const pinterestMp4 = await api.downloads.pinterestMp4('https://pin.it/5decaQP2P');
+// buffer
+```
+
+Exemplo salvando em arquivo:
+```javascript
+import { writeFile } from 'node:fs/promises';
+
+const pinterestMp4 = await api.downloads.pinterestMp4('https://pin.it/5decaQP2P');
+await writeFile('pinterest.mp4', pinterestMp4);
+```
+
 ### pinterestVideo
 Retorna vídeo a partir de link do Pinterest.
 ```javascript
 const pinterestVideo = await api.downloads.pinterestVideo('https://pin.it/5decaQP2P');
 console.log(pinterestVideo);
+```
+
+
+### tiktok_foto
+Retorna imagens de um post do TikTok.
+```javascript
+const tiktokFoto = await api.downloads.tiktok_foto('https://vt.tiktok.com/ZSqRRu4Dn/');
+console.log(tiktokFoto);
+```
+
+### mediafire
+Retorna dados de download de um arquivo do MediaFire.
+```javascript
+const mediafire = await api.downloads.mediafire('https://www.mediafire.com/file/arquivo_exemplo/file');
+console.log(mediafire);
+```
+
+### spotifyMp3
+Baixa o áudio MP3 de uma faixa do Spotify.
+```javascript
+const spotifyMp3 = await api.downloads.spotifyMp3('https://open.spotify.com/track/4iV5W9uYEdYUVa79Axb7Rh');
+// buffer
+```
+
+Exemplo salvando em arquivo:
+```javascript
+import { writeFile } from 'node:fs/promises';
+
+const spotifyMp3 = await api.downloads.spotifyMp3('https://open.spotify.com/track/4iV5W9uYEdYUVa79Axb7Rh');
+await writeFile('spotify.mp3', spotifyMp3);
+```
+
+### spotifyPlay
+Pesquisa música no Spotify e retorna metadados.
+```javascript
+const spotifyPlay = await api.downloads.spotifyPlay('Nuts Lil Peep');
+console.log(spotifyPlay);
 ```
 
 ---
@@ -490,6 +655,39 @@ import { writeFile } from 'node:fs/promises';
 
 const qrcode = await api.geradores.qrcode('https://github.com/Lm-Only/HutaoBot');
 await writeFile('qrcode.png', qrcode);
+```
+
+
+---
+
+## Animes
+
+### hentai_video
+Retorna um vídeo hentai aleatório.
+```javascript
+const hentaiVideo = await api.animes.hentai_video();
+console.log(hentaiVideo);
+```
+
+### hentai_video2
+Retorna outra variação de vídeo hentai aleatório.
+```javascript
+const hentaiVideo2 = await api.animes.hentai_video2();
+console.log(hentaiVideo2);
+```
+
+### metadinha
+Retorna imagens de metadinha para casal.
+```javascript
+const metadinha = await api.animes.metadinha();
+console.log(metadinha);
+```
+
+### quotesanimes
+Retorna frases de animes.
+```javascript
+const quotesanimes = await api.animes.quotesanimes();
+console.log(quotesanimes);
 ```
 
 ---
@@ -583,6 +781,600 @@ const plaquinha = await api.plaquinhas('plaq1', 'LmOnly');
 await writeFile('plaquinha.png', plaquinha);
 ```
 > Também vai até plaq10
+
+
+---
+
+## Stickers
+
+### attp
+Gera sticker animada com texto (ATTp).
+```javascript
+const attp = await api.stickers.attp('Yuta APIs');
+// buffer
+```
+
+Exemplo salvando em arquivo:
+```javascript
+import { writeFile } from 'node:fs/promises';
+
+const attp = await api.stickers.attp('Yuta APIs');
+await writeFile('attp.webp', attp);
+```
+
+### brat
+Gera sticker estilo brat em imagem.
+```javascript
+const brat = await api.stickers.brat('Lm Only');
+// buffer
+```
+
+Exemplo salvando em arquivo:
+```javascript
+import { writeFile } from 'node:fs/promises';
+
+const brat = await api.stickers.brat('Lm Only');
+await writeFile('brat.png', brat);
+```
+
+### bratvid
+Gera sticker estilo brat em vídeo.
+```javascript
+const bratvid = await api.stickers.bratvid('HutaoBot');
+// buffer
+```
+
+Exemplo salvando em arquivo:
+```javascript
+import { writeFile } from 'node:fs/promises';
+
+const bratvid = await api.stickers.bratvid('HutaoBot');
+await writeFile('bratvid.mp4', bratvid);
+```
+
+### figu
+Retorna figurinha aleatória.
+```javascript
+const figu = await api.stickers.figu();
+// buffer
+```
+
+Exemplo salvando em arquivo:
+```javascript
+import { writeFile } from 'node:fs/promises';
+
+const figu = await api.stickers.figu();
+await writeFile('figu.webp', figu);
+```
+
+### figu_anime
+Retorna figurinha de anime aleatória.
+```javascript
+const figuAnime = await api.stickers.figu_anime();
+// buffer
+```
+
+Exemplo salvando em arquivo:
+```javascript
+import { writeFile } from 'node:fs/promises';
+
+const figuAnime = await api.stickers.figu_anime();
+await writeFile('figu_anime.webp', figuAnime);
+```
+
+### figu_coreana
+Retorna figurinha coreana aleatória.
+```javascript
+const figuCoreana = await api.stickers.figu_coreana();
+// buffer
+```
+
+Exemplo salvando em arquivo:
+```javascript
+import { writeFile } from 'node:fs/promises';
+
+const figuCoreana = await api.stickers.figu_coreana();
+await writeFile('figu_coreana.webp', figuCoreana);
+```
+
+### figu_desenho
+Retorna figurinha de desenho aleatória.
+```javascript
+const figuDesenho = await api.stickers.figu_desenho();
+// buffer
+```
+
+Exemplo salvando em arquivo:
+```javascript
+import { writeFile } from 'node:fs/promises';
+
+const figuDesenho = await api.stickers.figu_desenho();
+await writeFile('figu_desenho.webp', figuDesenho);
+```
+
+### figu_emoji
+Retorna figurinha de emoji aleatória.
+```javascript
+const figuEmoji = await api.stickers.figu_emoji();
+// buffer
+```
+
+Exemplo salvando em arquivo:
+```javascript
+import { writeFile } from 'node:fs/promises';
+
+const figuEmoji = await api.stickers.figu_emoji();
+await writeFile('figu_emoji.webp', figuEmoji);
+```
+
+### figu_engracadas
+Retorna figurinha engraçada aleatória.
+```javascript
+const figuEngracadas = await api.stickers.figu_engracadas();
+// buffer
+```
+
+Exemplo salvando em arquivo:
+```javascript
+import { writeFile } from 'node:fs/promises';
+
+const figuEngracadas = await api.stickers.figu_engracadas();
+await writeFile('figu_engracadas.webp', figuEngracadas);
+```
+
+### figu_raiva
+Retorna figurinha de raiva aleatória.
+```javascript
+const figuRaiva = await api.stickers.figu_raiva();
+// buffer
+```
+
+Exemplo salvando em arquivo:
+```javascript
+import { writeFile } from 'node:fs/promises';
+
+const figuRaiva = await api.stickers.figu_raiva();
+await writeFile('figu_raiva.webp', figuRaiva);
+```
+
+### figu_roblox
+Retorna figurinha de Roblox aleatória.
+```javascript
+const figuRoblox = await api.stickers.figu_roblox();
+// buffer
+```
+
+Exemplo salvando em arquivo:
+```javascript
+import { writeFile } from 'node:fs/promises';
+
+const figuRoblox = await api.stickers.figu_roblox();
+await writeFile('figu_roblox.webp', figuRoblox);
+```
+
+---
+
+## Canvas
+
+### welcome
+Gera uma imagem de boas-vindas personalizada.
+```javascript
+const welcome = await api.canvas.welcome({
+  fundo: 'https://i.imgur.com/somebg.jpg',
+  text: 'Bem-vindo ao servidor!',
+  logo: 'https://i.imgur.com/avatar.png'
+});
+// buffer
+```
+
+Exemplo salvando em arquivo:
+```javascript
+import { writeFile } from 'node:fs/promises';
+
+const welcome = await api.canvas.welcome({
+  fundo: 'https://i.imgur.com/somebg.jpg',
+  text: 'Bem-vindo ao servidor!',
+  logo: 'https://i.imgur.com/avatar.png'
+});
+await writeFile('welcome.png', welcome);
+```
+
+### cardMusic
+Gera card de música com capa e progresso.
+```javascript
+const cardMusic = await api.canvas.cardMusic({
+  fundo: 'https://i.imgur.com/somebg.jpg',
+  avatar: 'https://i.imgur.com/cover.png',
+  titulo: 'Nuts',
+  author: 'Lil Peep',
+  atual: '01:10',
+  total: '02:25'
+});
+// buffer
+```
+
+Exemplo salvando em arquivo:
+```javascript
+import { writeFile } from 'node:fs/promises';
+
+const cardMusic = await api.canvas.cardMusic({
+  fundo: 'https://i.imgur.com/somebg.jpg',
+  avatar: 'https://i.imgur.com/cover.png',
+  titulo: 'Nuts',
+  author: 'Lil Peep',
+  atual: '01:10',
+  total: '02:25'
+});
+await writeFile('cardmusic.png', cardMusic);
+```
+
+### bemvindo
+Gera imagem de bem-vindo com avatar e campo obrigatório `lengenda` (com **n**), conforme a assinatura da função.
+```javascript
+const bemvindo = await api.canvas.bemvindo({
+  fundo: 'https://i.imgur.com/somebg.jpg',
+  perfil: 'https://i.imgur.com/avatar.png',
+  lengenda: 'Leia as regras e se divirta!', // atenção: o campo correto é `lengenda`
+  titulo: 'Seja bem-vindo'
+});
+// buffer
+```
+
+Exemplo salvando em arquivo:
+```javascript
+import { writeFile } from 'node:fs/promises';
+
+const bemvindo = await api.canvas.bemvindo({
+  fundo: 'https://i.imgur.com/somebg.jpg',
+  perfil: 'https://i.imgur.com/avatar.png',
+  lengenda: 'Leia as regras e se divirta!', // atenção: o campo correto é `lengenda`
+  titulo: 'Seja bem-vindo'
+});
+await writeFile('bemvindo.png', bemvindo);
+```
+
+### levelup
+Gera card de subida de nível.
+```javascript
+const levelup = await api.canvas.levelup({
+  fundo: 'https://i.imgur.com/somebg.jpg',
+  nome: 'Lm Only',
+  logo: 'https://i.imgur.com/avatar.png',
+  level: '11',
+  oldlevel: '10',
+  xp: '1400',
+  nextxp: '1500'
+});
+// buffer
+```
+
+Exemplo salvando em arquivo:
+```javascript
+import { writeFile } from 'node:fs/promises';
+
+const levelup = await api.canvas.levelup({
+  fundo: 'https://i.imgur.com/somebg.jpg',
+  nome: 'Lm Only',
+  logo: 'https://i.imgur.com/avatar.png',
+  level: '11',
+  oldlevel: '10',
+  xp: '1400',
+  nextxp: '1500'
+});
+await writeFile('levelup.png', levelup);
+```
+
+### ping
+Gera card de status/ping do bot.
+```javascript
+const ping = await api.canvas.ping({
+  fundo: 'https://i.imgur.com/somebg.jpg',
+  logo: 'https://i.imgur.com/avatar.png',
+  uptime: '2d 04h',
+  memoria: '320MB',
+  latencia: '89ms',
+  status: 'online',
+  velocidade: 'ótima'
+});
+// buffer
+```
+
+Exemplo salvando em arquivo:
+```javascript
+import { writeFile } from 'node:fs/promises';
+
+const ping = await api.canvas.ping({
+  fundo: 'https://i.imgur.com/somebg.jpg',
+  logo: 'https://i.imgur.com/avatar.png',
+  uptime: '2d 04h',
+  memoria: '320MB',
+  latencia: '89ms',
+  status: 'online',
+  velocidade: 'ótima'
+});
+await writeFile('ping.png', ping);
+```
+
+### perfil
+Gera card de perfil personalizado.
+```javascript
+const perfil = await api.canvas.perfil({
+  fundo: 'https://i.imgur.com/somebg.jpg',
+  logo: 'https://i.imgur.com/avatar.png',
+  nome: 'Lm Only',
+  subnome: 'Desenvolvedor',
+  custom_status: 'Codando com Yuta APIs'
+});
+// buffer
+```
+
+Exemplo salvando em arquivo:
+```javascript
+import { writeFile } from 'node:fs/promises';
+
+const perfil = await api.canvas.perfil({
+  fundo: 'https://i.imgur.com/somebg.jpg',
+  logo: 'https://i.imgur.com/avatar.png',
+  nome: 'Lm Only',
+  subnome: 'Desenvolvedor',
+  custom_status: 'Codando com Yuta APIs'
+});
+await writeFile('perfil.png', perfil);
+```
+
+### goodbye
+Gera imagem de despedida personalizada.
+```javascript
+const goodbye = await api.canvas.goodbye({
+  fundo: 'https://i.imgur.com/somebg.jpg',
+  perfil: 'https://i.imgur.com/avatar.png',
+  legenda: 'Volte sempre!',
+  titulo: 'Até logo'
+});
+// buffer
+```
+
+Exemplo salvando em arquivo:
+```javascript
+import { writeFile } from 'node:fs/promises';
+
+const goodbye = await api.canvas.goodbye({
+  fundo: 'https://i.imgur.com/somebg.jpg',
+  perfil: 'https://i.imgur.com/avatar.png',
+  legenda: 'Volte sempre!',
+  titulo: 'Até logo'
+});
+await writeFile('goodbye.png', goodbye);
+```
+
+### ship
+Gera imagem de ship com percentual.
+```javascript
+const ship = await api.canvas.ship({
+  avatar1: 'https://i.imgur.com/avatar1.png',
+  avatar2: 'https://i.imgur.com/avatar2.png',
+  porcentagem: 88,
+  fundo: 'https://i.imgur.com/somebg.jpg'
+});
+// buffer
+```
+
+Exemplo salvando em arquivo:
+```javascript
+import { writeFile } from 'node:fs/promises';
+
+const ship = await api.canvas.ship({
+  avatar1: 'https://i.imgur.com/avatar1.png',
+  avatar2: 'https://i.imgur.com/avatar2.png',
+  porcentagem: 88,
+  fundo: 'https://i.imgur.com/somebg.jpg'
+});
+await writeFile('ship.png', ship);
+```
+
+### qc
+Gera quote card com avatar e mensagem.
+```javascript
+const qc = await api.canvas.qc({
+  avatar: 'https://i.imgur.com/avatar.png',
+  nick: 'Lm Only',
+  message: 'Yuta APIs é bom demais!'
+});
+// buffer
+```
+
+Exemplo salvando em arquivo:
+```javascript
+import { writeFile } from 'node:fs/promises';
+
+const qc = await api.canvas.qc({
+  avatar: 'https://i.imgur.com/avatar.png',
+  nick: 'Lm Only',
+  message: 'Yuta APIs é bom demais!'
+});
+await writeFile('qc.png', qc);
+```
+
+### saiu
+Gera imagem de saída personalizada.
+```javascript
+const saiu = await api.canvas.saiu({
+  fundo: 'https://i.imgur.com/somebg.jpg',
+  text: 'Lm Only saiu do grupo',
+  logo: 'https://i.imgur.com/avatar.png'
+});
+// buffer
+```
+
+Exemplo salvando em arquivo:
+```javascript
+import { writeFile } from 'node:fs/promises';
+
+const saiu = await api.canvas.saiu({
+  fundo: 'https://i.imgur.com/somebg.jpg',
+  text: 'Lm Only saiu do grupo',
+  logo: 'https://i.imgur.com/avatar.png'
+});
+await writeFile('saiu.png', saiu);
+```
+
+---
+
+## Outros
+
+### ascii
+Converte texto em estilo ASCII art.
+```javascript
+const ascii = await api.outros.ascii('Lm Only');
+console.log(ascii);
+```
+
+### clima
+Consulta o clima por cidade.
+```javascript
+const clima = await api.outros.clima('São Paulo');
+console.log(clima);
+```
+
+### emoji_mix
+Mescla dois emojis em uma imagem.
+```javascript
+const emojiMix = await api.outros.emoji_mix('😎', '🔥');
+// buffer
+```
+
+Exemplo salvando em arquivo:
+```javascript
+import { writeFile } from 'node:fs/promises';
+
+const emojiMix = await api.outros.emoji_mix('😎', '🔥');
+await writeFile('emoji-mix.png', emojiMix);
+```
+
+### signo
+Retorna informações sobre um signo.
+```javascript
+const signo = await api.outros.signo('aries');
+console.log(signo);
+```
+
+### traduzir
+Traduz um texto para o idioma informado.
+```javascript
+const traduzir = await api.outros.traduzir({
+  text: 'Olá, mundo!',
+  idioma: 'en'
+});
+console.log(traduzir);
+```
+
+### ip
+Consulta informações de um endereço IP.
+```javascript
+const ip = await api.outros.ip('8.8.8.8');
+console.log(ip);
+```
+
+### encurtarLink
+Encurta um link grande.
+```javascript
+const encurtarLink = await api.outros.encurtarLink('https://github.com/Lm-Only/yutaapis');
+console.log(encurtarLink);
+```
+
+### frasesAmor
+Retorna frases de amor aleatórias.
+```javascript
+const frasesAmor = await api.outros.frasesAmor();
+console.log(frasesAmor);
+```
+
+### hd
+Melhora a qualidade de uma imagem via URL.
+```javascript
+const hd = await api.outros.hd('https://i.imgur.com/avatar.png');
+// buffer
+```
+
+Exemplo salvando em arquivo:
+```javascript
+import { writeFile } from 'node:fs/promises';
+
+const hd = await api.outros.hd('https://i.imgur.com/avatar.png');
+await writeFile('hd.png', hd);
+```
+
+### hd2
+Melhora a qualidade de imagem com variação alternativa.
+```javascript
+const hd2 = await api.outros.hd2('https://i.imgur.com/avatar.png');
+// buffer
+```
+
+Exemplo salvando em arquivo:
+```javascript
+import { writeFile } from 'node:fs/promises';
+
+const hd2 = await api.outros.hd2('https://i.imgur.com/avatar.png');
+await writeFile('hd2.png', hd2);
+```
+
+### totext
+Transcreve áudio para texto a partir de URL.
+```javascript
+const totext = await api.outros.totext('https://www.youtube.com/watch?v=osPq9Yb8xm8');
+console.log(totext);
+```
+
+### textImg
+Gera imagem a partir de texto.
+```javascript
+const textImg = await api.outros.textImg('Yuta APIs');
+// buffer
+```
+
+Exemplo salvando em arquivo:
+```javascript
+import { writeFile } from 'node:fs/promises';
+
+const textImg = await api.outros.textImg('Yuta APIs');
+await writeFile('textimg.png', textImg);
+```
+
+### meme
+Retorna um meme aleatório.
+```javascript
+const meme = await api.outros.meme();
+console.log(meme);
+```
+
+### buscarLocal
+Busca local por texto.
+```javascript
+const buscarLocal = await api.outros.buscarLocal('lanchonete em São Paulo');
+console.log(buscarLocal);
+```
+
+### shazam
+Identifica música a partir de URL de áudio.
+```javascript
+const shazam = await api.outros.shazam('https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3');
+console.log(shazam);
+```
+
+---
+
+## Upload
+
+### api.upload
+Faz upload de arquivo em buffer para obter um link público.
+```javascript
+import { readFile } from 'node:fs/promises';
+
+const buffer = await readFile('./assets/foto.jpg'); // buffer
+const upload = await api.upload(buffer, 'foto.jpg', 'image/jpeg');
+console.log(upload);
+```
 
 ---
 
