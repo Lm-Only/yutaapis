@@ -281,6 +281,929 @@ console.log(nicks);
 
 ---
 
+## Tipagem complementar
+
+### logos (LogosOptions)
+Gera uma logo a partir de um efeito válido do tipo `LogosOptions`.
+
+**Assinatura:** `api.logos(nomeDoEfeito: LogosOptions, textoPraLogo: string) => Promise<DefaultResultBuffer>`
+
+```javascript
+import { writeFile } from 'node:fs/promises';
+
+const logo = await api.logos('glitch', 'LmOnly');
+
+if (logo && logo instanceof ArrayBuffer) {
+  await writeFile('logo.png', Buffer.from(logo));
+} else {
+  console.log(logo);
+}
+```
+
+### plaq (PlaqParams)
+Gera plaquinha usando o tipo `PlaqParams` e texto aceito pela API/tipos.
+
+**Assinatura:** `api.plaquinhas(Plaq: PlaqParams, TextinhoRs: PlaqTextExample) => Promise<DefaultResultBuffer>`
+
+```javascript
+import { writeFile } from 'node:fs/promises';
+
+const plaquinha = await api.plaquinhas('plaq1', 'Lm amor');
+
+if (plaquinha && plaquinha instanceof ArrayBuffer) {
+  await writeFile('plaquinha.png', Buffer.from(plaquinha));
+} else {
+  console.log(plaquinha);
+}
+```
+
+---
+
+## Pesquisas (funcionalidades adicionais)
+
+### filmesSearch
+Pesquisa filmes por nome.
+
+**Assinatura:** `api.pesquisas.filmesSearch(query: string) => Promise<DefaultResultJSON>`
+
+```javascript
+const filmesSearch = await api.pesquisas.filmesSearch('Your Name');
+
+if (!filmesSearch.status) {
+  console.log(filmesSearch.msg);
+} else {
+  console.log(filmesSearch.resultado || filmesSearch.result);
+}
+```
+
+Retorno esperado: JSON (`DefaultResultJSON`) com campos como `status`, `msg` e dados em `resultado`/`result`.
+
+### lyrics_search
+Busca letra de música por texto.
+
+**Assinatura:** `api.pesquisas.lyrics_search(query: string) => Promise<LetraMusicaResult>`
+
+```javascript
+const lyrics = await api.pesquisas.lyrics_search('Nuts lil peep');
+
+console.log(lyrics.status);
+console.log(lyrics.result?.[0]?.titulo);
+console.log(lyrics.result?.[0]?.artista);
+console.log(lyrics.result?.[0]?.letra);
+```
+
+Retorno esperado: JSON (`LetraMusicaResult`) com array `result` contendo `titulo`, `artista`, `image`, `link` e `letra`.
+
+### pensador
+Pesquisa frases no Pensador.
+
+**Assinatura:** `api.pesquisas.pensador(query: string) => Promise<PensadorSearchResult>`
+
+```javascript
+const pensador = await api.pesquisas.pensador('amor');
+
+console.log(pensador.total);
+console.log(pensador.resultados?.[0]?.frase);
+```
+
+Retorno esperado: JSON (`PensadorSearchResult`) com `total` e `resultados`.
+
+### playstore
+Pesquisa apps na Play Store.
+
+**Assinatura:** `api.pesquisas.playstore(nome: string) => Promise<PlayStoreSearchResult>`
+
+```javascript
+const playstore = await api.pesquisas.playstore('whatsapp');
+
+console.log(playstore.total);
+console.log(playstore.resultado?.[0]?.nome);
+console.log(playstore.resultado?.[0]?.desenvolvedor);
+console.log(playstore.resultado?.[0]?.link);
+```
+
+Retorno esperado: JSON (`PlayStoreSearchResult`) com `total` e `resultado` (`nome`, `imagem`, `desenvolvedor`, `estrelas`, `link`).
+
+### wallpaper
+Busca wallpapers por texto.
+
+**Assinatura:** `api.pesquisas.wallpaper(query: string) => Promise<WallpaperResult>`
+
+```javascript
+const wallpaper = await api.pesquisas.wallpaper('Hu Tao');
+
+console.log(wallpaper.total);
+console.log(wallpaper.resultado?.[0]?.title);
+console.log(wallpaper.resultado?.[0]?.image);
+```
+
+Retorno esperado: JSON (`WallpaperResult`) com `total` e `resultado` (`title`, `type`, `source`, `image`).
+
+### google
+Busca resultados de pesquisa (Google).
+
+**Assinatura:** `api.pesquisas.google(query: string) => Promise<GoogleResult>`
+
+```javascript
+const google = await api.pesquisas.google('Lm Only github');
+
+console.log(google.result?.abstract);
+console.log(google.result?.answer);
+console.log(google.result?.url);
+console.log(google.result?.related?.[0]?.FirstURL);
+```
+
+Retorno esperado: JSON (`GoogleResult`) com `result.abstract`, `result.answer`, `result.url` e `result.related`.
+
+---
+
+## Downloads (funcionalidades adicionais)
+
+> [!TIP]
+> Nas rotas de mídia que retornam `DefaultResultBuffer`, o retorno pode ser `ArrayBuffer` **ou** JSON de erro (`{ status, msg }`) **ou** `null`.
+
+### tiktokMp3
+Baixa áudio MP3 de um link do TikTok.
+
+**Assinatura:** `api.downloads.tiktokMp3(url: string) => Promise<DefaultResultBuffer>`
+
+```javascript
+import { writeFile } from 'node:fs/promises';
+
+const tiktokMp3 = await api.downloads.tiktokMp3('https://vt.tiktok.com/ZSqRRu4Dn/');
+
+if (tiktokMp3 && tiktokMp3 instanceof ArrayBuffer) {
+  await writeFile('tiktok.mp3', Buffer.from(tiktokMp3));
+} else {
+  console.log(tiktokMp3);
+}
+```
+
+### tiktokMp4
+Baixa vídeo MP4 de um link do TikTok.
+
+**Assinatura:** `api.downloads.tiktokMp4(url: string) => Promise<DefaultResultBuffer>`
+
+```javascript
+import { writeFile } from 'node:fs/promises';
+
+const tiktokMp4 = await api.downloads.tiktokMp4('https://vt.tiktok.com/ZSqRRu4Dn/');
+
+if (tiktokMp4 && tiktokMp4 instanceof ArrayBuffer) {
+  await writeFile('tiktok.mp4', Buffer.from(tiktokMp4));
+} else {
+  console.log(tiktokMp4);
+}
+```
+
+### facebook
+Retorna dados de mídia de um link do Facebook.
+
+**Assinatura:** `api.downloads.facebook(url: string) => Promise<DefaultResultJSON>`
+
+```javascript
+const facebook = await api.downloads.facebook('https://www.facebook.com/watch/?v=1234567890');
+console.log(facebook.status);
+console.log(facebook.resultado || facebook.result);
+```
+
+Retorno esperado: JSON (`DefaultResultJSON`) com dados de mídia no `result`/`resultado`.
+
+### facebookMp3
+Baixa o áudio do vídeo do Facebook.
+
+**Assinatura:** `api.downloads.facebookMp3(url: string) => Promise<DefaultResultBuffer>`
+
+```javascript
+import { writeFile } from 'node:fs/promises';
+
+const facebookMp3 = await api.downloads.facebookMp3('https://www.facebook.com/watch/?v=1234567890');
+
+if (facebookMp3 && facebookMp3 instanceof ArrayBuffer) {
+  await writeFile('facebook.mp3', Buffer.from(facebookMp3));
+} else {
+  console.log(facebookMp3);
+}
+```
+
+### facebookMp4
+Baixa o vídeo do Facebook em MP4.
+
+**Assinatura:** `api.downloads.facebookMp4(url: string) => Promise<DefaultResultBuffer>`
+
+```javascript
+import { writeFile } from 'node:fs/promises';
+
+const facebookMp4 = await api.downloads.facebookMp4('https://www.facebook.com/watch/?v=1234567890');
+
+if (facebookMp4 && facebookMp4 instanceof ArrayBuffer) {
+  await writeFile('facebook.mp4', Buffer.from(facebookMp4));
+} else {
+  console.log(facebookMp4);
+}
+```
+
+### pinterestMp4
+Baixa vídeo MP4 de um link do Pinterest.
+
+**Assinatura:** `api.downloads.pinterestMp4(url: string) => Promise<DefaultResultBuffer>`
+
+```javascript
+import { writeFile } from 'node:fs/promises';
+
+const pinterestMp4 = await api.downloads.pinterestMp4('https://pin.it/5decaQP2P');
+
+if (pinterestMp4 && pinterestMp4 instanceof ArrayBuffer) {
+  await writeFile('pinterest.mp4', Buffer.from(pinterestMp4));
+} else {
+  console.log(pinterestMp4);
+}
+```
+
+### tiktok_foto
+Extrai fotos de um post do TikTok.
+
+**Assinatura:** `api.downloads.tiktok_foto(url: string) => Promise<TiktokFotoResult>`
+
+```javascript
+const tiktokFoto = await api.downloads.tiktok_foto('https://www.tiktok.com/@user/photo/1234567890123456789');
+
+console.log(tiktokFoto.total);
+console.log(tiktokFoto.resultado?.image1);
+console.log(tiktokFoto.resultado?.image2);
+```
+
+Retorno esperado: JSON (`TiktokFotoResult`) com `total` e `resultado` no formato `{ image1, image2, ... }`.
+
+### mediafire
+Extrai metadados e links de download de arquivos Mediafire.
+
+**Assinatura:** `api.downloads.mediafire(url: string) => Promise<MediafireResult>`
+
+```javascript
+const mediafire = await api.downloads.mediafire('https://www.mediafire.com/file/arquivo/file');
+
+console.log(mediafire.result?.[0]?.filename);
+console.log(mediafire.result?.[0]?.filesizeH);
+console.log(mediafire.result?.[0]?.url);
+```
+
+Retorno esperado: JSON (`MediafireResult`) com array `result` contendo `filename`, `filesize`, `mimetype`, `url` e outros metadados.
+
+### spotifyMp3
+Baixa MP3 a partir de link do Spotify.
+
+**Assinatura:** `api.downloads.spotifyMp3(url: string) => Promise<DefaultResultBuffer>`
+
+```javascript
+import { writeFile } from 'node:fs/promises';
+
+const spotifyMp3 = await api.downloads.spotifyMp3('https://open.spotify.com/track/4PTG3Z6ehGkBFwjybzWkR8');
+
+if (spotifyMp3 && spotifyMp3 instanceof ArrayBuffer) {
+  await writeFile('spotify.mp3', Buffer.from(spotifyMp3));
+} else {
+  console.log(spotifyMp3);
+}
+```
+
+### spotifyPlay
+Pesquisa música no Spotify e retorna metadados + link de download.
+
+**Assinatura:** `api.downloads.spotifyPlay(query: string) => Promise<SpotifyPlayResult>`
+
+```javascript
+const spotifyPlay = await api.downloads.spotifyPlay('Nuts Lil Peep');
+
+console.log(spotifyPlay.result?.title);
+console.log(spotifyPlay.result?.artist);
+console.log(spotifyPlay.result?.album);
+console.log(spotifyPlay.result?.download_url);
+```
+
+Retorno esperado: JSON (`SpotifyPlayResult`) com `result.title`, `artist`, `duration`, `thumbnail`, `album`, `url` e `download_url`.
+
+---
+
+## Animes
+
+### hentai_video
+Retorna vídeo hentai aleatório.
+
+**Assinatura:** `api.animes.hentai_video() => Promise<DefaultResultJSON>`
+
+```javascript
+const hentaiVideo = await api.animes.hentai_video();
+console.log(hentaiVideo.status);
+console.log(hentaiVideo.resultado || hentaiVideo.result);
+```
+
+### hentai_video2
+Retorna outra variação de vídeo hentai aleatório.
+
+**Assinatura:** `api.animes.hentai_video2() => Promise<DefaultResultJSON>`
+
+```javascript
+const hentaiVideo2 = await api.animes.hentai_video2();
+console.log(hentaiVideo2.status);
+console.log(hentaiVideo2.resultado || hentaiVideo2.result);
+```
+
+### metadinha
+Retorna imagens de metadinha.
+
+**Assinatura:** `api.animes.metadinha() => Promise<DefaultResultJSON>`
+
+```javascript
+const metadinha = await api.animes.metadinha();
+console.log(metadinha.status);
+console.log(metadinha.resultado || metadinha.result);
+```
+
+### quotesanimes
+Retorna frase/citação de anime.
+
+**Assinatura:** `api.animes.quotesanimes() => Promise<DefaultResultJSON>`
+
+```javascript
+const quotesanimes = await api.animes.quotesanimes();
+console.log(quotesanimes.status);
+console.log(quotesanimes.resultado || quotesanimes.result);
+```
+
+---
+
+## Stickers
+
+> [!TIP]
+> Todas as rotas de stickers retornam `DefaultResultBuffer` (`ArrayBuffer | { status, msg } | null`).
+
+### attp
+Gera sticker de texto estilo ATTP.
+
+**Assinatura:** `api.stickers.attp(text: string) => Promise<DefaultResultBuffer>`
+
+```javascript
+import { writeFile } from 'node:fs/promises';
+
+const attp = await api.stickers.attp('Yuta APIs');
+if (attp && attp instanceof ArrayBuffer) await writeFile('attp.webp', Buffer.from(attp));
+else console.log(attp);
+```
+
+### brat
+Gera sticker imagem estilo BRAT.
+
+**Assinatura:** `api.stickers.brat(text: string) => Promise<DefaultResultBuffer>`
+
+```javascript
+import { writeFile } from 'node:fs/promises';
+
+const brat = await api.stickers.brat('Yuta APIs');
+if (brat && brat instanceof ArrayBuffer) await writeFile('brat.webp', Buffer.from(brat));
+else console.log(brat);
+```
+
+### bratvid
+Gera sticker em vídeo estilo BRAT.
+
+**Assinatura:** `api.stickers.bratvid(text: string) => Promise<DefaultResultBuffer>`
+
+```javascript
+import { writeFile } from 'node:fs/promises';
+
+const bratvid = await api.stickers.bratvid('Yuta APIs');
+if (bratvid && bratvid instanceof ArrayBuffer) await writeFile('bratvid.mp4', Buffer.from(bratvid));
+else console.log(bratvid);
+```
+
+### figu
+Retorna figurinha aleatória.
+
+**Assinatura:** `api.stickers.figu() => Promise<DefaultResultBuffer>`
+
+```javascript
+import { writeFile } from 'node:fs/promises';
+
+const figu = await api.stickers.figu();
+if (figu && figu instanceof ArrayBuffer) await writeFile('figu.webp', Buffer.from(figu));
+else console.log(figu);
+```
+
+### figu_anime
+Retorna figurinha aleatória de anime.
+
+**Assinatura:** `api.stickers.figu_anime() => Promise<DefaultResultBuffer>`
+
+```javascript
+import { writeFile } from 'node:fs/promises';
+
+const figuAnime = await api.stickers.figu_anime();
+if (figuAnime && figuAnime instanceof ArrayBuffer) await writeFile('figu_anime.webp', Buffer.from(figuAnime));
+else console.log(figuAnime);
+```
+
+### figu_coreana
+Retorna figurinha aleatória coreana.
+
+**Assinatura:** `api.stickers.figu_coreana() => Promise<DefaultResultBuffer>`
+
+```javascript
+import { writeFile } from 'node:fs/promises';
+
+const figuCoreana = await api.stickers.figu_coreana();
+if (figuCoreana && figuCoreana instanceof ArrayBuffer) await writeFile('figu_coreana.webp', Buffer.from(figuCoreana));
+else console.log(figuCoreana);
+```
+
+### figu_desenho
+Retorna figurinha aleatória de desenho.
+
+**Assinatura:** `api.stickers.figu_desenho() => Promise<DefaultResultBuffer>`
+
+```javascript
+import { writeFile } from 'node:fs/promises';
+
+const figuDesenho = await api.stickers.figu_desenho();
+if (figuDesenho && figuDesenho instanceof ArrayBuffer) await writeFile('figu_desenho.webp', Buffer.from(figuDesenho));
+else console.log(figuDesenho);
+```
+
+### figu_emoji
+Retorna figurinha aleatória de emoji.
+
+**Assinatura:** `api.stickers.figu_emoji() => Promise<DefaultResultBuffer>`
+
+```javascript
+import { writeFile } from 'node:fs/promises';
+
+const figuEmoji = await api.stickers.figu_emoji();
+if (figuEmoji && figuEmoji instanceof ArrayBuffer) await writeFile('figu_emoji.webp', Buffer.from(figuEmoji));
+else console.log(figuEmoji);
+```
+
+### figu_engracadas
+Retorna figurinha aleatória engraçada.
+
+**Assinatura:** `api.stickers.figu_engracadas() => Promise<DefaultResultBuffer>`
+
+```javascript
+import { writeFile } from 'node:fs/promises';
+
+const figuEngracadas = await api.stickers.figu_engracadas();
+if (figuEngracadas && figuEngracadas instanceof ArrayBuffer) await writeFile('figu_engracadas.webp', Buffer.from(figuEngracadas));
+else console.log(figuEngracadas);
+```
+
+### figu_raiva
+Retorna figurinha aleatória de raiva.
+
+**Assinatura:** `api.stickers.figu_raiva() => Promise<DefaultResultBuffer>`
+
+```javascript
+import { writeFile } from 'node:fs/promises';
+
+const figuRaiva = await api.stickers.figu_raiva();
+if (figuRaiva && figuRaiva instanceof ArrayBuffer) await writeFile('figu_raiva.webp', Buffer.from(figuRaiva));
+else console.log(figuRaiva);
+```
+
+### figu_roblox
+Retorna figurinha aleatória de Roblox.
+
+**Assinatura:** `api.stickers.figu_roblox() => Promise<DefaultResultBuffer>`
+
+```javascript
+import { writeFile } from 'node:fs/promises';
+
+const figuRoblox = await api.stickers.figu_roblox();
+if (figuRoblox && figuRoblox instanceof ArrayBuffer) await writeFile('figu_roblox.webp', Buffer.from(figuRoblox));
+else console.log(figuRoblox);
+```
+
+---
+
+## Canvas
+
+> [!TIP]
+> Todas as rotas de canvas retornam `DefaultResultBuffer` (`ArrayBuffer | { status, msg } | null`).
+
+### welcome
+Gera imagem de boas-vindas.
+
+**Assinatura:** `api.canvas.welcome(opts: WelcomeOpts) => Promise<DefaultResultBuffer>`
+
+```javascript
+import { writeFile } from 'node:fs/promises';
+
+const welcome = await api.canvas.welcome({
+  fundo: 'https://i.imgur.com/7xv0L8Y.jpeg',
+  text: 'Seja bem-vindo(a)!',
+  logo: 'https://i.imgur.com/cM8mVYQ.png'
+});
+
+if (welcome && welcome instanceof ArrayBuffer) await writeFile('welcome.png', Buffer.from(welcome));
+else console.log(welcome);
+```
+
+### cardMusic
+Gera card com informações de música.
+
+**Assinatura:** `api.canvas.cardMusic(opts: CardMusicOpts) => Promise<DefaultResultBuffer>`
+
+```javascript
+import { writeFile } from 'node:fs/promises';
+
+const cardMusic = await api.canvas.cardMusic({
+  fundo: 'https://i.imgur.com/7xv0L8Y.jpeg',
+  avatar: 'https://i.imgur.com/cM8mVYQ.png',
+  titulo: 'Nuts',
+  author: 'Lil Peep',
+  atual: '01:14',
+  total: '03:25'
+});
+
+if (cardMusic && cardMusic instanceof ArrayBuffer) await writeFile('cardmusic.png', Buffer.from(cardMusic));
+else console.log(cardMusic);
+```
+
+### bemvindo
+Gera card de bem-vindo.
+
+**Assinatura:** `api.canvas.bemvindo(opts: BemVindoOpts) => Promise<DefaultResultBuffer>`
+
+```javascript
+import { writeFile } from 'node:fs/promises';
+
+const bemvindo = await api.canvas.bemvindo({
+  fundo: 'https://i.imgur.com/7xv0L8Y.jpeg',
+  perfil: 'https://i.imgur.com/cM8mVYQ.png',
+  lengenda: 'Chegou no servidor!',
+  titulo: 'Bem-vindo(a)'
+});
+
+if (bemvindo && bemvindo instanceof ArrayBuffer) await writeFile('bemvindo.png', Buffer.from(bemvindo));
+else console.log(bemvindo);
+```
+
+### levelup
+Gera card de evolução de nível.
+
+**Assinatura:** `api.canvas.levelup(opts: CardLevelUpOpts) => Promise<DefaultResultBuffer>`
+
+```javascript
+import { writeFile } from 'node:fs/promises';
+
+const levelup = await api.canvas.levelup({
+  fundo: 'https://i.imgur.com/7xv0L8Y.jpeg',
+  nome: 'Lm Only',
+  logo: 'https://i.imgur.com/cM8mVYQ.png',
+  level: '20',
+  oldlevel: '19',
+  xp: '1000',
+  nextxp: '1500'
+});
+
+if (levelup && levelup instanceof ArrayBuffer) await writeFile('levelup.png', Buffer.from(levelup));
+else console.log(levelup);
+```
+
+### ping
+Gera card de status/ping.
+
+**Assinatura:** `api.canvas.ping(opts: PingOpts) => Promise<DefaultResultBuffer>`
+
+```javascript
+import { writeFile } from 'node:fs/promises';
+
+const ping = await api.canvas.ping({
+  fundo: 'https://i.imgur.com/7xv0L8Y.jpeg',
+  logo: 'https://i.imgur.com/cM8mVYQ.png',
+  uptime: '1h 32m',
+  memoria: '120MB',
+  latencia: '85ms',
+  status: 'online',
+  velocidade: '1.2x'
+});
+
+if (ping && ping instanceof ArrayBuffer) await writeFile('ping.png', Buffer.from(ping));
+else console.log(ping);
+```
+
+### perfil
+Gera card de perfil.
+
+**Assinatura:** `api.canvas.perfil(opts: CardPerfilOpts) => Promise<DefaultResultBuffer>`
+
+```javascript
+import { writeFile } from 'node:fs/promises';
+
+const perfil = await api.canvas.perfil({
+  fundo: 'https://i.imgur.com/7xv0L8Y.jpeg',
+  logo: 'https://i.imgur.com/cM8mVYQ.png',
+  nome: 'Lm Only',
+  subnome: 'Developer',
+  custom_status: 'Codando com Yuta APIs'
+});
+
+if (perfil && perfil instanceof ArrayBuffer) await writeFile('perfil.png', Buffer.from(perfil));
+else console.log(perfil);
+```
+
+### goodbye
+Gera card de despedida.
+
+**Assinatura:** `api.canvas.goodbye(opts: GoodbyeOpts) => Promise<DefaultResultBuffer>`
+
+```javascript
+import { writeFile } from 'node:fs/promises';
+
+const goodbye = await api.canvas.goodbye({
+  fundo: 'https://i.imgur.com/7xv0L8Y.jpeg',
+  perfil: 'https://i.imgur.com/cM8mVYQ.png',
+  legenda: 'Até a próxima!',
+  titulo: 'Goodbye'
+});
+
+if (goodbye && goodbye instanceof ArrayBuffer) await writeFile('goodbye.png', Buffer.from(goodbye));
+else console.log(goodbye);
+```
+
+### ship
+Gera card de ship entre dois perfis.
+
+**Assinatura:** `api.canvas.ship(opts: ShipOpts) => Promise<DefaultResultBuffer>`
+
+```javascript
+import { writeFile } from 'node:fs/promises';
+
+const ship = await api.canvas.ship({
+  avatar1: 'https://i.imgur.com/cM8mVYQ.png',
+  avatar2: 'https://i.imgur.com/Hf4L3Qf.png',
+  porcentagem: 87,
+  fundo: 'https://i.imgur.com/7xv0L8Y.jpeg'
+});
+
+if (ship && ship instanceof ArrayBuffer) await writeFile('ship.png', Buffer.from(ship));
+else console.log(ship);
+```
+
+### qc
+Gera quote card (QC).
+
+**Assinatura:** `api.canvas.qc(opts: QcOpts) => Promise<DefaultResultBuffer>`
+
+```javascript
+import { writeFile } from 'node:fs/promises';
+
+const qc = await api.canvas.qc({
+  avatar: 'https://i.imgur.com/cM8mVYQ.png',
+  nick: 'Lm Only',
+  message: 'Yuta APIs é brabo!'
+});
+
+if (qc && qc instanceof ArrayBuffer) await writeFile('qc.png', Buffer.from(qc));
+else console.log(qc);
+```
+
+### saiu
+Gera card de saída.
+
+**Assinatura:** `api.canvas.saiu(opts: SaiuOpts) => Promise<DefaultResultBuffer>`
+
+```javascript
+import { writeFile } from 'node:fs/promises';
+
+const saiu = await api.canvas.saiu({
+  fundo: 'https://i.imgur.com/7xv0L8Y.jpeg',
+  text: 'Volte sempre!',
+  logo: 'https://i.imgur.com/cM8mVYQ.png'
+});
+
+if (saiu && saiu instanceof ArrayBuffer) await writeFile('saiu.png', Buffer.from(saiu));
+else console.log(saiu);
+```
+
+---
+
+## Outros
+
+> [!TIP]
+> Algumas funções deste grupo retornam JSON específico e outras retornam `DefaultResultBuffer`.
+
+### ascii
+Converte texto em arte ASCII.
+
+**Assinatura:** `api.outros.ascii(text: string) => Promise<AsciiResult>`
+
+```javascript
+const ascii = await api.outros.ascii('Yuta');
+console.log(ascii.resultado?.[0]?.result);
+```
+
+### clima
+Consulta clima de uma cidade.
+
+**Assinatura:** `api.outros.clima(cidade: string) => Promise<ClimaResult>`
+
+```javascript
+const clima = await api.outros.clima('São Paulo');
+console.log(clima.result?.cidade);
+console.log(clima.result?.temperatura);
+console.log(clima.result?.clima);
+```
+
+### emoji_mix
+Combina dois emojis em uma imagem.
+
+**Assinatura:** `api.outros.emoji_mix(emoji1: string, emoji2: string) => Promise<DefaultResultBuffer>`
+
+```javascript
+import { writeFile } from 'node:fs/promises';
+
+const emojiMix = await api.outros.emoji_mix('😺', '🔥');
+if (emojiMix && emojiMix instanceof ArrayBuffer) await writeFile('emoji_mix.png', Buffer.from(emojiMix));
+else console.log(emojiMix);
+```
+
+### signo
+Retorna previsão de signo.
+
+**Assinatura:** `api.outros.signo(signo: string) => Promise<DefaultResultJSON>`
+
+```javascript
+const signo = await api.outros.signo('aries');
+console.log(signo.status);
+console.log(signo.resultado || signo.result);
+```
+
+### traduzir
+Traduz texto para outro idioma.
+
+**Assinatura:** `api.outros.traduzir(traduzirOpts: { text: string; idioma: TraduzirLanguages }) => Promise<DefaultResultJSON>`
+
+```javascript
+const traduzir = await api.outros.traduzir({
+  text: 'Olá mundo',
+  idioma: 'en'
+});
+
+console.log(traduzir.status);
+console.log(traduzir.resultado || traduzir.result);
+```
+
+### ip
+Consulta dados de um IP.
+
+**Assinatura:** `api.outros.ip(ip: string) => Promise<DefaultResultJSON>`
+
+```javascript
+const ip = await api.outros.ip('8.8.8.8');
+console.log(ip.status);
+console.log(ip.resultado || ip.result);
+```
+
+### encurtarLink
+Encurta uma URL.
+
+**Assinatura:** `api.outros.encurtarLink(url: string) => Promise<EncurtalinkResult>`
+
+```javascript
+const encurtarLink = await api.outros.encurtarLink('https://github.com/Lm-Only/yutaapis');
+console.log(encurtarLink.result?.[0]?.original);
+console.log(encurtarLink.result?.[0]?.encurtado);
+```
+
+### frasesAmor
+Retorna frases de amor aleatórias.
+
+**Assinatura:** `api.outros.frasesAmor() => Promise<FrasesAmorResult>`
+
+```javascript
+const frasesAmor = await api.outros.frasesAmor();
+console.log(frasesAmor.total);
+console.log(frasesAmor.resultados?.[0]);
+```
+
+### hd
+Aplica melhoria HD em imagem por URL.
+
+**Assinatura:** `api.outros.hd(imagem: string) => Promise<DefaultResultBuffer>`
+
+```javascript
+import { writeFile } from 'node:fs/promises';
+
+const hd = await api.outros.hd('https://i.imgur.com/cM8mVYQ.png');
+if (hd && hd instanceof ArrayBuffer) await writeFile('hd.png', Buffer.from(hd));
+else console.log(hd);
+```
+
+### hd2
+Segunda variação de melhoria HD em imagem por URL.
+
+**Assinatura:** `api.outros.hd2(imagem: string) => Promise<DefaultResultBuffer>`
+
+```javascript
+import { writeFile } from 'node:fs/promises';
+
+const hd2 = await api.outros.hd2('https://i.imgur.com/cM8mVYQ.png');
+if (hd2 && hd2 instanceof ArrayBuffer) await writeFile('hd2.png', Buffer.from(hd2));
+else console.log(hd2);
+```
+
+### totext
+Transcreve áudio para texto.
+
+**Assinatura:** `api.outros.totext(url: string) => Promise<TotextResult>`
+
+```javascript
+const totext = await api.outros.totext('https://yuta-apis.xyz/upload/site/dca3bd2318318b25677a4ed7.mp3');
+
+console.log(totext.tipo);
+console.log(totext.resultado?.texto);
+console.log(totext.resultado?.idioma);
+```
+
+### textImg
+Converte texto em imagem.
+
+**Assinatura:** `api.outros.textImg(text: string) => Promise<DefaultResultBuffer>`
+
+```javascript
+import { writeFile } from 'node:fs/promises';
+
+const textImg = await api.outros.textImg('Yuta APIs');
+if (textImg && textImg instanceof ArrayBuffer) await writeFile('textimg.png', Buffer.from(textImg));
+else console.log(textImg);
+```
+
+### meme
+Retorna um meme aleatório.
+
+**Assinatura:** `api.outros.meme() => Promise<MemeResult>`
+
+```javascript
+const meme = await api.outros.meme();
+console.log(meme.result?.title);
+console.log(meme.result?.image);
+```
+
+### buscarLocal
+Busca localização por texto.
+
+**Assinatura:** `api.outros.buscarLocal(q: string) => Promise<BuscarLocalResult>`
+
+```javascript
+const buscarLocal = await api.outros.buscarLocal('São Paulo');
+console.log(buscarLocal.result?.nome);
+console.log(buscarLocal.result?.latitude);
+console.log(buscarLocal.result?.longitude);
+```
+
+### shazam
+Identifica música por URL de áudio.
+
+**Assinatura:** `api.outros.shazam(url: string) => Promise<ShazamResult>`
+
+```javascript
+const resultado = await api.outros.shazam('https://yuta-apis.xyz/upload/site/dca3bd2318318b25677a4ed7.mp3');
+
+console.log(resultado.resultado.titulo);
+console.log(resultado.resultado.artista);
+console.log(resultado.resultado.album);
+console.log(resultado.resultado.thumb);
+```
+
+Retorno esperado: JSON (`ShazamResult`) com `resultado.titulo`, `resultado.artista`, `resultado.album`, `resultado.gravadora` e `resultado.thumb`.
+
+---
+
+## Upload
+
+### api.upload
+Faz upload de um arquivo (`ArrayBuffer`) para obter link público.
+
+**Assinatura pública:** `api.upload(buffer: ArrayBuffer, name: string, mimeType?: string) => Promise<UploadResult>`
+
+```javascript
+import { readFile } from 'node:fs/promises';
+
+const fileBuffer = await readFile('./test/ptt.mp3');
+const file = fileBuffer.buffer.slice(
+  fileBuffer.byteOffset,
+  fileBuffer.byteOffset + fileBuffer.byteLength
+);
+
+const upload = await api.upload(file, 'ptt.mp3', 'audio/mpeg');
+
+console.log(upload.link);
+console.log(upload.resultado.link);
+```
+
+Retorno esperado: JSON (`UploadResult`) com `status`, `criador`, `link` e `resultado.link`.
+
+---
+
 ## Pesquisas
 
 ### wiki
