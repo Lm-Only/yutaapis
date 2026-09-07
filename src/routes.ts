@@ -39,6 +39,7 @@ import {
 } from "./Types/index.js";
 import { urlFormatString, defaultRequest } from "./Utils/index.js";
 import { upload } from "./Utils/upload.js";
+import { GoogleResult, LetraMusicaResult, PensadorSearchResult, PlayStoreSearchResult, WallpaperResult } from "./Types/pesquisas.js";
 
 export type Opts = {
     baseUrl: string;
@@ -138,6 +139,11 @@ export function routes(opts: Opts): RouteNames {
             wiki: (query: string) => executeDefaultMethod('wiki-search', { query }) as Promise<DefaultResultJSON>,
             gitstalk: (query: string) => executeDefaultMethod('github-stalker', { username: query }) as Promise<DefaultResultJSON>,
             filmesSearch: (query: string) => executeDefaultMethod('filmes-search', { query }) as Promise<DefaultResultJSON>,
+            lyrics_search: (query: string) => executeDefaultMethod('lyrics-search', { query }) as Promise<LetraMusicaResult>,
+            pensador: (query: string) => executeDefaultMethod('pensador-search', { query }) as Promise<PensadorSearchResult>,
+            playstore: (nome: string) => executeDefaultMethod('playstore-search', { nome }) as Promise<PlayStoreSearchResult>,
+            wallpaper: (query: string) => executeDefaultMethod('wallpaper-search', { query }) as Promise<WallpaperResult>,
+            google: (query: string) => executeDefaultMethod('google-search', { query }) as Promise<GoogleResult>,
         },
         
         downloads: {

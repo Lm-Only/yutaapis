@@ -19,9 +19,9 @@ import {
     EncurtalinkResult, 
     FrasesAmorResult, 
     TotextResult,
-    BuscarLocalResult,
     MemeResult,
-    type TraduzirLanguages 
+    type TraduzirLanguages,
+    BuscarLocalResult, 
 } from "./outros.js";
 import { 
     CardLevelUpOpts, 
@@ -33,6 +33,7 @@ import {
     GoodbyeOpts
 } from './canvas.js';
 import { TiktokFotoResult, MediafireResult, SpotifyPlayResult } from './downloads.js';
+import { GoogleResult, LetraMusicaResult, PensadorSearchResult, PlayStoreSearchResult, WallpaperResult } from './pesquisas.js';
 
 /** Opções de HTTP adcionais */
 export interface HttpOptions {
@@ -180,6 +181,11 @@ export interface PesquisasRoute {
     gitstalk: (query: string) => Promise<DefaultResultJSON>;
     wiki: (query: string) => Promise<DefaultResultJSON>;
     filmesSearch: (query: string) => Promise<DefaultResultJSON>;
+    lyrics_search: (query: string) => Promise<LetraMusicaResult>;
+    pensador: (query: string) => Promise<PensadorSearchResult>;
+    playstore: (nome: string) => Promise<PlayStoreSearchResult>;
+    wallpaper: (query: string) => Promise<WallpaperResult>;
+    google: (query: string) => Promise<GoogleResult>;
 }
 
 export interface DownloadsRoute {

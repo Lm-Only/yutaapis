@@ -21,6 +21,7 @@ export interface BuscarLocalResult extends Pick<DefaultResultJSON, 'status'> {
     result: BuscarLocalData;
 }
 
+
 interface MemeData {
     title: string;
     image: string;
