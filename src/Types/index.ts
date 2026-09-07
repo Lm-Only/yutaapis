@@ -18,7 +18,9 @@ import {
     ClimaResult, 
     EncurtalinkResult, 
     FrasesAmorResult, 
-    TotextResult, 
+    TotextResult,
+    BuscarLocalResult,
+    MemeResult,
     type TraduzirLanguages 
 } from "./outros.js";
 import { 
@@ -177,6 +179,7 @@ export interface PesquisasRoute {
     ytsearch: (query: string) => Promise<DefaultResultJSON>;
     gitstalk: (query: string) => Promise<DefaultResultJSON>;
     wiki: (query: string) => Promise<DefaultResultJSON>;
+    filmesSearch: (query: string) => Promise<DefaultResultJSON>;
 }
 
 export interface DownloadsRoute {
@@ -230,9 +233,12 @@ export interface OthersRoute {
     ip: (ip: string) => Promise<DefaultResultJSON>;
     encurtarLink: (url: string) => Promise<EncurtalinkResult>;
     frasesAmor: () => Promise<FrasesAmorResult>;
+    hd: (imagem: string) => Promise<DefaultResultBuffer>;
     hd2: (imagem: string) => Promise<DefaultResultBuffer>;
     totext: (url: string) => Promise<TotextResult>;
     textImg: (text: string) => Promise<DefaultResultBuffer>;
+    meme: () => Promise<MemeResult>;
+    buscarLocal: (q: string) => Promise<BuscarLocalResult>;
 }
 
 export interface LogosRoute {

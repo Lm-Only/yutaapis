@@ -9,7 +9,31 @@
 
 import { DefaultResultJSON } from "./index.js";
 
+interface BuscarLocalData {
+    nome: string;
+    latitude: string;
+    longitude: string;
+    link: string;
+}
+
+export interface BuscarLocalResult extends Pick<DefaultResultJSON, 'status'> {
+    creator: string;
+    result: BuscarLocalData;
+}
+
+interface MemeData {
+    title: string;
+    image: string;
+    subreddit: string;
+}
+
+export interface MemeResult extends Pick<DefaultResultJSON, 'status'> {
+    creator: string;
+    result: MemeData;
+}
+
 export interface TotextResult extends Pick<DefaultResultJSON, 'status' | 'msg' | 'criador'> {
+    tipo: "transcrição";
     resultado: {
         texto: string;
         duracao: number;

@@ -41,7 +41,6 @@ export async function request<T = unknown>(url: string, opts: RequestOptsConfig,
         ...opts.requestOptions.headers,
         ...otherOpts.headers,
     };
-    console.log(opts)
 
     const { statusCode, headers, body } = await httpRequest(url, opts.requestOptions);
     const contentType: string = String(headers?.['content-type']).toLowerCase();
@@ -66,7 +65,6 @@ export async function request<T = unknown>(url: string, opts: RequestOptsConfig,
      * Segue pra erro desconhecido .
      */
     try {
-        console.log(headers)
         const responseError: any = await getBodyByType(body, isErrorJson ? 'JSON' : 'TEXT');
         const hasResponseApi: boolean = Array.isArray(responseError) || typeof responseError !== 'undefined';
 

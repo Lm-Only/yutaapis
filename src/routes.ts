@@ -33,7 +33,9 @@ import {
     TotextResult,
     TraduizrOpts,
     UploadResult,
-    WelcomeOpts
+    WelcomeOpts,
+    BuscarLocalResult,
+    MemeResult,
 } from "./Types/index.js";
 import { urlFormatString, defaultRequest } from "./Utils/index.js";
 import { upload } from "./Utils/upload.js";
@@ -86,9 +88,12 @@ export function routes(opts: Opts): RouteNames {
             ip: (ip: string) => executeDefaultMethod('ip', { ip }) as Promise<DefaultResultJSON>,
             encurtarLink: (url: string) => executeDefaultMethod('encurtar-link', { url }) as Promise<EncurtalinkResult>,
             frasesAmor: () => executeDefaultMethod('frases-amor', null) as Promise<FrasesAmorResult>,
+            hd: (imagem: string) => executeDefaultMethod('hd', { imagem }, 'BUFFER') as Promise<DefaultResultBuffer>,
             hd2: (imagem: string) => executeDefaultMethod('hd2', { imagem }, 'BUFFER') as Promise<DefaultResultBuffer>,
             totext: (url: string) => executeDefaultMethod('totext', { url })  as Promise<TotextResult>,
-            textImg: (text: string) => executeDefaultMethod('text2img', { text }, 'BUFFER') as Promise<DefaultResultBuffer>
+            textImg: (text: string) => executeDefaultMethod('text2img', { text }, 'BUFFER') as Promise<DefaultResultBuffer>,
+            meme: () => executeDefaultMethod('meme') as Promise<MemeResult>,
+            buscarLocal: (q: string) => executeDefaultMethod('buscar-local', { q }) as Promise<BuscarLocalResult>,
         },
 
         canvas: {
@@ -132,6 +137,7 @@ export function routes(opts: Opts): RouteNames {
             ytsearch: (query: string) => executeDefaultMethod('yt-search', { query }) as Promise<DefaultResultJSON>,
             wiki: (query: string) => executeDefaultMethod('wiki-search', { query }) as Promise<DefaultResultJSON>,
             gitstalk: (query: string) => executeDefaultMethod('github-stalker', { username: query }) as Promise<DefaultResultJSON>,
+            filmesSearch: (query: string) => executeDefaultMethod('filmes-search', { query }) as Promise<DefaultResultJSON>,
         },
         
         downloads: {
