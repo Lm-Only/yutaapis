@@ -9,6 +9,18 @@
 
 import { DefaultResultJSON } from "./index.js";
 
+interface ShazamData {
+    artista: string;
+    titulo: string;
+    album: string;
+    gravadora: string;
+    thumb: string;
+}
+
+export interface ShazamResult extends Pick<DefaultResultJSON, 'criador' | 'msg' | 'status'> {
+    resultado: ShazamData;
+}
+
 interface BuscarLocalData {
     nome: string;
     latitude: string;

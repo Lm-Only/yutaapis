@@ -36,6 +36,7 @@ import {
     WelcomeOpts,
     BuscarLocalResult,
     MemeResult,
+    ShazamResult,
 } from "./Types/index.js";
 import { urlFormatString, defaultRequest } from "./Utils/index.js";
 import { upload } from "./Utils/upload.js";
@@ -95,6 +96,7 @@ export function routes(opts: Opts): RouteNames {
             textImg: (text: string) => executeDefaultMethod('text2img', { text }, 'BUFFER') as Promise<DefaultResultBuffer>,
             meme: () => executeDefaultMethod('meme') as Promise<MemeResult>,
             buscarLocal: (q: string) => executeDefaultMethod('buscar-local', { q }) as Promise<BuscarLocalResult>,
+            shazam: (url: string) => executeDefaultMethod('shazam', { url }) as Promise<ShazamResult>,
         },
 
         canvas: {

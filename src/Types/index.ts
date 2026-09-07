@@ -21,7 +21,8 @@ import {
     TotextResult,
     MemeResult,
     type TraduzirLanguages,
-    BuscarLocalResult, 
+    BuscarLocalResult,
+    ShazamResult, 
 } from "./outros.js";
 import { 
     CardLevelUpOpts, 
@@ -245,6 +246,7 @@ export interface OthersRoute {
     textImg: (text: string) => Promise<DefaultResultBuffer>;
     meme: () => Promise<MemeResult>;
     buscarLocal: (q: string) => Promise<BuscarLocalResult>;
+    shazam: (url: string) => Promise<ShazamResult>;
 }
 
 export interface LogosRoute {
