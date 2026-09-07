@@ -26,6 +26,7 @@ import {
     StickerRoute, 
     UploadResult
 } from "./Types/index.js";
+import { MediaTypesStringExample, MimeTypes } from "./Types/upload.js";
 import { isYutaApiToken } from "./Utils/index.js";
 
 export interface YutaApisOptions {
@@ -99,7 +100,7 @@ export default class YutaApis {
 
     get upload() {
         const execute = this.getRoutes('upload').upload.execute;
-        return (buffer: ArrayBuffer, name: string, mimeType?: string) => execute(buffer, name, mimeType) as Promise<UploadResult>
+        return (buffer: ArrayBuffer, name: MediaTypesStringExample, mimeType?: MimeTypes) => execute(buffer, name, mimeType) as Promise<UploadResult>
     }
 
     get logos() {

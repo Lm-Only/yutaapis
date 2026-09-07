@@ -41,6 +41,7 @@ import {
 import { urlFormatString, defaultRequest } from "./Utils/index.js";
 import { upload } from "./Utils/upload.js";
 import { GoogleResult, LetraMusicaResult, PensadorSearchResult, PlayStoreSearchResult, WallpaperResult } from "./Types/pesquisas.js";
+import { MediaTypesStringExample, MimeTypes } from "./Types/upload.js";
 
 export type Opts = {
     baseUrl: string;
@@ -191,7 +192,7 @@ export function routes(opts: Opts): RouteNames {
         },
 
         upload: {
-            execute: (buffer: ArrayBuffer, name: string, mimeType?: string): Promise<UploadResult> => {
+            execute: (buffer: ArrayBuffer, name: MediaTypesStringExample, mimeType?: MimeTypes): Promise<UploadResult> => {
                 if (!Buffer.isBuffer(buffer)) {
                     throw new Error('O Upload precisa de um BUFFER válido');
                 }
@@ -201,7 +202,7 @@ export function routes(opts: Opts): RouteNames {
                 return upload(buffer, name, { 
                     ...opts,
                     url: urlFormatString(opts.baseUrl, 'upload')
-                }, );
+                }, mimeType);
             } 
         },
 

@@ -11,6 +11,8 @@ export * from './logos.js';
 export * from './outros.js';
 export * from './canvas.js';
 export * from './downloads.js';
+export * from './upload.js';
+export * from './pesquisas.js';
 
 import type { LogosOptions } from "./logos.js";
 import { 
@@ -35,6 +37,7 @@ import {
 } from './canvas.js';
 import { TiktokFotoResult, MediafireResult, SpotifyPlayResult } from './downloads.js';
 import { GoogleResult, LetraMusicaResult, PensadorSearchResult, PlayStoreSearchResult, WallpaperResult } from './pesquisas.js';
+import { MediaTypesStringExample, MimeTypes } from './upload.js';
 
 /** Opções de HTTP adcionais */
 export interface HttpOptions {
@@ -305,7 +308,7 @@ export interface UploadResult extends Pick<DefaultResultJSON, 'status' | 'criado
 }
 
 export interface UploadRoute {
-    execute: (buffer: ArrayBuffer, name: string, mimeType?: string) => Promise<UploadResult>;
+    execute: (buffer: ArrayBuffer, name: MediaTypesStringExample, mimeType?: MimeTypes) => Promise<UploadResult>;
 }
 
 export interface RouteNames {
