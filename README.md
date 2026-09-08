@@ -75,6 +75,11 @@ Módulo SDK TypeScript/JavaScript desenvolvido para consumo do [Yuta APIs](https
 npm i yutaapis
 ```
 
+* Se não funcionar, execute:
+```bash
+npm i yutaapis --no-bin-links --omit=dev
+```
+
 ## Quickstart
 
 * ESM
@@ -336,7 +341,7 @@ console.log(playstore);
 ### wallpaper
 Pesquisa wallpapers por texto.
 ```javascript
-const wallpaper = await api.pesquisas.wallpaper('Hu Tao');
+const wallpaper = await api.pesquisas.wallpaper('HuTao');
 console.log(wallpaper);
 ```
 
@@ -460,14 +465,14 @@ console.log(instavideo);
 ### facebook
 Retorna dados de download de vídeo do Facebook.
 ```javascript
-const facebook = await api.downloads.facebook('https://www.facebook.com/reel/1234567890123456');
+const facebook = await api.downloads.facebook('LINK DO VIDEO');
 console.log(facebook);
 ```
 
 ### facebookMp3
 Baixa o áudio MP3 de um link do Facebook.
 ```javascript
-const facebookMp3 = await api.downloads.facebookMp3('https://www.facebook.com/reel/1234567890123456');
+const facebookMp3 = await api.downloads.facebookMp3('LINK DO VIDEO');
 // buffer
 ```
 
@@ -475,14 +480,14 @@ Exemplo salvando em arquivo:
 ```javascript
 import { writeFile } from 'node:fs/promises';
 
-const facebookMp3 = await api.downloads.facebookMp3('https://www.facebook.com/reel/1234567890123456');
+const facebookMp3 = await api.downloads.facebookMp3('LINK DO VIDEO');
 await writeFile('facebook.mp3', facebookMp3);
 ```
 
 ### facebookMp4
 Baixa o vídeo MP4 de um link do Facebook.
 ```javascript
-const facebookMp4 = await api.downloads.facebookMp4('https://www.facebook.com/reel/1234567890123456');
+const facebookMp4 = await api.downloads.facebookMp4('LINK DO VIDEO');
 // buffer
 ```
 
@@ -490,7 +495,7 @@ Exemplo salvando em arquivo:
 ```javascript
 import { writeFile } from 'node:fs/promises';
 
-const facebookMp4 = await api.downloads.facebookMp4('https://www.facebook.com/reel/1234567890123456');
+const facebookMp4 = await api.downloads.facebookMp4('LINK DO VIDEO');
 await writeFile('facebook.mp4', facebookMp4);
 ```
 
@@ -770,6 +775,7 @@ console.log(uol);
 Gera uma plaquinha com modelo (`type`) e texto.
 ```javascript
 const plaquinha = await api.plaquinhas('plaq1', 'LmOnly');
+const plaquinha = await api.plaquinhas('plaq10', 'NkPetrov');
 // buffer
 ```
 
@@ -1322,7 +1328,7 @@ await writeFile('hd2.png', hd2);
 ### totext
 Transcreve áudio para texto a partir de URL.
 ```javascript
-const totext = await api.outros.totext('https://www.youtube.com/watch?v=osPq9Yb8xm8');
+const totext = await api.outros.totext('URL DO AUDIO');
 console.log(totext);
 ```
 
