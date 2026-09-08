@@ -1,6 +1,5 @@
 # Yuta APIs
-Módulo SDK TypeScript/JavaScript desenvolvido para consumo do [Yuta APIs](https://yuta-apis.xyz); em parceria com a [HutaoBot](https://github.com/Lm-Only/HutaoBot)
-
+Módulo SDK TypeScript/JavaScript desenvolvido para facilitar a integração e o uso do [Yuta APIs](https://yuta-apis.xyz) em projetos de forma mais simples e profissional.
 
 <h1 align="center">
 <p>
@@ -124,7 +123,7 @@ console.log(gitstalkResult);
      <b>Saiba aqui...👇</b>
  </summary>
 
-* Este módulo foi desenvolvido inteiramente em Typescript por **Lm Only** com o foco principal em ajudar aos usuários do [Yuta APIs](https://yuta-apis.xyz) a usarem a API de uma forma mais simples e fácil. ✨️
+* Este módulo foi desenvolvido inteiramente em Typescript por **Lm Only** projetada para facilitar a integração e o uso do [Yuta APIs](https://yuta-apis.xyz) em projetos de forma mais simples e profissional.. ✨️
 
 * Uma das **principais características** desse módulo, é a forma de como ele é usado, principalmente para quem programa usando o **VScode.** 🧑‍💻 Essa característica ajuda ao dev a **entender** o que tal rota recebe e o que ela retorna. 💎
 
