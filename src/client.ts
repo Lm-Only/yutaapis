@@ -117,8 +117,12 @@ export default class YutaApis {
     }
 
     constructor(opts: YutaApisOptions) {
-        if (!opts.apiToken || !isYutaApiToken(String(opts.apiToken))) {
+        if (!opts.apiToken) {
             throw new Error('apiToken is not defined');
+        }
+
+        if (!isYutaApiToken(String(opts.apiToken))) {
+            console.log('A apiToken do Yuta pode está errada ou mal definida. Veja: https://yuta-apis.xyz/planos');
         }
 
         this.apiToken = opts.apiToken;
