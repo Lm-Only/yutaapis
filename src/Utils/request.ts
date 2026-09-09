@@ -31,7 +31,7 @@ export async function request<T = unknown>(url: string, opts: RequestOptsConfig,
     if (redirectCount > 5) {
         throw new RequestError({ statusCode: 310, message: 'MAX_REDIRECTS' });
     }
-
+    console.log(url)
     if (!opts.requestOptions.query) {
         opts.requestOptions.query = {};
     }

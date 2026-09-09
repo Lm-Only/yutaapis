@@ -37,6 +37,7 @@ import {
     BuscarLocalResult,
     MemeResult,
     ShazamResult,
+    InstagramVideoResult,
 } from "./Types/index.js";
 import { urlFormatString, defaultRequest } from "./Utils/index.js";
 import { upload } from "./Utils/upload.js";
@@ -161,7 +162,7 @@ export function routes(opts: Opts): RouteNames {
             tiktokdl: (url: string) => executeDefaultMethod('tiktok-dl', { url }) as Promise<DefaultResultJSON>,
             tiktokMp3: (url: string) => executeDefaultMethod('tiktok-mp3', { url }, 'BUFFER') as Promise<DefaultResultBuffer>,
             tiktokMp4: (url: string) => executeDefaultMethod('tiktok-mp4', { url }, 'BUFFER') as Promise<DefaultResultBuffer>,
-            instavideo: (url: string) => executeDefaultMethod('instagram-video', { url }) as Promise<DefaultResultJSON>,
+            instavideo: (url: string) => executeDefaultMethod('instagram-video', { url }) as Promise<InstagramVideoResult>,
             facebook: (url: string) => executeDefaultMethod('facebook-video', { url }) as Promise<DefaultResultJSON>,
             facebookMp3: (url: string) => executeDefaultMethod('face-mp3', { url }, 'BUFFER') as Promise<DefaultResultBuffer>,
             facebookMp4: (url: string) => executeDefaultMethod('face-mp4', { url }, 'BUFFER') as Promise<DefaultResultBuffer>,

@@ -9,6 +9,17 @@
 
 import { DefaultResultJSON } from "./index.js";
 
+interface InstagramVideoData {
+    // thumb url
+    thumbnail: string;
+    // video url
+    video: string;
+}
+
+export interface InstagramVideoResult extends Pick<DefaultResultJSON, 'msg' | 'status' | 'criador'> {
+    result: InstagramVideoData[]
+}
+
 interface SpotifyTrackData {
     title: string;
     artist: string;
@@ -20,6 +31,8 @@ interface SpotifyTrackData {
     url: string;
     download_url: string;
 }
+
+
 
 export interface SpotifyPlayResult extends Pick<DefaultResultJSON, 'status' | 'criador'> {
     result: SpotifyTrackData;

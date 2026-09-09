@@ -35,7 +35,7 @@ import {
     QcOpts,
     GoodbyeOpts
 } from './canvas.js';
-import { TiktokFotoResult, MediafireResult, SpotifyPlayResult } from './downloads.js';
+import { TiktokFotoResult, MediafireResult, SpotifyPlayResult, InstagramVideoResult } from './downloads.js';
 import { GoogleResult, LetraMusicaResult, PensadorSearchResult, PlayStoreSearchResult, WallpaperResult } from './pesquisas.js';
 import { MediaTypesStringExample, MimeTypes } from './upload.js';
 
@@ -200,7 +200,7 @@ export interface DownloadsRoute {
     tiktokdl: (url: string) => Promise<DefaultResultJSON>;
     tiktokMp3: (url: string) => Promise<DefaultResultBuffer>;
     tiktokMp4: (url: string) => Promise<DefaultResultBuffer>;
-    instavideo: (url: string) => Promise<DefaultResultJSON>;
+    instavideo: (url: string) => Promise<InstagramVideoResult>;
     facebook: (url: string) => Promise<DefaultResultJSON>;
     facebookMp3: (url: string) => Promise<DefaultResultBuffer>;
     facebookMp4: (url: string) => Promise<DefaultResultBuffer>;
