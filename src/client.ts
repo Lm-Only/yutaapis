@@ -43,7 +43,7 @@ export interface YutaApisOptions {
 export default class YutaApis {
     private readonly apiToken?: string;
     private readonly url?: string;
-    private __routeCache: ReturnType<typeof routes> | null = null;
+    private readonly __routeCacheMap = new Map()
     
     readonly config: Readonly<{
         headers: Record<string, string>;
@@ -53,16 +53,17 @@ export default class YutaApis {
     readonly httpOptions?: HttpOptions;
     
     private getRoutes(routeName: string) {
-        if (this.__routeCache) return this.__routeCache;
+        if (this.__routeCacheMap.has(routeName))  return this.__routeCacheMap.get(routeName);
         if (!this.url) {
             throw new Error('Base url is not defined');
         }
 
-        this.__routeCache = routes({
+        const __routeCache = routes({
             ...this.config,
             route: routeName
         });
-        return this.__routeCache;
+        this.__routeCacheMap.set(routeName, __routeCache);
+        return  __routeCache
     }
 
     get ias(): IasRoute {

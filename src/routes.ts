@@ -67,17 +67,21 @@ type ExplainThisMethod = 'WITH_API_PATH' | 'NO_API_PATH';
  * @returns Todas as rotas do Yuta APIS
  */
 export function routes(opts: Opts): RouteNames {
+    
     async function executeDefaultMethod(
         endPoint: string, 
         params: OtherOpts = {}, 
         dataType: DataTypeDefault = 'JSON',
         methodType: ExplainThisMethod = 'WITH_API_PATH'
     ): Promise<DefaultResultJSON | DefaultResultBuffer> {
-        opts.baseUrl = opts.baseUrl + (methodType ==='WITH_API_PATH' ? '/api' : '');
+        const currentBaseUrl = methodType === 'WITH_API_PATH'
+            ? `${opts.baseUrl.replace(/\/+$/, '')}/api`
+            : opts.baseUrl;
 
         return defaultRequest({
-            ...opts, 
-            url: urlFormatString(opts.baseUrl, opts.route, endPoint)
+            ...opts,
+            baseUrl: currentBaseUrl,
+            url: urlFormatString(currentBaseUrl, opts.route, endPoint)
         }, dataType, params);
     }
 
