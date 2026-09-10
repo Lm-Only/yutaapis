@@ -24,7 +24,7 @@ import {
     MemeResult,
     type TraduzirLanguages,
     BuscarLocalResult,
-    ShazamResult, 
+    ShazamResult,
 } from "./outros.js";
 import { 
     CardLevelUpOpts, 
@@ -36,7 +36,7 @@ import {
     GoodbyeOpts
 } from './canvas.js';
 import { TiktokFotoResult, MediafireResult, SpotifyPlayResult, InstagramVideoResult } from './downloads.js';
-import { GoogleResult, LetraMusicaResult, PensadorSearchResult, PlayStoreSearchResult, WallpaperResult } from './pesquisas.js';
+import { GoogleResult, LetraMusicaResult, PensadorSearchResult, PlayStoreSearchResult, WallpaperResult, TikTokResult, } from './pesquisas.js';
 import { MediaTypesStringExample, MimeTypes } from './upload.js';
 
 /** Opções de HTTP adcionais */
@@ -181,6 +181,7 @@ export type PlaqParams = | 'plaq1'
 export type PlaqTextExample = | 'Lm amor' | 'Nk Domina';
 
 export interface PesquisasRoute {
+    tiktok: (username: string) => Promise<TikTokResult>;
     ytsearch: (query: string) => Promise<DefaultResultJSON>;
     gitstalk: (query: string) => Promise<DefaultResultJSON>;
     wiki: (query: string) => Promise<DefaultResultJSON>;

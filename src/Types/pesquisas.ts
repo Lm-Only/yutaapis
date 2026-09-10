@@ -1,5 +1,30 @@
 import { DefaultResultJSON } from "./index.js";
 
+interface TikTokAvatars {
+    thumbnail: string;
+    medium: string;
+    small: string;
+}
+
+export interface TikTokResult extends Pick<DefaultResultJSON, 'criador' | 'msg' | 'status'> {
+    message: string;
+    creator: string;
+    name: string;
+    link: string;
+    seguidores: number;
+    seguindo: number;
+    likes: number;
+    idname: string;
+    region: string | null;
+    videos: number;
+    description: string;
+    privateAccount: boolean;
+    created: string;
+    verified: boolean;
+    avatars: TikTokAvatars;
+}
+
+
 interface GoogleIcon {
     Height: string;
     URL: string;

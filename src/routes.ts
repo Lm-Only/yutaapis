@@ -38,6 +38,7 @@ import {
     MemeResult,
     ShazamResult,
     InstagramVideoResult,
+    TikTokResult,
 } from "./Types/index.js";
 import { urlFormatString, defaultRequest } from "./Utils/index.js";
 import { upload } from "./Utils/upload.js";
@@ -143,6 +144,7 @@ export function routes(opts: Opts): RouteNames {
         },
 
         pesquisas: {
+            tiktok: (username: string) => executeDefaultMethod('tiktok', { username }) as Promise<TikTokResult>,
             ytsearch: (query: string) => executeDefaultMethod('yt-search', { query }) as Promise<DefaultResultJSON>,
             wiki: (query: string) => executeDefaultMethod('wiki-search', { query }) as Promise<DefaultResultJSON>,
             gitstalk: (query: string) => executeDefaultMethod('github-stalker', { username: query }) as Promise<DefaultResultJSON>,
