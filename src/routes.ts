@@ -38,12 +38,14 @@ import {
     MemeResult,
     ShazamResult,
     InstagramVideoResult,
-    TikTokResult,
+    TikTokSearchResult,
+    TikTokStalkerResult,
 } from "./Types/index.js";
 import { urlFormatString, defaultRequest } from "./Utils/index.js";
 import { upload } from "./Utils/upload.js";
 import { GoogleResult, LetraMusicaResult, PensadorSearchResult, PlayStoreSearchResult, WallpaperResult } from "./Types/pesquisas.js";
 import { MediaTypesStringExample, MimeTypes } from "./Types/upload.js";
+import { FileIOopts, uploadTemp } from "./Utils/upload-temp.js";
 
 export type Opts = {
     baseUrl: string;
@@ -88,6 +90,10 @@ export function routes(opts: Opts): RouteNames {
     }
 
     return {
+        stalker: {
+            tiktokStalker: (username: string) => executeDefaultMethod('tiktok', { username }) as Promise<TikTokStalkerResult>
+        },
+
         outros: {
             ascii: (text: string) => executeDefaultMethod('ascii', { text }) as Promise<AsciiResult>,
             clima: (cidade: string) => executeDefaultMethod('clima', { cidade }) as Promise<ClimaResult>,
@@ -103,7 +109,22 @@ export function routes(opts: Opts): RouteNames {
             textImg: (text: string) => executeDefaultMethod('text2img', { text }, 'BUFFER') as Promise<DefaultResultBuffer>,
             meme: () => executeDefaultMethod('meme') as Promise<MemeResult>,
             buscarLocal: (q: string) => executeDefaultMethod('buscar-local', { q }) as Promise<BuscarLocalResult>,
-            shazam: (url: string) => executeDefaultMethod('shazam', { url }) as Promise<ShazamResult>,
+            
+            shazam: async (
+                bufferOrUrl: string | ArrayBuffer | Buffer,
+                opts: FileIOopts = { type: 'audio' }
+            ): Promise<ShazamResult> => {
+                let url: string;
+
+                if (typeof bufferOrUrl === 'string') {
+                    url = bufferOrUrl;
+                } else {
+                    const arrayBuffer = Buffer.isBuffer(bufferOrUrl) ? new Uint8Array(bufferOrUrl).buffer as ArrayBuffer : bufferOrUrl;
+                    url = await uploadTemp(arrayBuffer, opts);
+                }
+
+                return executeDefaultMethod('shazam', { url }) as Promise<ShazamResult>;
+            }
         },
 
         canvas: {
@@ -144,7 +165,7 @@ export function routes(opts: Opts): RouteNames {
         },
 
         pesquisas: {
-            tiktok: (username: string) => executeDefaultMethod('tiktok', { username }) as Promise<TikTokResult>,
+            tiktokSearch: (query: string) => executeDefaultMethod('tiktok-search', { query }) as Promise<TikTokSearchResult>,
             ytsearch: (query: string) => executeDefaultMethod('yt-search', { query }) as Promise<DefaultResultJSON>,
             wiki: (query: string) => executeDefaultMethod('wiki-search', { query }) as Promise<DefaultResultJSON>,
             gitstalk: (query: string) => executeDefaultMethod('github-stalker', { username: query }) as Promise<DefaultResultJSON>,

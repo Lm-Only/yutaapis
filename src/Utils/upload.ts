@@ -34,7 +34,7 @@ function getMimeType(fileName: string): string | null {
     return  (ext && mimeType) ? mimeType : null; 
 }
 
-async function getTypeAndExt(buffer: ArrayBuffer): Promise<TypeExtResponse> {
+export async function getTypeAndExt(buffer: ArrayBuffer): Promise<TypeExtResponse> {
     try {
         const fileType = await fileTypeFromBuffer(buffer);
         if (!fileType?.ext || !fileType.mime) {

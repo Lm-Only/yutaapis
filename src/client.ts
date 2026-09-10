@@ -23,6 +23,8 @@ import {
     PesquisasRoute, 
     PlaqParams, 
     PlaqTextExample, 
+    RouteNames, 
+    StalkerRoute, 
     StickerRoute, 
     UploadResult
 } from "./Types/index.js";
@@ -52,7 +54,7 @@ export default class YutaApis {
     }>
     readonly httpOptions?: HttpOptions;
     
-    private getRoutes(routeName: string) {
+    private getRoutes(routeName: string): RouteNames {
         if (this.__routeCacheMap.has(routeName))  return this.__routeCacheMap.get(routeName);
         if (!this.url) {
             throw new Error('Base url is not defined');
@@ -89,6 +91,10 @@ export default class YutaApis {
 
     get pesquisas(): PesquisasRoute {
         return this.getRoutes('pesquisas').pesquisas;
+    }
+
+    get stalker(): StalkerRoute {
+        return this.getRoutes('stalker').stalker;
     }
 
     get noticias(): NoticiasRoute {

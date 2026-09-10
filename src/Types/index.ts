@@ -13,6 +13,7 @@ export * from './canvas.js';
 export * from './downloads.js';
 export * from './upload.js';
 export * from './pesquisas.js';
+export * from './stalk.js';
 
 import type { LogosOptions } from "./logos.js";
 import { 
@@ -36,8 +37,10 @@ import {
     GoodbyeOpts
 } from './canvas.js';
 import { TiktokFotoResult, MediafireResult, SpotifyPlayResult, InstagramVideoResult } from './downloads.js';
-import { GoogleResult, LetraMusicaResult, PensadorSearchResult, PlayStoreSearchResult, WallpaperResult, TikTokResult, } from './pesquisas.js';
+import { GoogleResult, LetraMusicaResult, PensadorSearchResult, PlayStoreSearchResult, WallpaperResult, TikTokSearchResult, } from './pesquisas.js';
 import { MediaTypesStringExample, MimeTypes } from './upload.js';
+import { TikTokStalkerResult } from './stalk.js';
+import { FileIOopts } from '../Utils/upload-temp.js';
 
 /** Opções de HTTP adcionais */
 export interface HttpOptions {
@@ -181,7 +184,7 @@ export type PlaqParams = | 'plaq1'
 export type PlaqTextExample = | 'Lm amor' | 'Nk Domina';
 
 export interface PesquisasRoute {
-    tiktok: (username: string) => Promise<TikTokResult>;
+    tiktokSearch: (query: string) => Promise<TikTokSearchResult>;
     ytsearch: (query: string) => Promise<DefaultResultJSON>;
     gitstalk: (query: string) => Promise<DefaultResultJSON>;
     wiki: (query: string) => Promise<DefaultResultJSON>;
@@ -250,7 +253,15 @@ export interface OthersRoute {
     textImg: (text: string) => Promise<DefaultResultBuffer>;
     meme: () => Promise<MemeResult>;
     buscarLocal: (q: string) => Promise<BuscarLocalResult>;
-    shazam: (url: string) => Promise<ShazamResult>;
+    /**
+     * Busca inteligente de musica por um trecho de audio
+     * Você pode usar o buffer direto oum link de download
+     * 
+     * @param bufferOrUrl Buffer ou URL da midia - se mandar com url é mais rapido
+     * @param opts type: audio ou video 
+     * @returns Pormise De resultados da rota shazam
+     */
+    shazam: (bufferOrUrl: string | ArrayBuffer | Buffer, opts?: FileIOopts) => Promise<ShazamResult>;
 }
 
 export interface LogosRoute {
@@ -293,6 +304,12 @@ export interface CanvasRoute {
     ping: (opts: PingOpts) => Promise<DefaultResultBuffer>;
     perfil: (opts: CardPerfilOpts) => Promise<DefaultResultBuffer>;
     goodbye: (opts: GoodbyeOpts) => Promise<DefaultResultBuffer>;
+    /**
+     * Shipar alguém no grupo do whats
+     * 
+     * @param opts avatar1 e avatar 2 são os perfis de ambos, fundo é a imagem de fundo como decoração. Não esqueça de porcentagem
+     * @returns Promise imagem como resultado
+     */
     ship: (opts: ShipOpts) => Promise<DefaultResultBuffer>;
     qc: (opts: QcOpts) => Promise<DefaultResultBuffer>;
     saiu: (opts: SaiuOpts) => Promise<DefaultResultBuffer>;
@@ -312,6 +329,10 @@ export interface UploadRoute {
     execute: (buffer: ArrayBuffer, name: MediaTypesStringExample, mimeType?: MimeTypes) => Promise<UploadResult>;
 }
 
+export interface StalkerRoute {
+    tiktokStalker: (username: string) => Promise<TikTokStalkerResult>;
+}
+
 export interface RouteNames {
     pesquisas: PesquisasRoute;
     downloads: DownloadsRoute;
@@ -325,5 +346,6 @@ export interface RouteNames {
     canvas: CanvasRoute;
     outros: OthersRoute,
     upload: UploadRoute;
+    stalker: StalkerRoute
 }
 
