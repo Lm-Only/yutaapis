@@ -67,7 +67,6 @@ export async function upload(
 
     const form = new FormData();
     form.append('file', new Blob([buffer], { type: resolvedMime }), name);
-    
     const url = new URL(opts.url);
     url.searchParams.set('apitoken', opts.apitoken);
 
