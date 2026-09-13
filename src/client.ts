@@ -7,7 +7,7 @@
  * @author Lm Only and Nk Petrov
  */
 
-import { BASE_YUTA_API_URL } from "./Defaults/index.js";
+import { API_TOKEN_WARN_MESSAGE, BASE_YUTA_API_URL } from "./Defaults/index.js";
 import { routes } from "./routes.js";
 import { 
     AnimesRoute, 
@@ -39,6 +39,18 @@ export interface YutaApisOptions {
      * É obrigatorio
      */
     apiToken: string;
+    /**
+     * Logs no console 
+     * Como avisar sobre a apiToken mal configurada
+     * 
+     * Default=true
+     */
+    logger?: boolean;
+    /**
+     * Essa mensagem é usada para que o módulo 
+     * avise sobre o token mal configurado
+     */
+    messageInvalidToken?: string;
     httpOptions?: HttpOptions
 }
 
@@ -128,8 +140,9 @@ export default class YutaApis {
             throw new Error('apiToken is not defined');
         }
 
-        if (!isYutaApiToken(String(opts.apiToken))) {
-            console.log('A apiToken do Yuta pode está errada ou mal definida. Veja: https://yuta-apis.xyz/planos');
+        opts.logger = opts.logger ?? true;
+        if (!isYutaApiToken(String(opts.apiToken)) && opts.logger) {
+            console.log(opts.messageInvalidToken || API_TOKEN_WARN_MESSAGE);
         }
 
         this.apiToken = opts.apiToken;

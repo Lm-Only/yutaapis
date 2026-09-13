@@ -7,7 +7,6 @@
  * @author Lm Only and Nk Petrov
  */
 
-import { buffer } from "node:stream/consumers";
 import { MediafireResult, SpotifyPlayResult, TiktokFotoResult } from "./Types/downloads.js";
 import { 
     AsciiResult,

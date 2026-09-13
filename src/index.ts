@@ -8,8 +8,10 @@
  */
  
 import YutaApis from './client.js';
+
 export type { YutaApisOptions } from './client.js';
 export * from './Types/index.js';
+export * from './Utils/validation.js'; // Util - validar key do Yuta
 
 export { YutaApis }
 export default YutaApis;

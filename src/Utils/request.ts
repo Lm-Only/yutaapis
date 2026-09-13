@@ -65,7 +65,7 @@ export async function request<T = unknown>(url: string, opts: RequestOptsConfig,
      * Segue pra erro desconhecido .
      */
     try {
-        const responseError: any = await getBodyByType(body, isErrorJson ? 'JSON' : 'TEXT');
+        const responseError = await getBodyByType<T>(body, isErrorJson ? 'JSON' : 'TEXT');
         const hasResponseApi: boolean = Array.isArray(responseError) || typeof responseError !== 'undefined';
 
         if (hasResponseApi) {
