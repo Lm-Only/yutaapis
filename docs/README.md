@@ -30,7 +30,7 @@ const { default: YutaApis } = require('yutaapis');
 ```
 
 ### 3 - Como dar início na API?
-* O módulo do [YutaApis](https://yuta-apis.xyz) é um classe que guarda as configurações, rotas e algumas opções.
+* O módulo do [YutaApis](https://yuta-apis.xyz) é uma classe que guarda as configurações, rotas e algumas opções.
 * Então você deve iniciar da maneira clássica **(sem paramêtros)**
 ```javascript
 const api = new YutaApis(); // apenas exemplo
