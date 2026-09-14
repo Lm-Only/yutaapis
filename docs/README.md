@@ -19,7 +19,7 @@ npm i yutaapis
 
 ### 2 - Como importar no projeto?
 
-* Agora você deve importar o módulo do [YutaApis](https://yuta-apis.xyz)
+* Você deve importar o módulo do [YutaApis](https://yuta-apis.xyz) assim como qualquer outro módulo
 ```javascript
 import YutaApis from 'yutaapis';
 ```
@@ -30,14 +30,14 @@ const { default: YutaApis } = require('yutaapis');
 ```
 
 ### 3 - Como dar início na API?
-* O módulo do [YutaApis](https://yuta-apis.xyz) é um classe que guarda as configurações, rotas e algums opções.
-* Então você deve iniciar a classe
+* O módulo do [YutaApis](https://yuta-apis.xyz) é um classe que guarda as configurações, rotas e algumas opções.
+* Então você deve iniciar da maneira clássica **(sem paramêtros)**
 ```javascript
 const api = new YutaApis(); // apenas exemplo
 ```
 
 ### 4 - Quais parâmetros devo adicionar a classe?
-* Alguns parâmetros são obrigatorios
+* Alguns parâmetros são obrigatórios
 * Já outros são apenas opções conforme sua escolha
 * **Veja o exemplo:**
 
@@ -56,15 +56,15 @@ const api = new YutaApis({
 ```
 
 ### 5 - O que significa os parâmetros logger e messageInvalidToken?
-* Estes parâmetros são apenas opções para personalizar menagens que o módulo lança como aviso
+* Estes parâmetros são apenas opções para personalizar mensagens que o módulo lança como aviso
 
 ---
 
-* ``logger`` um boleano que você configura se quer que a mensagem de aviso seja exibida ou não. Por padrão ele já exibe.
-* ``messageInvalidToken`` é uma mensagem que permite você personalizar a mensagem de aviso no console quando o API TOKEN não é o do [YutaApis](https://yuta-apis.xyz) ou não está configurada corretamente. Por padrão ele já envia uma mensagem de aviso no próprio console.
+* ``logger`` é um boleano (true/false) que você configura se caso quiser que a mensagem de aviso seja exibida ou não. Por padrão ele já exibe no console.
+* ``messageInvalidToken`` é opção que permite você personalizar a mensagem de aviso no console quando o API TOKEN não é o do [YutaApis](https://yuta-apis.xyz) ou não está configurada corretamente. Por padrão ele já envia uma mensagem de aviso no próprio console.
 
 ### 6 - Verificações mais controladas
-* Você pode verificar se um token segue os padrões do Api token ou não. 
+* Você pode verificar se um token segue os padrões do Api token do [YutaAPIs](https://yuta-apis.xyz) ou não. 
 * **EXEMPLO:**
 ```javascript
 import YutaApis, { isYutaApiToken } from 'yutaapis';
