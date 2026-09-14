@@ -23,6 +23,7 @@ import {
     PesquisasRoute, 
     PlaqParams, 
     PlaqTextExample, 
+    RouteKey, 
     RouteNames, 
     StalkerRoute, 
     StickerRoute, 
@@ -55,84 +56,107 @@ export interface YutaApisOptions {
 }
 
 export default class YutaApis {
-    private readonly apiToken?: string;
     private readonly url?: string;
     private readonly __routeCacheMap = new Map()
     
-    readonly config: Readonly<{
+    private readonly config: {
         headers: Record<string, string>;
         apitoken: string;
-        baseUrl: string;
-    }>
+
+        readonly baseUrl: string;
+        readonly logger: boolean;
+        readonly messageInvalidToken: string;
+    }
     readonly httpOptions?: HttpOptions;
     
-    private getRoutes(routeName: string): RouteNames {
-        if (this.__routeCacheMap.has(routeName))  return this.__routeCacheMap.get(routeName);
-        if (!this.url) {
-            throw new Error('Base url is not defined');
-        }
+    private getRoutes(routeName: RouteKey) {
+        if (this.__routeCacheMap.has(routeName)) return this.__routeCacheMap.get(routeName);
+        if (!this.url) throw new Error('Base url is not defined');
 
         const __routeCache = routes({
             ...this.config,
             route: routeName
-        });
+        })[routeName];
         this.__routeCacheMap.set(routeName, __routeCache);
         return  __routeCache
     }
 
+    /**
+     * Atualiza o token do Yuta APIs após iniciar o cliente.
+     * Util para bots/projetos que precisam atualizar o API Token 
+     * em tempo de execução sem precisar reiniciar
+     * 
+     * @param token novo token do Yuta APIs
+     */
+    public updateApiToken(token: string): void {
+        if (typeof token !== 'string') {
+            throw new Error('invalid apiToken');
+        }
+
+        const isLogger = this.config.logger;
+        const messageInvalidToken = this.config.messageInvalidToken;
+
+        if (!isYutaApiToken(String(token)) && isLogger) {
+            console.log(messageInvalidToken);
+        }
+
+        this.__routeCacheMap.clear();
+        this.config.apitoken = token;
+    }
+
     get ias(): IasRoute {
-        return this.getRoutes('ias').ias;
+        return this.getRoutes('ias');
     }
     
     get outros(): OthersRoute {
-        return this.getRoutes('outros').outros;
+        return this.getRoutes('outros');
     }
 
     get geradores(): GeradoresRoute {
-        return this.getRoutes('geradores').geradores;
+        return this.getRoutes('geradores');
     }
 
     get plaquinhas() {
-        const generate = this.getRoutes('plaquinhas').plaquinhas.generate;
+        const generate = this.getRoutes('plaquinhas').generate;
         return (Plaq: PlaqParams, TextinhoRs: PlaqTextExample) => generate(Plaq, TextinhoRs) as Promise<DefaultResultBuffer>;
     }
 
     get downloads(): DownloadsRoute {
-        return this.getRoutes('downloads').downloads;
+        return this.getRoutes('downloads');
     }
 
     get pesquisas(): PesquisasRoute {
-        return this.getRoutes('pesquisas').pesquisas;
+        return this.getRoutes('pesquisas');
     }
 
     get stalker(): StalkerRoute {
-        return this.getRoutes('stalker').stalker;
+        return this.getRoutes('stalker');
     }
 
     get noticias(): NoticiasRoute {
-        return this.getRoutes('noticias').noticias;
+        return this.getRoutes('noticias');
     }
 
     get stickers(): StickerRoute {
-        return this.getRoutes('stickers').stickers;
+        return this.getRoutes('stickers');
     }
 
     get upload() {
-        const execute = this.getRoutes('upload').upload.execute;
+        const execute = this.getRoutes('upload').execute;
         return (buffer: ArrayBuffer, name: MediaTypesStringExample, mimeType?: MimeTypes) => execute(buffer, name, mimeType) as Promise<UploadResult>
     }
 
     get logos() {
-        const generate = this.getRoutes('logos').logos.generate;
+        const generate = this.getRoutes('logos').generate;
         return (nomeDoEfeito: LogosOptions, textoPraLogo: string) => generate(nomeDoEfeito, textoPraLogo) as Promise<DefaultResultBuffer>;
     }
 
     get canvas(): CanvasRoute {
-        return this.getRoutes('canvas').canvas;
+        return this.getRoutes('canvas');
     }
 
     get animes(): AnimesRoute {
-        return this.getRoutes('animes').animes;
+        return this.getRoutes('animes');
     }
 
     constructor(opts: YutaApisOptions) {
@@ -141,17 +165,20 @@ export default class YutaApis {
         }
 
         opts.logger = opts.logger ?? true;
+
+        const messageInvalidToken = opts.messageInvalidToken || API_TOKEN_WARN_MESSAGE;
         if (!isYutaApiToken(String(opts.apiToken)) && opts.logger) {
-            console.log(opts.messageInvalidToken || API_TOKEN_WARN_MESSAGE);
+            console.log(messageInvalidToken);
         }
 
-        this.apiToken = opts.apiToken;
         this.httpOptions = opts.httpOptions ?? {};
-        this.url = opts.httpOptions?.baseUrl ?? BASE_YUTA_API_URL;
+        this.url = this.httpOptions?.baseUrl ?? BASE_YUTA_API_URL;
         this.config = {
             headers: this.httpOptions?.headers ?? {},
-            apitoken: this.apiToken,
-            baseUrl: this.url
+            apitoken: opts.apiToken,
+            baseUrl: this.url,
+            logger: opts.logger,
+            messageInvalidToken
         };
     }
 }

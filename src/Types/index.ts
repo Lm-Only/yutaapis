@@ -348,4 +348,4 @@ export interface RouteNames {
     upload: UploadRoute;
     stalker: StalkerRoute
 }
-
+export type RouteKey = keyof RouteNames;

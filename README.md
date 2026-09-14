@@ -112,9 +112,18 @@ if (!gitstalkResult.status) {
 console.log(gitstalkResult);
 ```
 
+## Atualizar o Token após iniciar o cliente
+> Útil para atualizar o token em tempo de execução
+```javascript
+api.updateApiToken('NOVO_TOKEN');
+```
+
+* `Saiba mais em:` [Exemplos básicos do módulo](https://github.com/Lm-Only/yutaapis/tree/main/docs)
+
+
 ##
 
-> [!NOTE]
+> [!IMPORTANT]
 > Afinal de contas, **Para que este módulo serve? 🤔**
 
 <details>
